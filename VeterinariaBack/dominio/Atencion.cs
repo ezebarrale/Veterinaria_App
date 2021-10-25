@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Veterinaria_Form.dominio
 {
-    class Atencion
+    public class Atencion
     {
         public DateTime Fecha { get; set; }
         public string Descripcion { get; set; }

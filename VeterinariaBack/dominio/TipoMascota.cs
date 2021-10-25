@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Veterinaria_Form.dominio
 {
-    class TipoMascota
+    public class TipoMascota
     {
+        public int IdTipoMascota { get; set; }
         public string Nombre { get; set; }
-
-        public TipoMascota(string nombre)
-        {
-            Nombre = nombre;
-        }
 
         public override string ToString()
         {

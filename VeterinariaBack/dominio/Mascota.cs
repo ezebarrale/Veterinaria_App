@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 namespace Veterinaria_Form.dominio
 {
-    class Mascota
+    public class Mascota
     {
         public string Nombre { get; set; }
         public int Edad { get; set; }
         public TipoMascota Tipo { get; set; }
+        public List<Atencion> Atenciones { get; set; }
 
-        public Mascota(string nombre, int edad, TipoMascota tipo)
+        public Mascota(List<Atencion> atenciones)
         {
-            Nombre = nombre;
-            Edad = edad;
-            Tipo = tipo;
+            Atenciones = atenciones;
         }
 
         public override string ToString()
         {
             return base.ToString();
         }
+
+        //add Atencion
+
+        //remove Atencion
+
     }
 }
