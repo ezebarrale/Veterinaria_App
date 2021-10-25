@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Veterinaria_Form", "Veterinaria_Form\Veterinaria_Form.csproj", "{6C12D909-1A0A-4703-900A-9C2BD7AF5DC6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaBack", "VeterinariaBack\VeterinariaBack.csproj", "{1D78754E-2165-47FE-BFE8-C1C333A389D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaSLN", "VeterinariaSLN\VeterinariaSLN.csproj", "{9D6A6AC2-6F47-47EF-A33F-C6CC7DBC88B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VeterinariaWebAPI", "VeterinariaWebAPI\VeterinariaWebAPI.csproj", "{32E95D21-461B-454B-B362-43D5D6C9EC6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C12D909-1A0A-4703-900A-9C2BD7AF5DC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C12D909-1A0A-4703-900A-9C2BD7AF5DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C12D909-1A0A-4703-900A-9C2BD7AF5DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C12D909-1A0A-4703-900A-9C2BD7AF5DC6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D78754E-2165-47FE-BFE8-C1C333A389D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D78754E-2165-47FE-BFE8-C1C333A389D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D78754E-2165-47FE-BFE8-C1C333A389D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D78754E-2165-47FE-BFE8-C1C333A389D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D6A6AC2-6F47-47EF-A33F-C6CC7DBC88B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D6A6AC2-6F47-47EF-A33F-C6CC7DBC88B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D6A6AC2-6F47-47EF-A33F-C6CC7DBC88B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D6A6AC2-6F47-47EF-A33F-C6CC7DBC88B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E95D21-461B-454B-B362-43D5D6C9EC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E95D21-461B-454B-B362-43D5D6C9EC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E95D21-461B-454B-B362-43D5D6C9EC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E95D21-461B-454B-B362-43D5D6C9EC6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

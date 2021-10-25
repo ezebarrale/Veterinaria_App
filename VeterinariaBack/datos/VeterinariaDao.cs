@@ -12,18 +12,20 @@ namespace VeterinariaBack.datos
     {
         public List<TipoMascota> GetTipoMascota()
         {
-            List<TipoMascota> mascotas = new List<TipoMascota>();
+            List<TipoMascota> list = new List<TipoMascota>();
+
             DataTable tipo_mascotas = HelperDao.GetInstance().Consulta_Tipo_Mascota_Sql("PA_TIPO_MASCOTAS");
+
             foreach (DataRow row in tipo_mascotas.Rows)
             {
                 TipoMascota tm = new TipoMascota();
                 tm.IdTipoMascota = Convert.ToInt32(row[0].ToString());
                 tm.Nombre = row[1].ToString();
 
-                mascotas.Add(tm);
+                list.Add(tm);
             }
 
-            return mascotas;
+            return list;
         }
     }
 }
