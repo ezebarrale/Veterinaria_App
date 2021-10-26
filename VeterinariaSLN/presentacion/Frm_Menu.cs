@@ -22,5 +22,16 @@ namespace VeterinariaSLN.presentacion
             Frm_Login frmMenu = new Frm_Login();
             frmMenu.ShowDialog();
         }
+
+        private void cmsSoporte_Click(object sender, EventArgs e)
+        {
+            Frm_ABMC_TipoMascota frmTipoMascota = new Frm_ABMC_TipoMascota();
+            frmTipoMascota.ShowDialog();
+        }
+
+        private void cmsArchivo_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
