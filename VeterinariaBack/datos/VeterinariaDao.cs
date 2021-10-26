@@ -10,6 +10,11 @@ namespace VeterinariaBack.datos
 {
     class VeterinariaDao : IVeterinariaDao
     {
+        public bool Login(string usr, string pass)
+        {
+            return HelperDao.GetInstance().Consulta_Login_Sql("PA_EXISTE_USUARIO", usr, pass);
+        }
+
         public List<TipoMascota> GetTipoMascota()
         {
             List<TipoMascota> list = new List<TipoMascota>();
@@ -27,5 +32,7 @@ namespace VeterinariaBack.datos
 
             return list;
         }
+
+        
     }
 }

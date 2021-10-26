@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VeterinariaBack.dominio;
 
 namespace VeterinariaBack.datos
 {
@@ -26,6 +27,51 @@ namespace VeterinariaBack.datos
                 instancia = new HelperDao();
             }
             return instancia;
+        }
+
+        public bool Consulta_Login_Sql(string procedure, string usr, string pass)
+        {
+
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int exito = 0;
+            bool flagSalida = false;
+
+            Usuario oUsario = new Usuario(usr, pass);
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@user", oUsario.User);
+                cmd.Parameters.AddWithValue("@pass", oUsario.Password);
+
+                SqlParameter param = new SqlParameter("@existe", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                exito = Convert.ToInt32(param.Value);
+
+                //exito cuando es 1
+                if(exito == 1)
+                    flagSalida = true;
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
         }
 
         public DataTable Consulta_Tipo_Mascota_Sql(string procedure)
