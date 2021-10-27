@@ -16,9 +16,9 @@ namespace VeterinariaBack.services
         {
             dao = new VeterinariaDao();
         }
-        public bool ConsultarUsuario(string usr, string pass)
+        public bool ConsultarUsuario(Usuario oUsuario)
         {
-            return dao.Login(usr, pass);
+            return dao.Login(oUsuario);
         }
         public List<TipoMascota> ConsultarTipoMascotas()
         {

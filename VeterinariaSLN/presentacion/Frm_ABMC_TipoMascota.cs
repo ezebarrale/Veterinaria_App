@@ -59,7 +59,7 @@ namespace VeterinariaSLN.presentacion
                 return;
             }
 
-            if (txtTM.Text.Length >50)
+            if (txtTM.Text.Length >10)
             {
                 MessageBox.Show("Debe ingresar un nombre de tipo de mascota mas corto", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

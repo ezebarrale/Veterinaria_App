@@ -29,14 +29,12 @@ namespace VeterinariaBack.datos
             return instancia;
         }
 
-        public bool Consulta_Login_Sql(string procedure, string usr, string pass)
+        public bool Consulta_Login_Sql(string procedure, Usuario oUsario)
         {
 
             SqlConnection cnn = new SqlConnection(connectionString);
             int exito = 0;
             bool flagSalida = false;
-
-            Usuario oUsario = new Usuario(usr, pass);
 
             try
             {

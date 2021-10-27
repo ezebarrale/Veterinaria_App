@@ -9,7 +9,7 @@ namespace VeterinariaBack.datos
 {
     interface IVeterinariaDao
     {
-        bool Login(string usr, string pass);
+        bool Login(Usuario oUsuario);
         List<TipoMascota> GetTipoMascota();
         TipoMascota SaveTipoMascota(string descripcion);
         bool DeleteTipoMascota(TipoMascota oTm);

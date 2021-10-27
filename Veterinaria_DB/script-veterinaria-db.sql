@@ -113,3 +113,4 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('araña')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
 INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
+

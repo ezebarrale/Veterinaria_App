@@ -9,7 +9,7 @@ namespace VeterinariaBack.services
 {
     public interface IVeterinariaApp
     {
-        public bool ConsultarUsuario(string usr, string pass);
+        public bool ConsultarUsuario(Usuario oUsuario);
         public List<TipoMascota> ConsultarTipoMascotas();
         public TipoMascota GuardarTipoMascota(string description);
         public bool EliminarTipoMascota(TipoMascota oTm);

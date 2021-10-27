@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VeterinariaBack.dominio
 {
-    class Usuario
+    public class Usuario
     {
         public string User { get; set; }
         public string Password { get; set; }

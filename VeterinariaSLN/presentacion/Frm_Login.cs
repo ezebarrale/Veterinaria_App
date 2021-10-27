@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VeterinariaBack.dominio;
 using VeterinariaSLN.presentacion;
 
 namespace VeterinariaSLN
@@ -33,23 +34,22 @@ namespace VeterinariaSLN
 
         private async Task ValidarUsuario()
         {
-            string url = "https://localhost:44350/api/Access?usr=" + txtUsuario.Text + "&pass=" + txtPass.Text;
-            HttpClient cliente = new HttpClient();
-            var result = await cliente.GetAsync(url);
+            Usuario usr = new Usuario();
+            usr.User = txtUsuario.Text;
+            usr.Password = txtPass.Text;
 
-            var bodyJSON = await result.Content.ReadAsStringAsync();
-            bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
+            string url = "https://localhost:44350/api/Access";
+            HttpClient client = new HttpClient();
 
-            if (exito)
-            {
-                this.Dispose();       
-            }
+            var data = JsonConvert.SerializeObject(usr);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+
+            var result = await client.PostAsync(url, content);
+
+            if (result.IsSuccessStatusCode)
+                this.Dispose();
             else
-            {
                 MessageBox.Show("EL usuario o contraseña ingresado no es correcto", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-
         }
     }
 }
