@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Veterinaria_Form.dominio;
+using VeterinariaBack.dominio;
 
 namespace VeterinariaBack.datos
 {
@@ -33,6 +33,14 @@ namespace VeterinariaBack.datos
             return list;
         }
 
-        
+        public TipoMascota SaveTipoMascota(string descripcion)
+        {
+            return HelperDao.GetInstance().Guardar_Tipo_Mascota_Sql("PA_GUARDAR_TIPO_MASCOTA", descripcion);
+        }
+
+        public bool DeleteTipoMascota(TipoMascota oTm)
+        {
+            return HelperDao.GetInstance().Eliminar_Tipo_Mascota_Sql("PA_ELIMINAR_TIPO_MASCOTA", oTm);
+        }
     }
 }

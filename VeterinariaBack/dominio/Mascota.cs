@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Veterinaria_Form.dominio
+namespace VeterinariaBack.dominio
 {
     public class Mascota
     {

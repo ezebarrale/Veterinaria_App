@@ -81,6 +81,7 @@ namespace VeterinariaSLN.presentacion
             this.cmsArchivo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsSalir1});
             this.cmsArchivo.Name = "contextMenuStrip1";
+            this.cmsArchivo.OwnerItem = this.tsArchivo;
             this.cmsArchivo.Size = new System.Drawing.Size(97, 26);
             this.cmsArchivo.Click += new System.EventHandler(this.cmsArchivo_Click);
             // 

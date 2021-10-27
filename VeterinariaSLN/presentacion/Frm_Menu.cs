@@ -18,9 +18,10 @@ namespace VeterinariaSLN.presentacion
         }
 
         private void Frm_Menu_Load(object sender, EventArgs e)
-        {
+        {/*
             Frm_Login frmMenu = new Frm_Login();
             frmMenu.ShowDialog();
+            */
         }
 
         private void cmsSoporte_Click(object sender, EventArgs e)

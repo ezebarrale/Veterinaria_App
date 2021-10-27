@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Veterinaria_Form.dominio;
+using VeterinariaBack.dominio;
 
 namespace VeterinariaBack.services
 {
@@ -11,5 +11,7 @@ namespace VeterinariaBack.services
     {
         public bool ConsultarUsuario(string usr, string pass);
         public List<TipoMascota> ConsultarTipoMascotas();
+        public TipoMascota GuardarTipoMascota(string description);
+        public bool EliminarTipoMascota(TipoMascota oTm);
     }
 }

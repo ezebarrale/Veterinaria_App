@@ -101,5 +101,84 @@ namespace VeterinariaBack.datos
 
             return table;
         }
+
+        public TipoMascota Guardar_Tipo_Mascota_Sql(string procedure, string descripcion) {
+
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int id_exito = 0;
+
+            TipoMascota tm = new TipoMascota();
+            tm.Nombre = descripcion;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@descrip", tm.Nombre);
+
+                SqlParameter param = new SqlParameter("@id_exito", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                id_exito = Convert.ToInt32(param.Value);
+                tm.IdTipoMascota = id_exito;
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            //retorna objeto tipo mascota con el id generado en la bd por la nueva insercion
+            return tm;
+        }
+
+        public bool Eliminar_Tipo_Mascota_Sql(string procedure, TipoMascota oTm)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int exito = 0;
+            bool flagSalida = false;
+
+            TipoMascota tm = new TipoMascota();
+            tm.IdTipoMascota = oTm.IdTipoMascota;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_tipo_mascota", tm.IdTipoMascota);
+
+                exito = cmd.ExecuteNonQuery();
+
+                if (exito == 1)
+                    flagSalida = true;
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            //retorna si fue exitosa o no la operacion
+            return flagSalida;
+        }
     }
 }

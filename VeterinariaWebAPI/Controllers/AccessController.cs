@@ -16,7 +16,7 @@ namespace VeterinariaWebAPI.Controllers
 
         public AccessController()
         {
-            app = new VeterinariaApp();
+            app = new ServiceFactoryImpl().CrearService();
         }
 
         [HttpGet]

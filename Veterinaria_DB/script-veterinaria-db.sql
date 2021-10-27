@@ -9,7 +9,9 @@ USE VETERINARIA
 CREATE TABLE TIPO_MASCOTAS(
 	id_tipo_mascota int IDENTITY(1,1) NOT NULL,
 	descripcion varchar(50) NULL,
+	fecha_baja DateTime
  CONSTRAINT [pk_tipo_mascota] PRIMARY KEY (id_tipo_mascota))
+
 
 CREATE TABLE MASCOTAS(
 id_mascota INT IDENTITY,
@@ -72,8 +74,25 @@ select @salida
 CREATE PROCEDURE PA_TIPO_MASCOTAS
 AS
 SELECT * FROM TIPO_MASCOTAS
+where fecha_baja IS NULL
 
 
+CREATE PROCEDURE PA_GUARDAR_TIPO_MASCOTA
+@descrip varchar(50),
+@id_exito int OUT
+AS
+
+INSERT INTO TIPO_MASCOTAS (descripcion) VALUES (@descrip)
+
+set @id_exito = (SELECT SCOPE_IDENTITY())
+
+
+CREATE PROCEDURE PA_ELIMINAR_TIPO_MASCOTA
+@id_tipo_mascota int
+AS
+UPDATE TIPO_MASCOTAS
+SET fecha_baja = getdate()
+where id_tipo_mascota = @id_tipo_mascota
 
 
 /******************************************/
@@ -86,6 +105,4 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('araña')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
 INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
-
-
 

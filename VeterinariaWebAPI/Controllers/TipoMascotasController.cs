@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VeterinariaBack.dominio;
 using VeterinariaBack.services;
 
 namespace VeterinariaWebAPI.Controllers
@@ -16,7 +17,7 @@ namespace VeterinariaWebAPI.Controllers
 
         public TipoMascotasController()
         {
-            app = new VeterinariaApp();
+            app = new ServiceFactoryImpl().CrearService();
         }
 
         [HttpGet]
@@ -24,6 +25,25 @@ namespace VeterinariaWebAPI.Controllers
 
             return Ok(app.ConsultarTipoMascotas());
 
+        }
+
+        [HttpPost]
+        public IActionResult PostTipoMascota(TipoMascota tm) {
+
+            if (String.IsNullOrEmpty(tm.Nombre))
+                return BadRequest();
+            else 
+                return Ok(app.GuardarTipoMascota(tm.Nombre));
+
+        }
+
+        [HttpPut]
+        public IActionResult PutTipoMascota(TipoMascota oTm) {
+
+            if (app.EliminarTipoMascota(oTm))
+                return Ok("Tipo de mascota eliminada con exito");
+            else
+                return BadRequest();
         }
     }
 }

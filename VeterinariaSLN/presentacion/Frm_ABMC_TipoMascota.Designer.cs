@@ -58,6 +58,7 @@ namespace VeterinariaSLN.presentacion
             this.txtTM.Name = "txtTM";
             this.txtTM.Size = new System.Drawing.Size(218, 23);
             this.txtTM.TabIndex = 1;
+            this.txtTM.TextChanged += new System.EventHandler(this.txtTM_TextChanged);
             // 
             // lblTM
             // 
@@ -86,7 +87,7 @@ namespace VeterinariaSLN.presentacion
             this.lstTM.Name = "lstTM";
             this.lstTM.Size = new System.Drawing.Size(239, 124);
             this.lstTM.TabIndex = 3;
-            this.lstTM.SelectedIndexChanged += new System.EventHandler(this.lstTM_SelectedIndexChanged);
+            this.lstTM.Click += new System.EventHandler(this.lstTM_Click);
             // 
             // btnEditarTM
             // 
@@ -107,6 +108,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEliminarTM.TabIndex = 6;
             this.btnEliminarTM.Text = "Eliminar";
             this.btnEliminarTM.UseVisualStyleBackColor = true;
+            this.btnEliminarTM.Click += new System.EventHandler(this.btnEliminarTM_Click);
             // 
             // btnSalirTM
             // 

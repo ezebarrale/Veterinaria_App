@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Veterinaria_Form.dominio
+namespace VeterinariaBack.dominio
 {
     public class TipoMascota
     {
@@ -13,7 +13,7 @@ namespace Veterinaria_Form.dominio
 
         public override string ToString()
         {
-            return base.ToString();
+            return Nombre;
         }
     }
 }
