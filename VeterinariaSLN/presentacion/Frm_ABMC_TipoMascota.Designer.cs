@@ -48,7 +48,7 @@ namespace VeterinariaSLN.presentacion
             this.grpbTM.Controls.Add(this.lblTM);
             this.grpbTM.Location = new System.Drawing.Point(38, 49);
             this.grpbTM.Name = "grpbTM";
-            this.grpbTM.Size = new System.Drawing.Size(420, 152);
+            this.grpbTM.Size = new System.Drawing.Size(450, 169);
             this.grpbTM.TabIndex = 1;
             this.grpbTM.TabStop = false;
             this.grpbTM.Text = "Alta de Tipo de Mascotas";
@@ -56,16 +56,16 @@ namespace VeterinariaSLN.presentacion
             // txtTM
             // 
             this.txtTM.Enabled = false;
-            this.txtTM.Location = new System.Drawing.Point(158, 56);
+            this.txtTM.Location = new System.Drawing.Point(149, 71);
             this.txtTM.Name = "txtTM";
-            this.txtTM.Size = new System.Drawing.Size(218, 23);
+            this.txtTM.Size = new System.Drawing.Size(259, 23);
             this.txtTM.TabIndex = 1;
             this.txtTM.TextChanged += new System.EventHandler(this.txtTM_TextChanged);
             // 
             // lblTM
             // 
             this.lblTM.AutoSize = true;
-            this.lblTM.Location = new System.Drawing.Point(38, 59);
+            this.lblTM.Location = new System.Drawing.Point(37, 74);
             this.lblTM.Name = "lblTM";
             this.lblTM.Size = new System.Drawing.Size(97, 15);
             this.lblTM.TabIndex = 0;
@@ -74,7 +74,7 @@ namespace VeterinariaSLN.presentacion
             // btnGuardarTM
             // 
             this.btnGuardarTM.Enabled = false;
-            this.btnGuardarTM.Location = new System.Drawing.Point(156, 234);
+            this.btnGuardarTM.Location = new System.Drawing.Point(161, 254);
             this.btnGuardarTM.Name = "btnGuardarTM";
             this.btnGuardarTM.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarTM.TabIndex = 2;
@@ -88,14 +88,14 @@ namespace VeterinariaSLN.presentacion
             this.lstTM.ItemHeight = 15;
             this.lstTM.Location = new System.Drawing.Point(507, 79);
             this.lstTM.Name = "lstTM";
-            this.lstTM.Size = new System.Drawing.Size(239, 124);
+            this.lstTM.Size = new System.Drawing.Size(239, 139);
             this.lstTM.TabIndex = 3;
             this.lstTM.Click += new System.EventHandler(this.lstTM_Click);
             // 
             // btnEditarTM
             // 
             this.btnEditarTM.Enabled = false;
-            this.btnEditarTM.Location = new System.Drawing.Point(256, 234);
+            this.btnEditarTM.Location = new System.Drawing.Point(261, 254);
             this.btnEditarTM.Name = "btnEditarTM";
             this.btnEditarTM.Size = new System.Drawing.Size(75, 23);
             this.btnEditarTM.TabIndex = 5;
@@ -106,7 +106,7 @@ namespace VeterinariaSLN.presentacion
             // btnEliminarTM
             // 
             this.btnEliminarTM.Enabled = false;
-            this.btnEliminarTM.Location = new System.Drawing.Point(352, 234);
+            this.btnEliminarTM.Location = new System.Drawing.Point(357, 254);
             this.btnEliminarTM.Name = "btnEliminarTM";
             this.btnEliminarTM.Size = new System.Drawing.Size(75, 23);
             this.btnEliminarTM.TabIndex = 6;
@@ -116,7 +116,7 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnSalirTM
             // 
-            this.btnSalirTM.Location = new System.Drawing.Point(653, 234);
+            this.btnSalirTM.Location = new System.Drawing.Point(653, 254);
             this.btnSalirTM.Name = "btnSalirTM";
             this.btnSalirTM.Size = new System.Drawing.Size(75, 23);
             this.btnSalirTM.TabIndex = 7;
@@ -135,7 +135,7 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnNuevoTM
             // 
-            this.btnNuevoTM.Location = new System.Drawing.Point(56, 234);
+            this.btnNuevoTM.Location = new System.Drawing.Point(61, 254);
             this.btnNuevoTM.Name = "btnNuevoTM";
             this.btnNuevoTM.Size = new System.Drawing.Size(75, 23);
             this.btnNuevoTM.TabIndex = 9;

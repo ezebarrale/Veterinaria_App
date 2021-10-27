@@ -28,3 +28,6 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\bin\Debug\net5.0-windows
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\bin\Debug\net5.0-windows\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\bin\Debug\net5.0-windows\VeterinariaBack.pdb
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Main_Atenciones.resources
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Soporte.resources
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_TP\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_ABMC_Atenciones.resources

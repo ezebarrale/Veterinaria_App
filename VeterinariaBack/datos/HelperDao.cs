@@ -218,5 +218,39 @@ namespace VeterinariaBack.datos
             //retorna si fue exitosa o no la operacion
             return flagSalida;
         }
+
+        public DataTable Consulta_Clientes_Sql(string procedure, string nombre)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+
+            Cliente oCliente = new Cliente();
+            oCliente.Nombre = nombre;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+
+                table.Load(cmd.ExecuteReader());
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+        }
+
     }
 }

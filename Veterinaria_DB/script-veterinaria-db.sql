@@ -1,4 +1,4 @@
---CREATE DATABASE VETERINARIA
+CREATE DATABASE VETERINARIA
 
 USE VETERINARIA
 
@@ -8,16 +8,17 @@ USE VETERINARIA
 
 CREATE TABLE TIPO_MASCOTAS(
 	id_tipo_mascota int IDENTITY(1,1) NOT NULL,
-	descripcion varchar(10) NULL,
-	fecha_baja DateTime
+	descripcion VARCHAR(10) NULL,
+	fecha_baja DATETIME
  CONSTRAINT [pk_tipo_mascota] PRIMARY KEY (id_tipo_mascota))
 
 
 CREATE TABLE MASCOTAS(
 id_mascota INT IDENTITY,
 nombre VARCHAR(10),
-fecha_nac DATETIME,
-id_tipo_mascota INT
+edad INT,
+id_tipo_mascota INT,
+fecha_baja DATETIME
 CONSTRAINT pk_id_mascota PRIMARY KEY (id_mascota),
 CONSTRAINT fk_id_tipo_mascota FOREIGN KEY (id_tipo_mascota)
 REFERENCES TIPO_MASCOTAS (id_tipo_mascota))
@@ -25,21 +26,19 @@ REFERENCES TIPO_MASCOTAS (id_tipo_mascota))
 CREATE TABLE CLIENTES(
 id_cliente INT IDENTITY,
 nombre VARCHAR(20),
-apellido VARCHAR(15),
-telefono INT,
-[e-mail] VARCHAR (20)
+sexo VARCHAR(1),
+fecha_baja DATETIME
 CONSTRAINT pk_id_cliente PRIMARY KEY (id_cliente))
+
 
 CREATE TABLE ATENCIONES(
 id_atencion INT IDENTITY,
-id_cliente INT,
 fecha_hora DATETIME,
 descripcion VARCHAR (200),
 id_mascota INT,
-precio_consulta DECIMAL (8,2)
+importe_atencion DECIMAL (8,2),
+fecha_baja DATETIME
 CONSTRAINT pk_id_atencion PRIMARY KEY (id_atencion),
-CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente)
-REFERENCES CLIENTES (id_cliente),
 CONSTRAINT fk_mascota FOREIGN KEY (id_mascota)
 REFERENCES MASCOTAS (id_mascota))
 
@@ -103,6 +102,16 @@ SET descripcion = @descripcion
 where id_tipo_mascota = @id_tipo_mascota
 END
 
+CREATE PROCEDURE PA_CONSULTAR_CLIENTE
+@nombre varchar(20)
+AS
+BEGIN
+SELECT * FROM CLIENTES
+WHERE upper(nombre) LIKE upper('%'+@nombre+'%')
+AND fecha_baja IS NULL
+END
+
+
 /******************************************/
 --INSERCIONES
 /******************************************/
@@ -114,3 +123,4 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
 INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
 
+INSERT INTO CLIENTES(nombre,sexo) VALUES ('juan', 'M')	

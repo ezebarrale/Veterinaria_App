@@ -14,12 +14,7 @@ using VeterinariaBack.dominio;
 
 namespace VeterinariaSLN.presentacion
 {
-    public enum Accion { 
-        
-        CREATE,
-        UPDATE,
-        DELETE
-    }
+    
 
     public partial class Frm_ABMC_TipoMascota : Form
     {
@@ -65,10 +60,10 @@ namespace VeterinariaSLN.presentacion
                 return;
             }
 
-
             TipoMascota tm = new TipoMascota();
             tm.Nombre = txtTM.Text;
 
+            //Si se trata de guardar un item editado
             if (modo == Accion.UPDATE) {
                 
 
@@ -77,13 +72,10 @@ namespace VeterinariaSLN.presentacion
                 if (msg.Equals(DialogResult.OK))
                 {
                     tm.IdTipoMascota = Convert.ToInt32(lstTM.SelectedValue.ToString());
-
                     string url1 = "https://localhost:44350/api/TipoMascotas";
                     HttpClient client = new HttpClient();
-
                     var data1 = JsonConvert.SerializeObject(tm);
                     HttpContent content1 = new StringContent(data1, System.Text.Encoding.UTF8, "application/json");
-
                     var result1 = await client.PutAsync(url1, content1);
 
                     if (result1.IsSuccessStatusCode)
@@ -116,12 +108,12 @@ namespace VeterinariaSLN.presentacion
                 return;
             }
 
+            //Curso normal para cuando se guarda un item nuevo
+
             string url = "https://localhost:44350/api/TipoMascotas";
             HttpClient cliente = new HttpClient();
-
             var data = JsonConvert.SerializeObject(tm);
             HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-
             var result = await cliente.PostAsync(url, content);
 
             if (result.IsSuccessStatusCode)
@@ -187,13 +179,10 @@ namespace VeterinariaSLN.presentacion
             if (msg.Equals(DialogResult.OK)) {
                 TipoMascota tm = new TipoMascota();
                 tm.IdTipoMascota = Convert.ToInt32(lstTM.SelectedValue.ToString());
-
                 string url = "https://localhost:44350/api/TipoMascotas";
                 HttpClient cliente = new HttpClient();
-
                 var data = JsonConvert.SerializeObject(tm);
                 HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-
                 var result = await cliente.PutAsync(url, content);
 
                 if (result.IsSuccessStatusCode)

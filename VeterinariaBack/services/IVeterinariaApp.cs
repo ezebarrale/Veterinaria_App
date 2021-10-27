@@ -14,5 +14,6 @@ namespace VeterinariaBack.services
         public TipoMascota GuardarTipoMascota(string description);
         public bool EliminarTipoMascota(TipoMascota oTm);
         public bool EditarTipoMascota(TipoMascota oTm);
+        public List<Cliente> ConsultarClientes(string nombre);
     }
 }

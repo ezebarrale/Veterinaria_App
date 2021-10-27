@@ -14,5 +14,6 @@ namespace VeterinariaBack.datos
         TipoMascota SaveTipoMascota(string descripcion);
         bool DeleteTipoMascota(TipoMascota oTm);
         bool UpdateTipoMascota(TipoMascota oTm);
+        List<Cliente> GetClientes(string nombre);
     }
 }
