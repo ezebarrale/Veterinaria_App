@@ -33,5 +33,9 @@ namespace VeterinariaBack.services
         {
             return dao.DeleteTipoMascota(oTm);
         }
+        public bool EditarTipoMascota(TipoMascota oTm)
+        {
+            return dao.UpdateTipoMascota(oTm);
+        }
     }
 }

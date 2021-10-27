@@ -40,10 +40,22 @@ namespace VeterinariaWebAPI.Controllers
         [HttpPut]
         public IActionResult PutTipoMascota(TipoMascota oTm) {
 
-            if (app.EliminarTipoMascota(oTm))
-                return Ok("Tipo de mascota eliminada con exito");
-            else
-                return BadRequest();
+            if (String.IsNullOrEmpty(oTm.Nombre))
+            {
+                if (app.EliminarTipoMascota(oTm))
+                    return Ok("Tipo de mascota eliminada con exito");
+                else
+                    return BadRequest();
+            }
+            else {
+                if (app.EditarTipoMascota(oTm))
+                    return Ok("Tipo de mascota actualizada con exito");
+                else
+                    return BadRequest();
+            }
+
+            
         }
+
     }
 }

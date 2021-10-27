@@ -180,5 +180,45 @@ namespace VeterinariaBack.datos
             //retorna si fue exitosa o no la operacion
             return flagSalida;
         }
+
+        public bool Editar_Tipo_Mascota_Sql(string procedure, TipoMascota oTm)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int exito = 0;
+            bool flagSalida = false;
+
+            TipoMascota tm = new TipoMascota();
+            tm.IdTipoMascota = oTm.IdTipoMascota;
+            tm.Nombre = oTm.Nombre;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_tipo_mascota", tm.IdTipoMascota);
+                cmd.Parameters.AddWithValue("@descripcion", tm.Nombre);
+
+                exito = cmd.ExecuteNonQuery();
+
+                if (exito == 1)
+                    flagSalida = true;
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            //retorna si fue exitosa o no la operacion
+            return flagSalida;
+        }
     }
 }

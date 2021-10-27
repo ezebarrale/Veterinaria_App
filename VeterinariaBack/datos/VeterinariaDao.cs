@@ -42,5 +42,10 @@ namespace VeterinariaBack.datos
         {
             return HelperDao.GetInstance().Eliminar_Tipo_Mascota_Sql("PA_ELIMINAR_TIPO_MASCOTA", oTm);
         }
+
+        public bool UpdateTipoMascota(TipoMascota oTm)
+        {
+            return HelperDao.GetInstance().Editar_Tipo_Mascota_Sql("PA_EDITAR_TIPO_MASCOTA", oTm);
+        }
     }
 }

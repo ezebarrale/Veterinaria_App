@@ -14,9 +14,17 @@ using VeterinariaBack.dominio;
 
 namespace VeterinariaSLN.presentacion
 {
+    public enum Accion { 
+        
+        CREATE,
+        UPDATE,
+        DELETE
+    }
+
     public partial class Frm_ABMC_TipoMascota : Form
     {
         List<TipoMascota> lstTipoMascotas;
+        private Accion modo;
         public Frm_ABMC_TipoMascota()
         {
             InitializeComponent();
@@ -46,8 +54,67 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnGuardarTM_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtTM.Text)) {
+                MessageBox.Show("Debe ingresar un tipo de mascota", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (txtTM.Text.Length >50)
+            {
+                MessageBox.Show("Debe ingresar un nombre de tipo de mascota mas corto", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             TipoMascota tm = new TipoMascota();
             tm.Nombre = txtTM.Text;
+
+            if (modo == Accion.UPDATE) {
+                
+
+                DialogResult msg = MessageBox.Show("Seguro desea actualizar este tipo de mascota?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (msg.Equals(DialogResult.OK))
+                {
+                    tm.IdTipoMascota = Convert.ToInt32(lstTM.SelectedValue.ToString());
+
+                    string url1 = "https://localhost:44350/api/TipoMascotas";
+                    HttpClient client = new HttpClient();
+
+                    var data1 = JsonConvert.SerializeObject(tm);
+                    HttpContent content1 = new StringContent(data1, System.Text.Encoding.UTF8, "application/json");
+
+                    var result1 = await client.PutAsync(url1, content1);
+
+                    if (result1.IsSuccessStatusCode)
+                    {
+                        foreach (TipoMascota oTm in lstTipoMascotas)
+                        {
+                            if (oTm.IdTipoMascota == tm.IdTipoMascota)
+                            {
+                                oTm.Nombre = tm.Nombre;
+                                break;
+                            }
+                        }
+
+                        ActualizarLista();
+
+                        MessageBox.Show("Tipo de Mascota actualizada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        txtTM.Text = "";
+                        btnEliminarTM.Enabled = false;
+                        btnEditarTM.Enabled = false;
+                        btnGuardarTM.Enabled = false;
+                        btnNuevoTM.Enabled = true;
+                        txtTM.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tipo de Mascota NO fue eliminada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                return;
+            }
 
             string url = "https://localhost:44350/api/TipoMascotas";
             HttpClient cliente = new HttpClient();
@@ -67,6 +134,9 @@ namespace VeterinariaSLN.presentacion
                 MessageBox.Show("Tipo de Mascota guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 txtTM.Text = "";
+                btnGuardarTM.Enabled = false;
+                txtTM.Enabled = false;
+                btnNuevoTM.Enabled = true;
             }
             else {
                 MessageBox.Show("Tipo de Mascota NO fue guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -90,29 +160,33 @@ namespace VeterinariaSLN.presentacion
 
         private void lstTM_Click(object sender, EventArgs e)
         {
+            txtTM.Enabled = false;
             txtTM.Text = lstTM.SelectedItem.ToString();
             HabilitarBotones(true);
 
         }
         private void txtTM_TextChanged(object sender, EventArgs e)
         {
-            HabilitarBotones(false);
+            if(!String.IsNullOrEmpty(txtTM.Text))
+                HabilitarBotones(false);
         }
         private void HabilitarBotones(bool s)
         {
             btnEditarTM.Enabled = s;
             btnEliminarTM.Enabled = s;
+            btnNuevoTM.Enabled = s;
             btnGuardarTM.Enabled = !s;
         }
 
         private async void btnEliminarTM_Click(object sender, EventArgs e)
         {
+            txtTM.Enabled = false;
+
             DialogResult msg = MessageBox.Show("Seguro desea eliminar este tipo de mascota?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
             if (msg.Equals(DialogResult.OK)) {
                 TipoMascota tm = new TipoMascota();
                 tm.IdTipoMascota = Convert.ToInt32(lstTM.SelectedValue.ToString());
-                tm.Nombre = lstTM.SelectedItem.ToString();
 
                 string url = "https://localhost:44350/api/TipoMascotas";
                 HttpClient cliente = new HttpClient();
@@ -137,6 +211,9 @@ namespace VeterinariaSLN.presentacion
                     MessageBox.Show("Tipo de Mascota eliminada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     txtTM.Text = "";
+                    btnEliminarTM.Enabled = false;
+                    btnEditarTM.Enabled = false;
+                    txtTM.Enabled = false;
                 }
                 else
                 {
@@ -144,5 +221,29 @@ namespace VeterinariaSLN.presentacion
                 }
             }
         }
+
+        private void btnEditarTM_Click(object sender, EventArgs e)
+        {
+            modo = Accion.UPDATE;
+
+            grpbTM.Text = "Editar Tipo de Mascota";
+            txtTM.Enabled = true;
+            btnEliminarTM.Enabled = false;
+            btnEditarTM.Enabled = false;
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            modo = Accion.CREATE;
+
+            txtTM.Enabled = true;
+            txtTM.Text = "";
+            if(!String.IsNullOrEmpty(txtTM.Text))
+                btnGuardarTM.Enabled = true;
+            btnNuevoTM.Enabled = false;
+            btnEditarTM.Enabled = false;
+            btnEliminarTM.Enabled = false;
+        }
+
     }
 }
