@@ -67,5 +67,39 @@ namespace VeterinariaBack.datos
 
             return lst;
         }
+
+        public List<Mascota> GetMascotas(int id_cliente)
+        {
+            List<Mascota> lst = new List<Mascota>();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Mascotas_Sql("PA_CONSULTAR_MASCOTA", id_cliente);
+
+            foreach (DataRow itm in table.Rows)
+            {
+                Mascota oMascota = new Mascota();
+                oMascota.IdMascota = Convert.ToInt32(itm["id_mascota"].ToString());
+                oMascota.Nombre = itm["nombre"].ToString();
+                oMascota.Edad = Convert.ToInt32(itm["edad"].ToString());
+
+                /*
+                TipoMascota tm = new TipoMascota();
+                tm.IdTipoMascota = Convert.ToInt32(itm["id_tipo_mascota"].ToString());
+
+                DataTable table1 = HelperDao.Consulta_Tipo_Mascota_XID_Sql("PA_TIPO_MASCOTAS_X_ID", tm.IdTipoMascota);
+                
+                foreach (DataRow item in table1.Rows)
+                {
+                    tm.Nombre = item["descripcion"].ToString();
+                }
+                
+                tm.Nombre = table1.Rows[1][1].ToString();
+
+                oMascota.Tipo = tm;
+                */
+                lst.Add(oMascota);
+            }
+
+            return lst;
+        }
     }
 }

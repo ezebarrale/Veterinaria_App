@@ -100,6 +100,7 @@ namespace VeterinariaSLN.presentacion
             this.lsbClientes.Name = "lsbClientes";
             this.lsbClientes.Size = new System.Drawing.Size(171, 94);
             this.lsbClientes.TabIndex = 7;
+            this.lsbClientes.Click += new System.EventHandler(this.lsbClientes_Click);
             // 
             // btnBuscarCliente
             // 
@@ -153,13 +154,13 @@ namespace VeterinariaSLN.presentacion
             // 
             // lsbMascotas
             // 
-            this.lsbMascotas.Enabled = false;
             this.lsbMascotas.FormattingEnabled = true;
             this.lsbMascotas.ItemHeight = 15;
             this.lsbMascotas.Location = new System.Drawing.Point(99, 100);
             this.lsbMascotas.Name = "lsbMascotas";
             this.lsbMascotas.Size = new System.Drawing.Size(171, 124);
             this.lsbMascotas.TabIndex = 10;
+            this.lsbMascotas.Click += new System.EventHandler(this.lsbMascotas_Click);
             // 
             // lblSelectMascota
             // 

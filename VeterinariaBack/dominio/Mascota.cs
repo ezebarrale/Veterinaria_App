@@ -8,6 +8,7 @@ namespace VeterinariaBack.dominio
 {
     public class Mascota
     {
+        public int IdMascota { get; set; }
         public string Nombre { get; set; }
         public int Edad { get; set; }
         public TipoMascota Tipo { get; set; }
@@ -16,6 +17,13 @@ namespace VeterinariaBack.dominio
         public Mascota(List<Atencion> atenciones)
         {
             Atenciones = atenciones;
+        }
+
+        public Mascota()
+        {
+            IdMascota = 0;
+            Nombre = "";
+            Edad = 0;
         }
 
         public override string ToString()

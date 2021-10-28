@@ -126,8 +126,9 @@ namespace VeterinariaSLN.presentacion
             this.cmsTransaccion.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsABMAtenciones});
             this.cmsTransaccion.Name = "cmsTransaccion";
+            this.cmsTransaccion.OwnerItem = this.tsTransaccion;
             this.cmsTransaccion.Size = new System.Drawing.Size(161, 26);
-            this.cmsTransaccion.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTransaccion_Opening);
+            this.cmsTransaccion.Click += new System.EventHandler(this.cmsTransaccion_Click);
             // 
             // tsABMAtenciones
             // 

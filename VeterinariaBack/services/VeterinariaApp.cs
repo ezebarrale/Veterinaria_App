@@ -42,5 +42,10 @@ namespace VeterinariaBack.services
         {
             return dao.GetClientes(nombre);
         }
+
+        public List<Mascota> ConsultarMascotas(int id_cliente)
+        {
+            return dao.GetMascotas(id_cliente);
+        }
     }
 }

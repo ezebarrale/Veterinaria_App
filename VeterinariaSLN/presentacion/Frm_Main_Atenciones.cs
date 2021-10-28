@@ -28,6 +28,9 @@ namespace VeterinariaSLN.presentacion
     public partial class Frm_Main_Atenciones : Form
     {
         private List<Cliente> lstClientes;
+        private List<Mascota> lstMascotas;
+        Cliente oCliente = new Cliente();
+        Mascota oMascota = new Mascota();
         public Frm_Main_Atenciones()
         {
             InitializeComponent();
@@ -47,7 +50,7 @@ namespace VeterinariaSLN.presentacion
 
         private void btnRegistar_Click(object sender, EventArgs e)
         {
-            Frm_ABMC_Atenciones FrmAtenciones = new Frm_ABMC_Atenciones();
+            Frm_ABMC_Atenciones FrmAtenciones = new Frm_ABMC_Atenciones(oCliente, oMascota);
             FrmAtenciones.ShowDialog();
         }
 
@@ -70,10 +73,56 @@ namespace VeterinariaSLN.presentacion
                     lsbClientes.ValueMember = "Codigo";
 
                     lsbClientes.Enabled = true;
+                    btnGCliente.Enabled = true;
                 }
 
             }
             
+        }
+
+        private async void lsbClientes_Click(object sender, EventArgs e)
+        {
+            foreach (Cliente clt in lstClientes)
+            {
+                if (clt.Codigo == Convert.ToInt32(lsbClientes.SelectedValue.ToString())) {
+                    oCliente = clt;
+                    break;
+                }
+            }
+
+            string url = "https://localhost:44350/api/Mascotas?id_cliente=" + oCliente.Codigo;
+            HttpClient cliente = new HttpClient();
+            var result = await cliente.GetAsync(url);
+
+            if (result.IsSuccessStatusCode)
+            {
+                var bodyJSON = await result.Content.ReadAsStringAsync();
+                lstMascotas = JsonConvert.DeserializeObject<List<Mascota>>(bodyJSON);
+
+                foreach (Mascota oMascota in lstMascotas)
+                {
+                    oCliente.AgregarMascota(oMascota);
+                }
+                
+                lsbMascotas.DataSource = lstMascotas;
+                lsbMascotas.DisplayMember = "Nombre";
+                lsbMascotas.ValueMember = "IdMascota";
+            }
+
+            grpMascota.Enabled = true;
+        }
+
+        private void lsbMascotas_Click(object sender, EventArgs e)
+        {
+            btnGMascota.Enabled = true;
+            btnRegistar.Enabled = true;
+
+            foreach (Mascota msct in oCliente.Mascotas)
+            {
+                if (msct.IdMascota == Convert.ToInt32(lsbMascotas.SelectedValue.ToString())) {
+                    oMascota = msct;
+                }
+            }
         }
     }
 }

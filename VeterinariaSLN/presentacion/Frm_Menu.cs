@@ -19,9 +19,10 @@ namespace VeterinariaSLN.presentacion
 
         private void Frm_Menu_Load(object sender, EventArgs e)
         {
+            /*
             Frm_Login frmLogin = new Frm_Login();
             frmLogin.ShowDialog();
-            
+            */
         }
 
         private void cmsSoporte_Click(object sender, EventArgs e)
@@ -35,10 +36,12 @@ namespace VeterinariaSLN.presentacion
             this.Dispose();
         }
 
-        private void cmsTransaccion_Opening(object sender, CancelEventArgs e)
+        private void cmsTransaccion_Click(object sender, EventArgs e)
         {
             Frm_Main_Atenciones frmMainAtenciones = new Frm_Main_Atenciones();
             frmMainAtenciones.ShowDialog();
+
+
         }
     }
 }

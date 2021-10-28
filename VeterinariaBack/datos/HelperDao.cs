@@ -100,6 +100,40 @@ namespace VeterinariaBack.datos
             return table;
         }
 
+        public DataTable Consulta_Tipo_Mascota_XID_Sql(string procedure, int id_tipo_mascota)
+        {
+
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+
+            TipoMascota tm = new TipoMascota();
+            tm.IdTipoMascota = id_tipo_mascota;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_tipo", tm.IdTipoMascota);
+
+                table.Load(cmd.ExecuteReader());
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+        }
+
         public TipoMascota Guardar_Tipo_Mascota_Sql(string procedure, string descripcion) {
 
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -235,6 +269,39 @@ namespace VeterinariaBack.datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+
+                table.Load(cmd.ExecuteReader());
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+        }
+
+        public DataTable Consulta_Mascotas_Sql(string procedure, int id_cliente)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+
+            Cliente clt = new Cliente();
+            clt.Codigo = id_cliente;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_cliente", clt.Codigo);
 
                 table.Load(cmd.ExecuteReader());
 

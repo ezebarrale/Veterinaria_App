@@ -15,14 +15,7 @@ namespace VeterinariaBack.dominio
 
         public Cliente()
         {
-            Nombre = "";
-            Sexo = "";
-            Codigo = 0;
-        }
-
-        public Cliente(List<Mascota> mascotas)
-        {
-            Mascotas = mascotas;
+            Mascotas = new List<Mascota>();
         }
 
         public override string ToString()
@@ -31,7 +24,9 @@ namespace VeterinariaBack.dominio
         }
 
         //add Mascota
-
+        public void AgregarMascota(Mascota oMascota) {
+            Mascotas.Add(oMascota);  
+        }
         //remove Mascota
     }
 }
