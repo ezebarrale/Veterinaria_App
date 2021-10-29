@@ -14,16 +14,9 @@ namespace VeterinariaBack.dominio
         public TipoMascota Tipo { get; set; }
         public List<Atencion> Atenciones { get; set; }
 
-        public Mascota(List<Atencion> atenciones)
-        {
-            Atenciones = atenciones;
-        }
-
         public Mascota()
         {
-            IdMascota = 0;
-            Nombre = "";
-            Edad = 0;
+            Atenciones = new List<Atencion>();
         }
 
         public override string ToString()
@@ -32,6 +25,9 @@ namespace VeterinariaBack.dominio
         }
 
         //add Atencion
+        public void SaveAtencion(Atencion att) {
+            Atenciones.Add(att);
+        }
 
         //remove Atencion
 

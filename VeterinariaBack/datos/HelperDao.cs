@@ -71,7 +71,6 @@ namespace VeterinariaBack.datos
 
             return flagSalida;
         }
-
         public DataTable Consulta_Tipo_Mascota_Sql(string procedure)
         {
 
@@ -99,7 +98,6 @@ namespace VeterinariaBack.datos
 
             return table;
         }
-
         public DataTable Consulta_Tipo_Mascota_XID_Sql(string procedure, int id_tipo_mascota)
         {
 
@@ -133,7 +131,6 @@ namespace VeterinariaBack.datos
 
             return table;
         }
-
         public TipoMascota Guardar_Tipo_Mascota_Sql(string procedure, string descripcion) {
 
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -174,7 +171,6 @@ namespace VeterinariaBack.datos
             //retorna objeto tipo mascota con el id generado en la bd por la nueva insercion
             return tm;
         }
-
         public bool Eliminar_Tipo_Mascota_Sql(string procedure, TipoMascota oTm)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -212,7 +208,6 @@ namespace VeterinariaBack.datos
             //retorna si fue exitosa o no la operacion
             return flagSalida;
         }
-
         public bool Editar_Tipo_Mascota_Sql(string procedure, TipoMascota oTm)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -252,7 +247,6 @@ namespace VeterinariaBack.datos
             //retorna si fue exitosa o no la operacion
             return flagSalida;
         }
-
         public DataTable Consulta_Clientes_Sql(string procedure, string nombre)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -285,7 +279,6 @@ namespace VeterinariaBack.datos
 
             return table;
         }
-
         public DataTable Consulta_Mascotas_Sql(string procedure, int id_cliente)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -318,6 +311,171 @@ namespace VeterinariaBack.datos
 
             return table;
         }
+        public Atencion Consulta_Ultimo_Id_Atencion(string procedure) {
 
+            Atencion att = new Atencion();
+            att.IdAtencion = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure,cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter("@id_atencion", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                att.IdAtencion = Convert.ToInt32(param.Value);
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return att;
+            
+        }
+        public bool Guardar_Atencion(string procedure, Mascota oMascota) {
+            bool flagSalida = false;
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int exito = 0;
+            try
+            {
+                cnn.Open();
+
+                foreach (Atencion att in oMascota.Atenciones)
+                {
+                    SqlCommand cmd = new SqlCommand(procedure, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@descrip", att.Descripcion);
+                    cmd.Parameters.AddWithValue("@imp", att.Importe);
+                    cmd.Parameters.AddWithValue("@id_mascota", oMascota.IdMascota);
+
+                    exito = cmd.ExecuteNonQuery();
+
+                    if (exito == 1)
+                        flagSalida = true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public DataTable Consulta_Atenciones_Sql(string procedure, Mascota oMascota) {
+            
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_mascota", oMascota.IdMascota);
+
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+
+        }
+        public bool Editar_Atencion_Sql(string procedure, Atencion oAtencion) {
+
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oAtencion.IdAtencion);
+                cmd.Parameters.AddWithValue("@descripcion", oAtencion.Descripcion);
+                cmd.Parameters.AddWithValue("@importe_atencion", oAtencion.Importe);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Eliminar_Atencion_Sql(string procedure, Atencion oAtencion) {
+
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oAtencion.IdAtencion);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
     }
 }

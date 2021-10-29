@@ -42,6 +42,7 @@ namespace VeterinariaSLN.presentacion
             this.lsbMascotas = new System.Windows.Forms.ListBox();
             this.lblSelectMascota = new System.Windows.Forms.Label();
             this.btnRegistar = new System.Windows.Forms.Button();
+            this.btnSalirMain = new System.Windows.Forms.Button();
             this.grpCliente.SuspendLayout();
             this.grpMascota.SuspendLayout();
             this.SuspendLayout();
@@ -174,7 +175,7 @@ namespace VeterinariaSLN.presentacion
             // btnRegistar
             // 
             this.btnRegistar.Enabled = false;
-            this.btnRegistar.Location = new System.Drawing.Point(630, 437);
+            this.btnRegistar.Location = new System.Drawing.Point(506, 438);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(161, 23);
             this.btnRegistar.TabIndex = 3;
@@ -182,11 +183,22 @@ namespace VeterinariaSLN.presentacion
             this.btnRegistar.UseVisualStyleBackColor = true;
             this.btnRegistar.Click += new System.EventHandler(this.btnRegistar_Click);
             // 
+            // btnSalirMain
+            // 
+            this.btnSalirMain.Location = new System.Drawing.Point(717, 438);
+            this.btnSalirMain.Name = "btnSalirMain";
+            this.btnSalirMain.Size = new System.Drawing.Size(75, 23);
+            this.btnSalirMain.TabIndex = 4;
+            this.btnSalirMain.Text = "Salir";
+            this.btnSalirMain.UseVisualStyleBackColor = true;
+            this.btnSalirMain.Click += new System.EventHandler(this.btnSalirMain_Click);
+            // 
             // Frm_Main_Atenciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 486);
+            this.Controls.Add(this.btnSalirMain);
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.grpMascota);
             this.Controls.Add(this.grpCliente);
@@ -219,5 +231,6 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.ListBox lsbMascotas;
         private System.Windows.Forms.Label lblSelectMascota;
         private System.Windows.Forms.Button btnGMascota;
+        private System.Windows.Forms.Button btnSalirMain;
     }
 }

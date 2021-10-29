@@ -12,7 +12,6 @@ descripcion VARCHAR(10) NOT NULL,
 fecha_baja DATETIME
 CONSTRAINT [pk_tipo_mascota] PRIMARY KEY (id_tipo_mascota))
 
-
 CREATE TABLE CLIENTES(
 id_cliente INT IDENTITY,
 nombre VARCHAR(20),
@@ -33,17 +32,17 @@ REFERENCES CLIENTES (id_cliente),
 CONSTRAINT fk_id_tipo_mascota FOREIGN KEY (id_tipo_mascota)
 REFERENCES TIPO_MASCOTAS (id_tipo_mascota))
 
-
 CREATE TABLE ATENCIONES(
 id_atencion INT IDENTITY,
 fecha_hora DATETIME,
-descripcion VARCHAR (200),
+descripcion VARCHAR (100),
 id_mascota INT,
 importe_atencion DECIMAL (8,2),
 fecha_baja DATETIME
 CONSTRAINT pk_id_atencion PRIMARY KEY (id_atencion),
 CONSTRAINT fk_mascota FOREIGN KEY (id_mascota)
 REFERENCES MASCOTAS (id_mascota))
+
 
 CREATE TABLE USUARIOS(
 id_usuario int IDENTITY(1,1) NOT NULL,
@@ -131,6 +130,64 @@ SELECT * FROM MASCOTAS
 WHERE id_cliente = @id_cliente
 END
 
+CREATE PROCEDURE PA_NEXT_ID_ATENCION
+@id_atencion INT OUT
+AS
+BEGIN
+declare @id int
+SET @id = (SELECT MAX(id_atencion) FROM ATENCIONES )
+
+	IF(@id IS NULL)
+	BEGIN
+		SET @id_atencion = IDENT_CURRENT('dbo.ATENCIONES')
+		RETURN
+	END
+	
+	SET @id_atencion=(IDENT_CURRENT('dbo.ATENCIONES') + IDENT_INCR('dbo.ATENCIONES'))	
+END
+
+CREATE PROCEDURE PA_GUARDAR_ATENCION
+@descrip varchar(200),
+@imp DECIMAL (8,2),
+@id_mascota int
+AS
+BEGIN
+
+	INSERT INTO ATENCIONES(fecha_hora, descripcion, id_mascota, importe_atencion) 
+					VALUES(GETDATE(), @descrip, @id_mascota, @imp)
+
+END
+
+CREATE PROCEDURE PA_CONSULTAR_ATENCIONES
+@id_mascota int
+AS
+BEGIN
+SELECT * FROM ATENCIONES
+WHERE id_mascota = @id_mascota
+AND fecha_baja IS NULL
+END
+
+CREATE PROCEDURE PA_ACTUALIZAR_ATENCIONES
+@id int,
+@descripcion varchar(100),
+@importe_atencion decimal(8,2)
+AS
+BEGIN
+	UPDATE ATENCIONES
+	SET descripcion = @descripcion, importe_atencion = @importe_atencion
+	where id_atencion = @id
+END
+
+CREATE PROCEDURE PA_ELIMINAR_ATENCIONES
+@id int
+AS
+BEGIN
+	UPDATE ATENCIONES
+	SET fecha_baja = GETDATE()
+	where id_atencion = @id
+END
+
+
 /******************************************/
 --INSERCIONES
 /******************************************/
@@ -150,4 +207,6 @@ INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Charlie
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Toby', 3, 1,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Nini', 2, 2,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Sofi', 3, 3,3);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Negro', 4, 4,4);
+INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Negro', 4, 4,1);
+
+INSERT INTO ATENCIONES(fecha_hora, descripcion, id_mascota, importe_atencion) VALUES (GETDATE(), 'Vacuna zzzz', 1, 1200)

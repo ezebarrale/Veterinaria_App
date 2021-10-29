@@ -32,22 +32,18 @@ namespace VeterinariaBack.datos
 
             return list;
         }
-
         public TipoMascota SaveTipoMascota(string descripcion)
         {
             return HelperDao.GetInstance().Guardar_Tipo_Mascota_Sql("PA_GUARDAR_TIPO_MASCOTA", descripcion);
         }
-
         public bool DeleteTipoMascota(TipoMascota oTm)
         {
             return HelperDao.GetInstance().Eliminar_Tipo_Mascota_Sql("PA_ELIMINAR_TIPO_MASCOTA", oTm);
         }
-
         public bool UpdateTipoMascota(TipoMascota oTm)
         {
             return HelperDao.GetInstance().Editar_Tipo_Mascota_Sql("PA_EDITAR_TIPO_MASCOTA", oTm);
         }
-
         public List<Cliente> GetClientes(string nombre)
         {
             List<Cliente> lst = new List<Cliente>();
@@ -67,7 +63,6 @@ namespace VeterinariaBack.datos
 
             return lst;
         }
-
         public List<Mascota> GetMascotas(int id_cliente)
         {
             List<Mascota> lst = new List<Mascota>();
@@ -100,6 +95,41 @@ namespace VeterinariaBack.datos
             }
 
             return lst;
+        }
+        public Atencion GetUltimoIdAtencion()
+        {
+            return HelperDao.GetInstance().Consulta_Ultimo_Id_Atencion("PA_NEXT_ID_ATENCION");
+        }
+        public bool SaveAtencion(Mascota oMascota)
+        {
+            return HelperDao.GetInstance().Guardar_Atencion("PA_GUARDAR_ATENCION", oMascota);
+        }
+        public List<Atencion> GetAtenciones(Mascota oMascota)
+        {
+            List<Atencion> lstAtenciones = new List<Atencion>();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Atenciones_Sql("PA_CONSULTAR_ATENCIONES", oMascota);
+
+            foreach (DataRow itm in table.Rows)
+            {
+                Atencion att = new Atencion();
+                att.IdAtencion = Convert.ToInt32(itm["id_atencion"].ToString());
+                att.Fecha = Convert.ToDateTime(itm["fecha_hora"].ToString());
+                att.Descripcion = itm["descripcion"].ToString();
+                att.Importe = Convert.ToDouble(itm["importe_atencion"].ToString());
+
+                lstAtenciones.Add(att);
+            }
+
+            return lstAtenciones;
+        }
+        public bool UpdateAtencion(Atencion oAtencion)
+        {
+            return HelperDao.GetInstance().Editar_Atencion_Sql("PA_ACTUALIZAR_ATENCIONES", oAtencion);
+        }
+        public bool DeleteAtencion(Atencion oAtencion)
+        {
+            return HelperDao.GetInstance().Eliminar_Atencion_Sql("PA_ELIMINAR_ATENCIONES", oAtencion);
         }
     }
 }

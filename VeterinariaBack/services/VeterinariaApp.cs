@@ -28,7 +28,6 @@ namespace VeterinariaBack.services
         {
             return dao.SaveTipoMascota(description);
         }
-
         public bool EliminarTipoMascota(TipoMascota oTm)
         {
             return dao.DeleteTipoMascota(oTm);
@@ -37,15 +36,33 @@ namespace VeterinariaBack.services
         {
             return dao.UpdateTipoMascota(oTm);
         }
-
         public List<Cliente> ConsultarClientes(string nombre)
         {
             return dao.GetClientes(nombre);
         }
-
         public List<Mascota> ConsultarMascotas(int id_cliente)
         {
             return dao.GetMascotas(id_cliente);
+        }
+        public Atencion ConsultarUltimoIdAtencion()
+        {
+            return dao.GetUltimoIdAtencion();
+        }
+        public bool GuardarAtencion(Mascota oMascota)
+        {
+            return dao.SaveAtencion(oMascota);
+        }
+        public List<Atencion> ConsultarAtenciones(Mascota oMascota)
+        {
+            return dao.GetAtenciones(oMascota);
+        }
+        public bool EditarAtencion(Atencion oAtencion)
+        {
+            return dao.UpdateAtencion(oAtencion);
+        }
+        public bool EliminarAtencion(Atencion oAtencion)
+        {
+            return dao.DeleteAtencion(oAtencion);
         }
     }
 }

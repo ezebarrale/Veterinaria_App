@@ -16,5 +16,10 @@ namespace VeterinariaBack.datos
         bool UpdateTipoMascota(TipoMascota oTm);
         List<Cliente> GetClientes(string nombre);
         List<Mascota> GetMascotas(int id_cliente);
+        Atencion GetUltimoIdAtencion();
+        bool SaveAtencion(Mascota oMascota);
+        List<Atencion> GetAtenciones(Mascota oMascota);
+        bool UpdateAtencion(Atencion oAtencion);
+        bool DeleteAtencion(Atencion oAtencion);
     }
 }

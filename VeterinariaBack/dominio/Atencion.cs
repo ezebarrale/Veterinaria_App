@@ -22,7 +22,7 @@ namespace VeterinariaBack.dominio
 
         public override string ToString()
         {
-            return base.ToString();
+            return Fecha.ToString();
         }
     }
 }

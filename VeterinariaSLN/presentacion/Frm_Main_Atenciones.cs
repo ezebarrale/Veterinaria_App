@@ -23,7 +23,8 @@ namespace VeterinariaSLN.presentacion
     {
         CREATE,
         UPDATE,
-        DELETE
+        DELETE,
+        READ
     }
     public partial class Frm_Main_Atenciones : Form
     {
@@ -38,13 +39,13 @@ namespace VeterinariaSLN.presentacion
 
         private void btnGCliente_Click(object sender, EventArgs e)
         {
-            Frm_Soporte frmSoporte = new Frm_Soporte();
+            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente);
             frmSoporte.ShowDialog();
         }
 
         private void btnGMascota_Click(object sender, EventArgs e)
         {
-            Frm_Soporte frmSoporte = new Frm_Soporte();
+            Frm_Soporte frmSoporte = new Frm_Soporte(oMascota);
             frmSoporte.ShowDialog();
         }
 
@@ -56,6 +57,9 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
+            grpMascota.Enabled = false;
+            btnRegistar.Enabled = false;
+
             if (!String.IsNullOrEmpty(txtNombreCliente.Text)) {
                 Cliente clt = new Cliente();
                 clt.Nombre = txtNombreCliente.Text;
@@ -123,6 +127,11 @@ namespace VeterinariaSLN.presentacion
                     oMascota = msct;
                 }
             }
+        }
+
+        private void btnSalirMain_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
