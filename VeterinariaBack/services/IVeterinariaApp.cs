@@ -21,5 +21,7 @@ namespace VeterinariaBack.services
         public List<Atencion> ConsultarAtenciones(Mascota oMascota);
         public bool EditarAtencion(Atencion oAtencion);
         public bool EliminarAtencion(Atencion oAtencion);
+        public bool EditarCliente(Cliente oCliente);
+        public bool EliminarCliente(Cliente oCliente);
     }
 }

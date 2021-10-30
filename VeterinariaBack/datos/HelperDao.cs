@@ -365,6 +365,8 @@ namespace VeterinariaBack.datos
 
                     if (exito == 1)
                         flagSalida = true;
+
+                    break;
                 }
             }
             catch (SqlException ex)
@@ -456,6 +458,78 @@ namespace VeterinariaBack.datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id", oAtencion.IdAtencion);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Editar_Cliente_Sql(string procedure, Cliente oCliente)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oCliente.Codigo);
+                cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                cmd.Parameters.AddWithValue("@sexo", oCliente.Sexo);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Eliminar_Cliente_Sql(string procedure, Cliente oCliente)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oCliente.Codigo);
 
                 result = cmd.ExecuteNonQuery();
 

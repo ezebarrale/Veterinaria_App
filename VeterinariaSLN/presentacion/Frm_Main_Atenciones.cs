@@ -37,10 +37,22 @@ namespace VeterinariaSLN.presentacion
             InitializeComponent();
         }
 
-        private void btnGCliente_Click(object sender, EventArgs e)
+        private async void btnGCliente_Click(object sender, EventArgs e)
         {
+
+            foreach (Cliente clt in lstClientes)
+            {
+                if (clt.Codigo == Convert.ToInt32(lsbClientes.SelectedValue.ToString()))
+                {
+                    oCliente = clt;
+                    break;
+                }
+            }
+
             Frm_Soporte frmSoporte = new Frm_Soporte(oCliente);
             frmSoporte.ShowDialog();
+
+            await CompletarClientesResultado();
         }
 
         private void btnGMascota_Click(object sender, EventArgs e)
@@ -49,18 +61,35 @@ namespace VeterinariaSLN.presentacion
             frmSoporte.ShowDialog();
         }
 
-        private void btnRegistar_Click(object sender, EventArgs e)
+        private async void btnRegistar_Click(object sender, EventArgs e)
         {
             Frm_ABMC_Atenciones FrmAtenciones = new Frm_ABMC_Atenciones(oCliente, oMascota);
             FrmAtenciones.ShowDialog();
+
+            await CompletarClientesResultado();
         }
 
         private async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
+            await CompletarClientesResultado();
+        }
+
+        private async Task CompletarClientesResultado()
+        {
             grpMascota.Enabled = false;
             btnRegistar.Enabled = false;
+            lsbMascotas.DataSource = null;
+            btnGCliente.Enabled = false;
+            btnGMascota.Enabled = false;
 
-            if (!String.IsNullOrEmpty(txtNombreCliente.Text)) {
+            if (txtNombreCliente.Text.Length > 20)
+            {
+                MessageBox.Show("Cantidad de caracteres superado", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!String.IsNullOrEmpty(txtNombreCliente.Text))
+            {
                 Cliente clt = new Cliente();
                 clt.Nombre = txtNombreCliente.Text;
 
@@ -68,24 +97,38 @@ namespace VeterinariaSLN.presentacion
                 HttpClient cliente = new HttpClient();
                 var result = await cliente.GetAsync(url);
 
-                if (result.IsSuccessStatusCode) {
+                if (result.IsSuccessStatusCode)
+                {
                     var bodyJSON = await result.Content.ReadAsStringAsync();
                     lstClientes = JsonConvert.DeserializeObject<List<Cliente>>(bodyJSON);
 
-                    lsbClientes.DataSource = lstClientes;
-                    lsbClientes.DisplayMember = "Nombre";
-                    lsbClientes.ValueMember = "Codigo";
+                    if (lstClientes.Count == 0)
+                    {
+                        MessageBox.Show("No existen clientes relacionados con ese nombre", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    else
+                    {
+                        lsbClientes.DataSource = lstClientes;
+                        lsbClientes.DisplayMember = "Nombre";
+                        lsbClientes.ValueMember = "Codigo";
 
-                    lsbClientes.Enabled = true;
-                    btnGCliente.Enabled = true;
+                        lsbClientes.Enabled = true;
+                        
+                    }
                 }
-
             }
-            
+            else
+            {
+                MessageBox.Show("Debe ingresar un cliente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
         }
 
         private async void lsbClientes_Click(object sender, EventArgs e)
         {
+            btnGCliente.Enabled = true;
+
             foreach (Cliente clt in lstClientes)
             {
                 if (clt.Codigo == Convert.ToInt32(lsbClientes.SelectedValue.ToString())) {

@@ -21,5 +21,7 @@ namespace VeterinariaBack.datos
         List<Atencion> GetAtenciones(Mascota oMascota);
         bool UpdateAtencion(Atencion oAtencion);
         bool DeleteAtencion(Atencion oAtencion);
+        bool UpdateCliente(Cliente oCliente);
+        bool DeleteCliente(Cliente oCliente);
     }
 }

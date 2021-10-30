@@ -64,5 +64,13 @@ namespace VeterinariaBack.services
         {
             return dao.DeleteAtencion(oAtencion);
         }
+        public bool EditarCliente(Cliente oCliente)
+        {
+            return dao.UpdateCliente(oCliente);
+        }
+        public bool EliminarCliente(Cliente oCliente)
+        {
+            return dao.DeleteCliente(oCliente);
+        }
     }
 }

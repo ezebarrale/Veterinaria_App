@@ -14,7 +14,6 @@ namespace VeterinariaBack.datos
         {
             return HelperDao.GetInstance().Consulta_Login_Sql("PA_EXISTE_USUARIO", oUsuario);
         }
-
         public List<TipoMascota> GetTipoMascota()
         {
             List<TipoMascota> list = new List<TipoMascota>();
@@ -130,6 +129,14 @@ namespace VeterinariaBack.datos
         public bool DeleteAtencion(Atencion oAtencion)
         {
             return HelperDao.GetInstance().Eliminar_Atencion_Sql("PA_ELIMINAR_ATENCIONES", oAtencion);
+        }
+        public bool UpdateCliente(Cliente oCliente)
+        {
+            return HelperDao.GetInstance().Editar_Cliente_Sql("PA_ACTUALIZAR_CLIENTES", oCliente);
+        }
+        public bool DeleteCliente(Cliente oCliente)
+        {
+            return HelperDao.GetInstance().Eliminar_Cliente_Sql("PA_ELIMINAR_CLIENTES", oCliente);
         }
     }
 }

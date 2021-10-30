@@ -187,6 +187,26 @@ BEGIN
 	where id_atencion = @id
 END
 
+CREATE PROCEDURE PA_ACTUALIZAR_CLIENTES
+@nombre varchar(20),
+@sexo varchar(1),
+@id int
+AS
+BEGIN
+	UPDATE CLIENTES
+	SET nombre = @nombre, sexo = @sexo
+	where id_cliente = @id
+END
+
+CREATE PROCEDURE PA_ELIMINAR_CLIENTES
+@id int
+AS
+BEGIN
+	UPDATE CLIENTES
+	SET fecha_baja = GETDATE()
+	where id_cliente = @id
+END
+
 
 /******************************************/
 --INSERCIONES
@@ -201,12 +221,14 @@ INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
 
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('juan', 'M')
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('ana', 'F')	
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('martina', 'F')	
+INSERT INTO CLIENTES(nombre,sexo) VALUES ('martina', 'F')
 
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Charlie', 5, 1,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Toby', 3, 1,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Nini', 2, 2,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Sofi', 3, 3,3);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Negro', 4, 4,1);
+INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Roque', 4, 1,4);
+INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Brisa', 4, 2,4);
 
 INSERT INTO ATENCIONES(fecha_hora, descripcion, id_mascota, importe_atencion) VALUES (GETDATE(), 'Vacuna zzzz', 1, 1200)

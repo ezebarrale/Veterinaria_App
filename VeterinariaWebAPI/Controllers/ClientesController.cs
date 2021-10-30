@@ -26,5 +26,21 @@ namespace VeterinariaWebAPI.Controllers
             return Ok(app.ConsultarClientes(nombre));
 
         }
+
+        [HttpPost("update")]
+        public IActionResult PostUpdateClientes(Cliente oCliente)
+        {
+
+            return Ok(app.EditarCliente(oCliente));
+
+        }
+
+        [HttpPost("delete")]
+        public IActionResult PostDeleteClientes(Cliente oCliente)
+        {
+
+            return Ok(app.EliminarCliente(oCliente));
+
+        }
     }
 }

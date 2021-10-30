@@ -13,12 +13,17 @@ using VeterinariaBack.dominio;
 
 namespace VeterinariaSLN.presentacion
 {
+    enum CONSULTA_HISTORIA { 
+        SI,
+        NO
+    }
     public partial class Frm_ABMC_Atenciones : Form
     {
         Cliente oCliente = new Cliente();
         Mascota oMascota = new Mascota();
         Atencion oAtencion = new Atencion();
         List<Atencion> lstAtenciones = new List<Atencion>();
+        CONSULTA_HISTORIA consulto = CONSULTA_HISTORIA.NO;
         public Frm_ABMC_Atenciones(Cliente clt, Mascota msct)
         {
             InitializeComponent();
@@ -47,13 +52,49 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnRegistrarA_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(rtxtDescripcion.Text) && String.IsNullOrEmpty(txtImporte.Text)) {
+            if (String.IsNullOrEmpty(rtxtDescripcion.Text) || String.IsNullOrEmpty(txtImporte.Text))
+            {
                 MessageBox.Show("Existen campos sin completar", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            if (rtxtDescripcion.Text.Length > 100)
+            {
+                MessageBox.Show("El campo descripcion no debe superar los 100 caracteres", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                //para cuando es un entero
+                int cantDigitos = 6;
+
+                //para cuando es con coma
+                for (int i = 0; i < txtImporte.Text.Length; i++)
+                {
+                    if (i > 0 && i < 7 && txtImporte.Text[i].ToString() == ",")
+                    {
+                        cantDigitos = 9;
+                    }
+                    
+                }
+                
+                if (txtImporte.Text.Length > cantDigitos)
+                {
+                    MessageBox.Show("El campo importe no debe superar los "+ cantDigitos +" digitos", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else {
+                    oAtencion.Importe = Convert.ToDouble(txtImporte.Text);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("El campo importe debe ser numerico", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             oAtencion.Descripcion = rtxtDescripcion.Text;
-            oAtencion.Importe = Convert.ToDouble(txtImporte.Text);
 
             oMascota.SaveAtencion(oAtencion);
 
@@ -74,10 +115,22 @@ namespace VeterinariaSLN.presentacion
                     rtxtDescripcion.Text = "";
                     txtImporte.Text = "";
 
+                    if (consulto == CONSULTA_HISTORIA.SI) {
+                        await ActualizarHistorial();
+                    }
+
                 }
                 else
                 {
                     MessageBox.Show("La Atencion NO fue guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    foreach (Atencion att in oMascota.Atenciones)
+                    {
+                        if (oAtencion.IdAtencion == att.IdAtencion) {
+                            oMascota.Atenciones.Remove(oAtencion);
+                            break;
+                        }
+                    }
                 }
             }
 
@@ -85,6 +138,7 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnConsultarHistorial_Click(object sender, EventArgs e)
         {
+            consulto = CONSULTA_HISTORIA.SI;
             await ActualizarHistorial();
         }
 
@@ -111,6 +165,10 @@ namespace VeterinariaSLN.presentacion
                                             att.Descripcion,
                                             att.Importe
                                             });
+                }
+
+                if (lstAtenciones.Count == 0) {
+                    MessageBox.Show("No existen atenciones para esta mascota", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

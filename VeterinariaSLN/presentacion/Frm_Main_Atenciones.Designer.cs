@@ -51,7 +51,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.lbl_Select.AutoSize = true;
             this.lbl_Select.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_Select.Location = new System.Drawing.Point(64, 42);
+            this.lbl_Select.Location = new System.Drawing.Point(64, 40);
             this.lbl_Select.Name = "lbl_Select";
             this.lbl_Select.Size = new System.Drawing.Size(686, 25);
             this.lbl_Select.TabIndex = 0;
@@ -175,7 +175,7 @@ namespace VeterinariaSLN.presentacion
             // btnRegistar
             // 
             this.btnRegistar.Enabled = false;
-            this.btnRegistar.Location = new System.Drawing.Point(506, 438);
+            this.btnRegistar.Location = new System.Drawing.Point(631, 418);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(161, 23);
             this.btnRegistar.TabIndex = 3;
@@ -185,7 +185,7 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnSalirMain
             // 
-            this.btnSalirMain.Location = new System.Drawing.Point(717, 438);
+            this.btnSalirMain.Location = new System.Drawing.Point(717, 459);
             this.btnSalirMain.Name = "btnSalirMain";
             this.btnSalirMain.Size = new System.Drawing.Size(75, 23);
             this.btnSalirMain.TabIndex = 4;
@@ -197,7 +197,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 486);
+            this.ClientSize = new System.Drawing.Size(827, 494);
             this.Controls.Add(this.btnSalirMain);
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.grpMascota);
