@@ -21,7 +21,7 @@ CONSTRAINT pk_id_cliente PRIMARY KEY (id_cliente))
 
 CREATE TABLE MASCOTAS(
 id_mascota INT IDENTITY,
-nombre VARCHAR(10),
+nombre VARCHAR(20),
 edad INT,
 id_tipo_mascota INT,
 fecha_baja DATETIME,
@@ -126,8 +126,11 @@ CREATE PROCEDURE PA_CONSULTAR_MASCOTA
 @id_cliente int
 AS
 BEGIN
-SELECT * FROM MASCOTAS
-WHERE id_cliente = @id_cliente
+SELECT m.* ,tm.descripcion 'nombre_tipo'
+FROM MASCOTAS m
+JOIN TIPO_MASCOTAS tm on tm.id_tipo_mascota = m.id_tipo_mascota
+WHERE m.id_cliente = @id_cliente
+AND m.fecha_baja IS NULL
 END
 
 CREATE PROCEDURE PA_NEXT_ID_ATENCION
@@ -207,6 +210,35 @@ BEGIN
 	where id_cliente = @id
 END
 
+CREATE PROCEDURE PA_CONSULTAR_CLIENTE_X_ID
+@id int
+AS
+BEGIN
+SELECT * FROM CLIENTES
+WHERE id_cliente = @id
+END
+
+
+CREATE PROCEDURE PA_ACTUALIZAR_MASCOTAS
+@id int,
+@nombre varchar(20),
+@edad int,
+@id_tipo_mascota int
+AS
+BEGIN
+	UPDATE MASCOTAS
+	SET nombre = @nombre, edad = @edad, id_tipo_mascota = @id_tipo_mascota
+	where id_mascota = @id
+END
+
+CREATE PROCEDURE PA_ELIMINAR_MASCOTAS
+@id int
+AS
+BEGIN
+	UPDATE MASCOTAS
+	SET fecha_baja = GETDATE()
+	where id_mascota = @id
+END
 
 /******************************************/
 --INSERCIONES

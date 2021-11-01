@@ -23,8 +23,9 @@ namespace VeterinariaSLN.presentacion
         Atencion oAtencion = new Atencion();
         Cliente oCliente = new Cliente();
         Mascota oMascota = new Mascota();
+        List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
         TipoObj tipo = new TipoObj();
-        public Frm_Soporte(Object obj)
+        public Frm_Soporte(Object obj, Object obj2)
         {
             InitializeComponent();
 
@@ -42,6 +43,7 @@ namespace VeterinariaSLN.presentacion
             {
                 oMascota  = (Mascota)obj;
                 tipo = TipoObj.MASCOTA;
+                oCliente = (Cliente)obj2;
             }
 
         }
@@ -80,17 +82,31 @@ namespace VeterinariaSLN.presentacion
 
                 txtCodigo.Text = oMascota.IdMascota.ToString();
                 txtNombre.Text = oMascota.Nombre;
-                txtEdad.Text = oMascota.Edad.ToString();
-                //await ObtenerDuenio();
+                nudEdad.Text = oMascota.Edad.ToString();
+                txtDuenio.Text = oCliente.Nombre;
 
+                await ObtenerTipoDeMascotas();
+
+                cmbTipoMascota.SelectedValue = oMascota.Tipo.IdTipoMascota;
             }
         }
-        /*
-        private Task ObtenerDuenio()
+
+        private async Task ObtenerTipoDeMascotas()
         {
-            throw new NotImplementedException();
+            cmbTipoMascota.DataSource = null;
+
+            string url = "https://localhost:44350/api/TipoMascotas";
+            HttpClient cliente = new HttpClient();
+            var result = await cliente.GetAsync(url);
+
+            var bodyJSON = await result.Content.ReadAsStringAsync();
+            lstTipoMascotas = JsonConvert.DeserializeObject<List<TipoMascota>>(bodyJSON);
+
+            cmbTipoMascota.DataSource = lstTipoMascotas;
+            cmbTipoMascota.DisplayMember = "Nombre";
+            cmbTipoMascota.ValueMember = "IdTipoMascota";
         }
-        */
+
         private void OptimizarForm(TipoObj obj)
         {
             if (obj == TipoObj.ATENCION)
@@ -123,9 +139,9 @@ namespace VeterinariaSLN.presentacion
                 rtxtDescripcion.Visible = false;
                 lstSoporte.Visible = false;
                 lblEdad.Visible = true;
-                txtEdad.Visible = true;
-                lblDueño.Visible = true;
-                txtDueño.Visible = true;
+                nudEdad.Visible = true;
+                lblDuenio.Visible = true;
+                txtDuenio.Visible = true;
             }
 
         }
@@ -145,6 +161,16 @@ namespace VeterinariaSLN.presentacion
                 txtNombre.Enabled = true;
                 rdbM.Enabled = true;
                 rdbF.Enabled = true;
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnGuardar.Enabled = true;
+            }
+
+            if (tipo == TipoObj.MASCOTA)
+            {
+                txtNombre.Enabled = true;
+                cmbTipoMascota.Enabled = true;
+                nudEdad.Enabled = true;
                 btnEditar.Enabled = false;
                 btnEliminar.Enabled = false;
                 btnGuardar.Enabled = true;
@@ -293,6 +319,65 @@ namespace VeterinariaSLN.presentacion
 
             }
 
+            if (tipo == TipoObj.MASCOTA)
+            {
+                if (String.IsNullOrEmpty(txtNombre.Text))
+                {
+                    MessageBox.Show("El campos nombre esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (txtNombre.Text.Length > 20)
+                {
+                    MessageBox.Show("Exediste la cantidad de caracteres para el campo nombre", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                DialogResult msg = MessageBox.Show("Seguro desea guardar los cambios realizados?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg.Equals(DialogResult.OK))
+                {
+                    oMascota.Nombre = txtNombre.Text;
+                    oMascota.Edad = Convert.ToInt32(nudEdad.Value);
+
+                    TipoMascota tm = new TipoMascota();
+                    tm.IdTipoMascota = Convert.ToInt32(cmbTipoMascota.SelectedValue.ToString());
+                    tm.Nombre = cmbTipoMascota.Text;
+
+                    oMascota.Tipo = tm;
+
+                    string url = "https://localhost:44350/api/Mascotas/update";
+                    HttpClient cliente = new HttpClient();
+                    var data = JsonConvert.SerializeObject(oMascota);
+                    HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var result = await cliente.PostAsync(url, content);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var bodyJSON = await result.Content.ReadAsStringAsync();
+                        bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
+
+                        if (exito)
+                        {
+                            MessageBox.Show("Los cambios fueron realizados con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Dispose();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Los cambios NO fueron realizados con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Los cambios NO fueron realizados con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                }
+
+            }
+
         }
 
         private void btnCancelar_Click_1(object sender, EventArgs e)
@@ -381,6 +466,47 @@ namespace VeterinariaSLN.presentacion
                 }
 
             }
+
+            if (tipo == TipoObj.MASCOTA)
+            {
+
+                DialogResult msg = MessageBox.Show("Seguro desea eliminar?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg.Equals(DialogResult.OK))
+                {
+
+                    string url = "https://localhost:44350/api/Mascotas/delete";
+                    HttpClient cliente = new HttpClient();
+                    var data = JsonConvert.SerializeObject(oMascota);
+                    HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var result = await cliente.PostAsync(url, content);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var bodyJSON = await result.Content.ReadAsStringAsync();
+                        bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
+
+                        if (exito)
+                        {
+                            MessageBox.Show("Se eliminó con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Dispose();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No pudo ser eliminado con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No pudo ser eliminado con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                }
+
+            }
+
         }
     }
 }

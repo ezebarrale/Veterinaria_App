@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VeterinariaBack.dominio;
 using VeterinariaBack.services;
 
 namespace VeterinariaWebAPI.Controllers
@@ -23,6 +24,18 @@ namespace VeterinariaWebAPI.Controllers
         public IActionResult GetMascotas(int id_cliente)
         {
             return Ok(app.ConsultarMascotas(id_cliente));
+        }
+
+        [HttpPost("update")]
+        public IActionResult PostUpdateMascotas (Mascota oMascota)
+        {
+            return Ok(app.EditarMascota(oMascota));
+        }
+
+        [HttpPost("delete")]
+        public IActionResult PostDeleteMascotas(Mascota oMascota)
+        {
+            return Ok(app.EliminarMascota(oMascota));
         }
     }
 }

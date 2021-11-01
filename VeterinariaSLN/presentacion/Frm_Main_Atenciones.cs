@@ -49,16 +49,18 @@ namespace VeterinariaSLN.presentacion
                 }
             }
 
-            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente);
+            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null);
             frmSoporte.ShowDialog();
 
             await CompletarClientesResultado();
         }
 
-        private void btnGMascota_Click(object sender, EventArgs e)
+        private async void btnGMascota_Click(object sender, EventArgs e)
         {
-            Frm_Soporte frmSoporte = new Frm_Soporte(oMascota);
+            Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente);
             frmSoporte.ShowDialog();
+
+            await CompletarClientesResultado();
         }
 
         private async void btnRegistar_Click(object sender, EventArgs e)
@@ -93,7 +95,7 @@ namespace VeterinariaSLN.presentacion
                 Cliente clt = new Cliente();
                 clt.Nombre = txtNombreCliente.Text;
 
-                string url = "https://localhost:44350/api/Clientes?nombre=" + clt.Nombre;
+                string url = "https://localhost:44350/api/Clientes/" + clt.Nombre;
                 HttpClient cliente = new HttpClient();
                 var result = await cliente.GetAsync(url);
 
@@ -176,5 +178,6 @@ namespace VeterinariaSLN.presentacion
         {
             this.Dispose();
         }
+
     }
 }

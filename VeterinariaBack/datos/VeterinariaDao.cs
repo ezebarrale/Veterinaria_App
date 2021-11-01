@@ -75,21 +75,12 @@ namespace VeterinariaBack.datos
                 oMascota.Nombre = itm["nombre"].ToString();
                 oMascota.Edad = Convert.ToInt32(itm["edad"].ToString());
 
-                /*
-                TipoMascota tm = new TipoMascota();
-                tm.IdTipoMascota = Convert.ToInt32(itm["id_tipo_mascota"].ToString());
+                TipoMascota oTipoMascota = new TipoMascota();
+                oTipoMascota.IdTipoMascota = Convert.ToInt32(itm["id_tipo_mascota"].ToString());
+                oTipoMascota.Nombre = itm["nombre_tipo"].ToString();
 
-                DataTable table1 = HelperDao.Consulta_Tipo_Mascota_XID_Sql("PA_TIPO_MASCOTAS_X_ID", tm.IdTipoMascota);
-                
-                foreach (DataRow item in table1.Rows)
-                {
-                    tm.Nombre = item["descripcion"].ToString();
-                }
-                
-                tm.Nombre = table1.Rows[1][1].ToString();
+                oMascota.Tipo = oTipoMascota;
 
-                oMascota.Tipo = tm;
-                */
                 lst.Add(oMascota);
             }
 
@@ -137,6 +128,14 @@ namespace VeterinariaBack.datos
         public bool DeleteCliente(Cliente oCliente)
         {
             return HelperDao.GetInstance().Eliminar_Cliente_Sql("PA_ELIMINAR_CLIENTES", oCliente);
+        }
+        public bool UpdateMascota(Mascota oMascota)
+        {
+            return HelperDao.GetInstance().Editar_Mascota_Sql("PA_ACTUALIZAR_MASCOTAS", oMascota);
+        }
+        public bool DeleteMascota(Mascota oMascota)
+        {
+            return HelperDao.GetInstance().Eliminar_Mascota_Sql("PA_ELIMINAR_MASCOTAS", oMascota);
         }
     }
 }

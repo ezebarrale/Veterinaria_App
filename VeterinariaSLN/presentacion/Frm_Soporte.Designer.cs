@@ -33,7 +33,9 @@ namespace VeterinariaSLN.presentacion
             this.lstSoporte = new System.Windows.Forms.ListBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblSoporte = new System.Windows.Forms.GroupBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
+            this.nudEdad = new System.Windows.Forms.NumericUpDown();
+            this.txtDuenio = new System.Windows.Forms.TextBox();
+            this.lblDuenio = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.rtxtDescripcion = new System.Windows.Forms.RichTextBox();
             this.lblSexo = new System.Windows.Forms.Label();
@@ -48,9 +50,8 @@ namespace VeterinariaSLN.presentacion
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblDueño = new System.Windows.Forms.Label();
-            this.txtDueño = new System.Windows.Forms.TextBox();
             this.lblSoporte.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEdad)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNuevo
@@ -87,9 +88,9 @@ namespace VeterinariaSLN.presentacion
             // 
             // lblSoporte
             // 
-            this.lblSoporte.Controls.Add(this.txtDueño);
-            this.lblSoporte.Controls.Add(this.lblDueño);
-            this.lblSoporte.Controls.Add(this.txtEdad);
+            this.lblSoporte.Controls.Add(this.nudEdad);
+            this.lblSoporte.Controls.Add(this.txtDuenio);
+            this.lblSoporte.Controls.Add(this.lblDuenio);
             this.lblSoporte.Controls.Add(this.lblEdad);
             this.lblSoporte.Controls.Add(this.rtxtDescripcion);
             this.lblSoporte.Controls.Add(this.lblSexo);
@@ -109,14 +110,43 @@ namespace VeterinariaSLN.presentacion
             this.lblSoporte.TabStop = false;
             this.lblSoporte.Text = "Soporte";
             // 
-            // txtEdad
+            // nudEdad
             // 
-            this.txtEdad.Enabled = false;
-            this.txtEdad.Location = new System.Drawing.Point(98, 142);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(182, 23);
-            this.txtEdad.TabIndex = 14;
-            this.txtEdad.Visible = false;
+            this.nudEdad.Enabled = false;
+            this.nudEdad.Location = new System.Drawing.Point(98, 143);
+            this.nudEdad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudEdad.Name = "nudEdad";
+            this.nudEdad.Size = new System.Drawing.Size(182, 23);
+            this.nudEdad.TabIndex = 17;
+            this.nudEdad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudEdad.Visible = false;
+            // 
+            // txtDuenio
+            // 
+            this.txtDuenio.Enabled = false;
+            this.txtDuenio.Location = new System.Drawing.Point(98, 186);
+            this.txtDuenio.Name = "txtDuenio";
+            this.txtDuenio.Size = new System.Drawing.Size(182, 23);
+            this.txtDuenio.TabIndex = 16;
+            this.txtDuenio.Visible = false;
+            // 
+            // lblDuenio
+            // 
+            this.lblDuenio.AutoSize = true;
+            this.lblDuenio.Location = new System.Drawing.Point(37, 189);
+            this.lblDuenio.Name = "lblDuenio";
+            this.lblDuenio.Size = new System.Drawing.Size(53, 15);
+            this.lblDuenio.TabIndex = 15;
+            this.lblDuenio.Text = "Dueño/a";
+            this.lblDuenio.Visible = false;
             // 
             // lblEdad
             // 
@@ -173,9 +203,10 @@ namespace VeterinariaSLN.presentacion
             // 
             // cmbTipoMascota
             // 
+            this.cmbTipoMascota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoMascota.Enabled = false;
             this.cmbTipoMascota.FormattingEnabled = true;
-            this.cmbTipoMascota.Location = new System.Drawing.Point(139, 98);
+            this.cmbTipoMascota.Location = new System.Drawing.Point(139, 103);
             this.cmbTipoMascota.Name = "cmbTipoMascota";
             this.cmbTipoMascota.Size = new System.Drawing.Size(291, 23);
             this.cmbTipoMascota.TabIndex = 6;
@@ -218,7 +249,7 @@ namespace VeterinariaSLN.presentacion
             // lblTM
             // 
             this.lblTM.AutoSize = true;
-            this.lblTM.Location = new System.Drawing.Point(36, 101);
+            this.lblTM.Location = new System.Drawing.Point(36, 106);
             this.lblTM.Name = "lblTM";
             this.lblTM.Size = new System.Drawing.Size(97, 15);
             this.lblTM.TabIndex = 0;
@@ -254,25 +285,6 @@ namespace VeterinariaSLN.presentacion
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
-            // lblDueño
-            // 
-            this.lblDueño.AutoSize = true;
-            this.lblDueño.Location = new System.Drawing.Point(37, 189);
-            this.lblDueño.Name = "lblDueño";
-            this.lblDueño.Size = new System.Drawing.Size(42, 15);
-            this.lblDueño.TabIndex = 15;
-            this.lblDueño.Text = "Dueño";
-            this.lblDueño.Visible = false;
-            // 
-            // txtDueño
-            // 
-            this.txtDueño.Enabled = false;
-            this.txtDueño.Location = new System.Drawing.Point(98, 186);
-            this.txtDueño.Name = "txtDueño";
-            this.txtDueño.Size = new System.Drawing.Size(182, 23);
-            this.txtDueño.TabIndex = 16;
-            this.txtDueño.Visible = false;
-            // 
             // Frm_Soporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -290,6 +302,7 @@ namespace VeterinariaSLN.presentacion
             this.Load += new System.EventHandler(this.Frm_Soporte_Load);
             this.lblSoporte.ResumeLayout(false);
             this.lblSoporte.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEdad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,8 +328,8 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblEdad;
-        private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.Label lblDueño;
-        private System.Windows.Forms.TextBox txtDueño;
+        private System.Windows.Forms.Label lblDuenio;
+        private System.Windows.Forms.TextBox txtDuenio;
+        private System.Windows.Forms.NumericUpDown nudEdad;
     }
 }

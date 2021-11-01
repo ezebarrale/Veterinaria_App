@@ -23,5 +23,7 @@ namespace VeterinariaBack.datos
         bool DeleteAtencion(Atencion oAtencion);
         bool UpdateCliente(Cliente oCliente);
         bool DeleteCliente(Cliente oCliente);
+        bool UpdateMascota(Mascota oMascota);
+        bool DeleteMascota(Mascota oMascota);
     }
 }

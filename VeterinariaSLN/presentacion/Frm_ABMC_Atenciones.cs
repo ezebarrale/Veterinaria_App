@@ -176,20 +176,22 @@ namespace VeterinariaSLN.presentacion
         private async void dgvHistorial_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (dgvHistorial.CurrentCell.ColumnIndex == 4) {
+            if (dgvHistorial.CurrentCell.ColumnIndex == 4)
+            {
                 int codigo = Convert.ToInt32(dgvHistorial.CurrentRow.Cells["colCodigo"].Value.ToString());
 
                 Atencion att2 = new Atencion();
 
                 foreach (Atencion att in lstAtenciones)
                 {
-                    if (att.IdAtencion == codigo) {
+                    if (att.IdAtencion == codigo)
+                    {
                         att2 = att;
                         break;
                     }
                 }
 
-                Frm_Soporte frmSoporte = new Frm_Soporte(att2);
+                Frm_Soporte frmSoporte = new Frm_Soporte(att2, null);
                 frmSoporte.ShowDialog();
 
                 await ActualizarHistorial();

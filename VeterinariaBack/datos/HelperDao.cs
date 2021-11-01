@@ -279,6 +279,45 @@ namespace VeterinariaBack.datos
 
             return table;
         }
+        public Cliente Consulta_Clientes_X_ID_Sql(string procedure, int id)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+
+            Cliente oCliente = new Cliente();
+            oCliente.Codigo = id;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oCliente.Codigo);
+
+                table.Load(cmd.ExecuteReader());
+
+                foreach (DataRow item in table.Rows)
+                {
+                    oCliente.Nombre = item["nombre"].ToString();
+                    oCliente.Sexo = item["sexo"].ToString();
+                    break;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return oCliente;
+        }
         public DataTable Consulta_Mascotas_Sql(string procedure, int id_cliente)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -530,6 +569,79 @@ namespace VeterinariaBack.datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id", oCliente.Codigo);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Editar_Mascota_Sql(string procedure, Mascota oMascota)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oMascota.IdMascota);
+                cmd.Parameters.AddWithValue("@nombre", oMascota.Nombre);
+                cmd.Parameters.AddWithValue("@edad", oMascota.Edad);
+                cmd.Parameters.AddWithValue("@id_tipo_mascota", oMascota.Tipo.IdTipoMascota);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Eliminar_Mascota_Sql(string procedure, Mascota oMascota)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", oMascota.IdMascota);
 
                 result = cmd.ExecuteNonQuery();
 

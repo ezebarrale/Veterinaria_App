@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VeterinariaBack.dominio;
+using VeterinariaSLN.cliente;
 using VeterinariaSLN.presentacion;
 
 namespace VeterinariaSLN
@@ -38,18 +39,21 @@ namespace VeterinariaSLN
             usr.User = txtUsuario.Text;
             usr.Password = txtPass.Text;
 
-            string url = "https://localhost:44350/api/Access";
-            HttpClient client = new HttpClient();
+            bool result = await ConsultarUsuarioAsync(usr);
 
-            var data = JsonConvert.SerializeObject(usr);
-            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-
-            var result = await client.PostAsync(url, content);
-
-            if (result.IsSuccessStatusCode)
+            if (result)
                 this.Dispose();
             else
                 MessageBox.Show("EL usuario o contraseña ingresado no es correcto", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private async Task<bool> ConsultarUsuarioAsync(Usuario usr)
+        {
+            string url = "https://localhost:44350/api/Access";
+            var data = JsonConvert.SerializeObject(usr);
+            bool result = await ClienteSingleton.GetInstance().PostAsync(url, data);
+
+            return result;
         }
     }
 }

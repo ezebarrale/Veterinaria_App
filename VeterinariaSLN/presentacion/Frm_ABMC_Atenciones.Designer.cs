@@ -60,11 +60,9 @@ namespace VeterinariaSLN.presentacion
             this.dgvHistorial.AllowUserToDeleteRows = false;
             this.dgvHistorial.AllowUserToResizeColumns = false;
             this.dgvHistorial.AllowUserToResizeRows = false;
-            this.dgvHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHistorial.BackgroundColor = System.Drawing.Color.White;
+            this.dgvHistorial.ColumnHeadersHeight = 26;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCodigo,
@@ -72,6 +70,7 @@ namespace VeterinariaSLN.presentacion
             this.colDescripcion,
             this.colImporte,
             this.colAcciones});
+            this.dgvHistorial.EnableHeadersVisualStyles = false;
             this.dgvHistorial.Location = new System.Drawing.Point(42, 59);
             this.dgvHistorial.MultiSelect = false;
             this.dgvHistorial.Name = "dgvHistorial";
