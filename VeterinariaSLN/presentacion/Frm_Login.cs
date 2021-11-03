@@ -17,6 +17,7 @@ namespace VeterinariaSLN
 {
     public partial class Frm_Login : Form
     {
+        Frm_Menu frmMenu;
         public Frm_Login()
         {
             InitializeComponent();
@@ -41,8 +42,11 @@ namespace VeterinariaSLN
 
             bool result = await ConsultarUsuarioAsync(usr);
 
-            if (result)
-                this.Dispose();
+            if (result) {
+                frmMenu = new Frm_Menu();
+                frmMenu.Show();
+                this.Hide();
+            }
             else
                 MessageBox.Show("EL usuario o contraseña ingresado no es correcto", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }

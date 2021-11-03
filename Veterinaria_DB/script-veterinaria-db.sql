@@ -68,12 +68,16 @@ IF(@existe IS NULL)
 	SET @existe = ISNULL(@existe, 0)
 END
 
+GO
+
 CREATE PROCEDURE PA_TIPO_MASCOTAS
 AS
 BEGIN
 SELECT * FROM TIPO_MASCOTAS
 where fecha_baja IS NULL
 END
+
+GO
 
 CREATE PROCEDURE PA_TIPO_MASCOTAS_X_ID
 @id_tipo int
@@ -83,6 +87,8 @@ SELECT * FROM TIPO_MASCOTAS
 WHERE id_tipo_mascota = @id_tipo
 AND fecha_baja IS NULL
 END
+
+GO
 
 CREATE PROCEDURE PA_GUARDAR_TIPO_MASCOTA
 @descrip varchar(10),
@@ -94,6 +100,8 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES (@descrip)
 set @id_exito = (SELECT SCOPE_IDENTITY())
 END
 
+GO
+
 CREATE PROCEDURE PA_ELIMINAR_TIPO_MASCOTA
 @id_tipo_mascota int
 AS
@@ -102,6 +110,8 @@ UPDATE TIPO_MASCOTAS
 SET fecha_baja = getdate()
 where id_tipo_mascota = @id_tipo_mascota
 END
+
+GO
 
 CREATE PROCEDURE PA_EDITAR_TIPO_MASCOTA
 @id_tipo_mascota int,
@@ -113,6 +123,8 @@ SET descripcion = @descripcion
 where id_tipo_mascota = @id_tipo_mascota
 END
 
+GO
+
 CREATE PROCEDURE PA_CONSULTAR_CLIENTE
 @nombre varchar(20)
 AS
@@ -122,7 +134,27 @@ WHERE upper(nombre) LIKE upper('%'+@nombre+'%')
 AND fecha_baja IS NULL
 END
 
-CREATE PROCEDURE PA_CONSULTAR_MASCOTA
+GO
+
+CREATE PROCEDURE PA_SIGUIENTE_ID_CLIENTE
+@id_cliente INT OUT
+AS
+BEGIN
+declare @id int
+SET @id = (SELECT MAX(id_atencion) FROM CLIENTES )
+
+	IF(@id IS NULL)
+	BEGIN
+		SET @id_cliente = IDENT_CURRENT('dbo.CLIENTES')
+		RETURN
+	END
+	
+	SET @id_cliente =(IDENT_CURRENT('dbo.CLIENTES') + IDENT_INCR('dbo.CLIENTES'))	
+END
+
+GO
+
+CREATE PROCEDURE PA_CONSULTAR_CLIENTE
 @id_cliente int
 AS
 BEGIN
@@ -132,6 +164,8 @@ JOIN TIPO_MASCOTAS tm on tm.id_tipo_mascota = m.id_tipo_mascota
 WHERE m.id_cliente = @id_cliente
 AND m.fecha_baja IS NULL
 END
+
+GO
 
 CREATE PROCEDURE PA_NEXT_ID_ATENCION
 @id_atencion INT OUT
@@ -149,6 +183,8 @@ SET @id = (SELECT MAX(id_atencion) FROM ATENCIONES )
 	SET @id_atencion=(IDENT_CURRENT('dbo.ATENCIONES') + IDENT_INCR('dbo.ATENCIONES'))	
 END
 
+GO
+
 CREATE PROCEDURE PA_GUARDAR_ATENCION
 @descrip varchar(200),
 @imp DECIMAL (8,2),
@@ -161,6 +197,8 @@ BEGIN
 
 END
 
+GO
+
 CREATE PROCEDURE PA_CONSULTAR_ATENCIONES
 @id_mascota int
 AS
@@ -169,6 +207,8 @@ SELECT * FROM ATENCIONES
 WHERE id_mascota = @id_mascota
 AND fecha_baja IS NULL
 END
+
+GO
 
 CREATE PROCEDURE PA_ACTUALIZAR_ATENCIONES
 @id int,
@@ -180,6 +220,8 @@ BEGIN
 	SET descripcion = @descripcion, importe_atencion = @importe_atencion
 	where id_atencion = @id
 END
+
+GO
 
 CREATE PROCEDURE PA_ELIMINAR_ATENCIONES
 @id int
@@ -201,6 +243,8 @@ BEGIN
 	where id_cliente = @id
 END
 
+GO
+
 CREATE PROCEDURE PA_ELIMINAR_CLIENTES
 @id int
 AS
@@ -218,6 +262,7 @@ SELECT * FROM CLIENTES
 WHERE id_cliente = @id
 END
 
+GO
 
 CREATE PROCEDURE PA_ACTUALIZAR_MASCOTAS
 @id int,
@@ -231,6 +276,8 @@ BEGIN
 	where id_mascota = @id
 END
 
+GO
+
 CREATE PROCEDURE PA_ELIMINAR_MASCOTAS
 @id int
 AS
@@ -238,6 +285,24 @@ BEGIN
 	UPDATE MASCOTAS
 	SET fecha_baja = GETDATE()
 	where id_mascota = @id
+END
+
+GO
+
+CREATE PROCEDURE PA_SIGUIENTE_ID_MASCOTA
+@id_mascota INT OUT
+AS
+BEGIN
+declare @id int
+SET @id = (SELECT MAX(id_mascota) FROM MASCOTAS )
+
+	IF(@id IS NULL)
+	BEGIN
+		SET @id_mascota = IDENT_CURRENT('dbo.MASCOTAS')
+		RETURN
+	END
+	
+	SET @id_mascota =(IDENT_CURRENT('dbo.MASCOTAS') + IDENT_INCR('dbo.MASCOTAS'))	
 END
 
 /******************************************/
@@ -271,5 +336,3 @@ INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Dama', 
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Golfo', 5, 1,4);
 
 INSERT INTO ATENCIONES(fecha_hora, descripcion, id_mascota, importe_atencion) VALUES (GETDATE(), 'Vacuna zzzz', 1, 1200)
-
-select * from CLIENTES

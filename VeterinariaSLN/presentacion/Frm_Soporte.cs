@@ -609,11 +609,13 @@ namespace VeterinariaSLN.presentacion
 
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private async void btnNuevo_Click(object sender, EventArgs e)
         {
             modo = Accion.CREATE;
             HabilitarCampos();
             LimpiarCampos();
+
+            await ObtenerSiguienteId("Mascotas/id");
         }
 
         private void HabilitarCampos()
