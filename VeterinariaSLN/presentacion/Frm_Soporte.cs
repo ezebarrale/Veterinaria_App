@@ -351,7 +351,7 @@ namespace VeterinariaSLN.presentacion
                     else
                         oCliente.Sexo = "F";
 
-                    string operacion = "new";
+                    string operacion = "update";
                     string msjExito = "Se guardó el cliente con exito";
                     string msjNoExito = "No fue posible guardar el cliente ingresado";
 

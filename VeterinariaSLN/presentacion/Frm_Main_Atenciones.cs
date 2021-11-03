@@ -74,16 +74,19 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
+
             await CompletarClientesResultado();
         }
 
         private async Task CompletarClientesResultado()
         {
+            lsbClientes.Enabled = false;
             grpMascota.Enabled = false;
             btnRegistar.Enabled = false;
             lsbMascotas.DataSource = null;
             btnGCliente.Enabled = false;
             btnGMascota.Enabled = false;
+            lsbClientes.DataSource = null;
 
             if (txtNombreCliente.Text.Length > 20)
             {
@@ -141,6 +144,10 @@ namespace VeterinariaSLN.presentacion
 
         private async void lsbClientes_Click(object sender, EventArgs e)
         {
+            lsbMascotas.DataSource = null;
+            btnGMascota.Enabled = false;
+            btnRegistar.Enabled = false;
+            lsbMascotas.Enabled = false;
             btnGCliente.Enabled = true;
 
             foreach (Cliente clt in lstClientes)
@@ -189,6 +196,7 @@ namespace VeterinariaSLN.presentacion
                     lsbMascotas.DisplayMember = "Nombre";
                     lsbMascotas.ValueMember = "IdMascota";
 
+                    lsbMascotas.Enabled = true;
                     grpMascota.Enabled = true;
                 }
             }

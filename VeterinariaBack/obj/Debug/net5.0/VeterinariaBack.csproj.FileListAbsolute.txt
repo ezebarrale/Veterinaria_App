@@ -22,3 +22,15 @@ C:\Users\Dicsys\Documents\EZE-PII\Veterinaria_App\VeterinariaBack\obj\Debug\net5
 C:\Users\Dicsys\Documents\EZE-PII\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\ref\VeterinariaBack.dll
 C:\Users\Dicsys\Documents\EZE-PII\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.pdb
 C:\Users\Dicsys\Documents\EZE-PII\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csproj.AssemblyReference.cache
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.deps.json
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.dll
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\ref\VeterinariaBack.dll
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.pdb
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csprojAssemblyReference.cache
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.GeneratedMSBuildEditorConfig.editorconfig
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfoInputs.cache
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfo.cs
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csproj.CoreCompileInputs.cache
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.dll
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\ref\VeterinariaBack.dll
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.pdb
