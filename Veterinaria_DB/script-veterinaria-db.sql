@@ -141,7 +141,7 @@ CREATE PROCEDURE PA_SIGUIENTE_ID_CLIENTE
 AS
 BEGIN
 declare @id int
-SET @id = (SELECT MAX(id_atencion) FROM CLIENTES )
+SET @id = (SELECT MAX(id_cliente) FROM CLIENTES )
 
 	IF(@id IS NULL)
 	BEGIN
@@ -154,14 +154,14 @@ END
 
 GO
 
-CREATE PROCEDURE PA_CONSULTAR_CLIENTE
+CREATE PROCEDURE PA_CONSULTAR_INFO_COMPLETO
 @id_cliente int
 AS
 BEGIN
 SELECT m.* ,tm.descripcion 'nombre_tipo'
 FROM MASCOTAS m
 JOIN TIPO_MASCOTAS tm on tm.id_tipo_mascota = m.id_tipo_mascota
-WHERE m.id_cliente = @id_cliente
+WHERE m.id_cliente = 1--@id_cliente
 AND m.fecha_baja IS NULL
 END
 
