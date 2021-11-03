@@ -26,6 +26,22 @@ namespace VeterinariaWebAPI.Controllers
             return Ok(app.ConsultarMascotas(id_cliente));
         }
 
+        [HttpGet("id")]
+        public IActionResult GetNextIdMascotas()
+        {
+            return Ok(app.ConsultarSiguienteIdMascota());
+        }
+
+        [HttpPost("save")]
+        public IActionResult PostSaveMascotas(Cliente oCliente)
+        {
+            bool result = app.GuardarMascota(oCliente);
+            if (result)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
+
         [HttpPost("update")]
         public IActionResult PostUpdateMascotas (Mascota oMascota)
         {

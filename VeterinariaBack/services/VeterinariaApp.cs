@@ -80,5 +80,21 @@ namespace VeterinariaBack.services
         {
             return dao.DeleteMascota(oMascota);
         }
+        public int ConsultarSiguienteIdCliente()
+        {
+            return dao.GetNextIdCliente();
+        }
+        public bool GuardarCliente(Cliente oCliente)
+        {
+            return dao.SaveCliente(oCliente);
+        }
+        public int ConsultarSiguienteIdMascota()
+        {
+            return dao.GetNextIdMascota();
+        }
+        public bool GuardarMascota(Cliente oCliente)
+        {
+            return dao.SaveMascota(oCliente);
+        }
     }
 }

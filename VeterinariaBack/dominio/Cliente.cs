@@ -27,6 +27,11 @@ namespace VeterinariaBack.dominio
         public void AgregarMascota(Mascota oMascota) {
             Mascotas.Add(oMascota);  
         }
-        //remove Mascota
+
+        //remove all Mascotas
+        public void EliminarMascotas()
+        {
+            Mascotas.Clear();
+        }
     }
 }

@@ -191,7 +191,7 @@ namespace VeterinariaSLN.presentacion
                     }
                 }
 
-                Frm_Soporte frmSoporte = new Frm_Soporte(att2, null);
+                Frm_Soporte frmSoporte = new Frm_Soporte(att2, null, Accion.NN);
                 frmSoporte.ShowDialog();
 
                 await ActualizarHistorial();

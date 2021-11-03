@@ -29,6 +29,7 @@ namespace VeterinariaSLN.presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +63,14 @@ namespace VeterinariaSLN.presentacion
             this.dgvHistorial.AllowUserToResizeRows = false;
             this.dgvHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHistorial.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHistorial.ColumnHeadersHeight = 26;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -81,40 +90,52 @@ namespace VeterinariaSLN.presentacion
             this.dgvHistorial.RowTemplate.Height = 25;
             this.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistorial.Size = new System.Drawing.Size(645, 186);
-            this.dgvHistorial.TabIndex = 0;
+            this.dgvHistorial.TabIndex = 2;
             this.dgvHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorial_CellContentClick);
             // 
             // colCodigo
             // 
+            this.colCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colCodigo.HeaderText = "Codigo";
             this.colCodigo.Name = "colCodigo";
             this.colCodigo.ReadOnly = true;
+            this.colCodigo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colCodigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colFecha
             // 
+            this.colFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colFecha.HeaderText = "Fecha";
             this.colFecha.Name = "colFecha";
             this.colFecha.ReadOnly = true;
+            this.colFecha.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colFecha.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colDescripcion
             // 
+            this.colDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colDescripcion.HeaderText = "Descripcion";
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.ReadOnly = true;
+            this.colDescripcion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDescripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colImporte
             // 
+            this.colImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colImporte.HeaderText = "Importe";
             this.colImporte.Name = "colImporte";
             this.colImporte.ReadOnly = true;
+            this.colImporte.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colImporte.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colAcciones
             // 
+            this.colAcciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colAcciones.HeaderText = "Acciones";
             this.colAcciones.Name = "colAcciones";
             this.colAcciones.ReadOnly = true;
-            this.colAcciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colAcciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colAcciones.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colAcciones.Text = "Ver";
             this.colAcciones.UseColumnTextForButtonValue = true;
             // 
@@ -164,7 +185,7 @@ namespace VeterinariaSLN.presentacion
             this.txtImporte.Location = new System.Drawing.Point(214, 235);
             this.txtImporte.Name = "txtImporte";
             this.txtImporte.Size = new System.Drawing.Size(175, 25);
-            this.txtImporte.TabIndex = 9;
+            this.txtImporte.TabIndex = 7;
             // 
             // label1
             // 
@@ -180,7 +201,7 @@ namespace VeterinariaSLN.presentacion
             this.btnRegistrarA.Location = new System.Drawing.Point(585, 232);
             this.btnRegistrarA.Name = "btnRegistrarA";
             this.btnRegistrarA.Size = new System.Drawing.Size(75, 29);
-            this.btnRegistrarA.TabIndex = 7;
+            this.btnRegistrarA.TabIndex = 9;
             this.btnRegistrarA.Text = "Registrar";
             this.btnRegistrarA.UseVisualStyleBackColor = true;
             this.btnRegistrarA.Click += new System.EventHandler(this.btnRegistrarA_Click);
@@ -252,7 +273,7 @@ namespace VeterinariaSLN.presentacion
             this.btnSalirA.Location = new System.Drawing.Point(669, 608);
             this.btnSalirA.Name = "btnSalirA";
             this.btnSalirA.Size = new System.Drawing.Size(75, 28);
-            this.btnSalirA.TabIndex = 4;
+            this.btnSalirA.TabIndex = 10;
             this.btnSalirA.Text = "Salir";
             this.btnSalirA.UseVisualStyleBackColor = true;
             this.btnSalirA.Click += new System.EventHandler(this.btnSalirA_Click);

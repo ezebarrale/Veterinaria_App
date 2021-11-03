@@ -24,7 +24,8 @@ namespace VeterinariaSLN.presentacion
         CREATE,
         UPDATE,
         DELETE,
-        READ
+        READ,
+        NN
     }
     public partial class Frm_Main_Atenciones : Form
     {
@@ -49,7 +50,7 @@ namespace VeterinariaSLN.presentacion
                 }
             }
 
-            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null);
+            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null, Accion.NN);
             frmSoporte.ShowDialog();
 
             await CompletarClientesResultado();
@@ -57,7 +58,7 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnGMascota_Click(object sender, EventArgs e)
         {
-            Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente);
+            Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente, Accion.NN);
             frmSoporte.ShowDialog();
 
             await CompletarClientesResultado();
@@ -95,7 +96,7 @@ namespace VeterinariaSLN.presentacion
                 Cliente clt = new Cliente();
                 clt.Nombre = txtNombreCliente.Text;
 
-                string url = "https://localhost:44350/api/Clientes/" + clt.Nombre;
+                string url = "https://localhost:44350/api/Clientes/nombre/" + clt.Nombre;
                 HttpClient cliente = new HttpClient();
                 var result = await cliente.GetAsync(url);
 
@@ -103,11 +104,22 @@ namespace VeterinariaSLN.presentacion
                 {
                     var bodyJSON = await result.Content.ReadAsStringAsync();
                     lstClientes = JsonConvert.DeserializeObject<List<Cliente>>(bodyJSON);
-
+                    
                     if (lstClientes.Count == 0)
                     {
-                        MessageBox.Show("No existen clientes relacionados con ese nombre", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
+                        DialogResult resultado = MessageBox.Show("No existen clientes relacionados con ese nombre. Desea agregar uno nuevo?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (resultado == DialogResult.Yes)
+                        {
+                            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null, Accion.CREATE);
+                            frmSoporte.ShowDialog();
+
+                            return;
+                        }
+                        else {
+                            return;
+                        }
+                        
                     }
                     else
                     {
@@ -116,8 +128,8 @@ namespace VeterinariaSLN.presentacion
                         lsbClientes.ValueMember = "Codigo";
 
                         lsbClientes.Enabled = true;
-                        
                     }
+                    
                 }
             }
             else
@@ -148,17 +160,38 @@ namespace VeterinariaSLN.presentacion
                 var bodyJSON = await result.Content.ReadAsStringAsync();
                 lstMascotas = JsonConvert.DeserializeObject<List<Mascota>>(bodyJSON);
 
-                foreach (Mascota oMascota in lstMascotas)
-                {
-                    oCliente.AgregarMascota(oMascota);
-                }
-                
-                lsbMascotas.DataSource = lstMascotas;
-                lsbMascotas.DisplayMember = "Nombre";
-                lsbMascotas.ValueMember = "IdMascota";
-            }
 
-            grpMascota.Enabled = true;
+                if (lstMascotas.Count == 0)
+                {
+                    DialogResult resultado = MessageBox.Show("No existen mascotas relacionados con este cliente. Desea agregar una nueva?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente, Accion.CREATE);
+                        frmSoporte.ShowDialog();
+
+                        return;
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                }
+                else
+                {
+                    foreach (Mascota oMascota in lstMascotas)
+                    {
+                        oCliente.AgregarMascota(oMascota);
+                    }
+
+                    lsbMascotas.DataSource = lstMascotas;
+                    lsbMascotas.DisplayMember = "Nombre";
+                    lsbMascotas.ValueMember = "IdMascota";
+
+                    grpMascota.Enabled = true;
+                }
+            }
         }
 
         private void lsbMascotas_Click(object sender, EventArgs e)

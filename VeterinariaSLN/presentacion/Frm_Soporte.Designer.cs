@@ -29,7 +29,6 @@ namespace VeterinariaSLN.presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.lstSoporte = new System.Windows.Forms.ListBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblSoporte = new System.Windows.Forms.GroupBox();
@@ -50,19 +49,10 @@ namespace VeterinariaSLN.presentacion
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.lblSoporte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdad)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Location = new System.Drawing.Point(34, 282);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 17;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Visible = false;
             // 
             // lstSoporte
             // 
@@ -285,15 +275,27 @@ namespace VeterinariaSLN.presentacion
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Enabled = false;
+            this.btnNuevo.Location = new System.Drawing.Point(34, 282);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 21;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Visible = false;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
             // Frm_Soporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 324);
+            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblSoporte);
             this.Name = "Frm_Soporte";
@@ -308,8 +310,6 @@ namespace VeterinariaSLN.presentacion
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.ListBox lstSoporte;
         private System.Windows.Forms.Button btnGuardar;
@@ -331,5 +331,6 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.Label lblDuenio;
         private System.Windows.Forms.TextBox txtDuenio;
         private System.Windows.Forms.NumericUpDown nudEdad;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

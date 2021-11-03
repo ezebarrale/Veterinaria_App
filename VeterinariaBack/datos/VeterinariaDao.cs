@@ -121,6 +121,10 @@ namespace VeterinariaBack.datos
         {
             return HelperDao.GetInstance().Eliminar_Atencion_Sql("PA_ELIMINAR_ATENCIONES", oAtencion);
         }
+        public bool SaveCliente(Cliente oCliente)
+        {
+            return HelperDao.GetInstance().Guardar_Cliente_Sql("PA_GUARDAR_CLIENTES", oCliente);
+        }
         public bool UpdateCliente(Cliente oCliente)
         {
             return HelperDao.GetInstance().Editar_Cliente_Sql("PA_ACTUALIZAR_CLIENTES", oCliente);
@@ -136,6 +140,18 @@ namespace VeterinariaBack.datos
         public bool DeleteMascota(Mascota oMascota)
         {
             return HelperDao.GetInstance().Eliminar_Mascota_Sql("PA_ELIMINAR_MASCOTAS", oMascota);
+        }
+        public int GetNextIdCliente()
+        {
+            return HelperDao.GetInstance().Consulta_Siguiente_Id_Cliente_Sql("PA_SIGUIENTE_ID_CLIENTE");
+        }
+        public int GetNextIdMascota()
+        {
+            return HelperDao.GetInstance().Consulta_Siguiente_Id_Mascota_Sql("PA_SIGUIENTE_ID_MASCOTA");
+        }
+        public bool SaveMascota(Cliente oCliente)
+        {
+            return HelperDao.GetInstance().Guardar_Mascota_Sql("PA_GUARDAR_MASCOTAS", oCliente);
         }
     }
 }

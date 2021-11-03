@@ -20,10 +20,32 @@ namespace VeterinariaWebAPI.Controllers
             app = new ServiceFactoryImpl().CrearService();
         }
 
-        [HttpGet("{nombre}")]
+        [HttpGet("id")]
+        public IActionResult GetNextIdCliente()
+        {
+            int id = app.ConsultarSiguienteIdCliente();
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+            else {
+                return Ok(id);
+            }
+
+        }
+
+        [HttpGet("nombre/{nombre}")]
         public IActionResult GetClientes(string nombre) {
 
             return Ok(app.ConsultarClientes(nombre));
+
+        }
+
+        [HttpPost("save")]
+        public IActionResult PostSaveClientes(Cliente oCliente)
+        {
+
+            return Ok(app.GuardarCliente(oCliente));
 
         }
 
