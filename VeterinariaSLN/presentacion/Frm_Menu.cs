@@ -40,5 +40,11 @@ namespace VeterinariaSLN.presentacion
 
 
         }
+
+        private void cmsAcercaDe_Click(object sender, EventArgs e)
+        {
+            Frm_About FrmAbout = new Frm_About();
+            FrmAbout.ShowDialog();
+        }
     }
 }

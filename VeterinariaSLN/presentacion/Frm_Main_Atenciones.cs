@@ -158,9 +158,12 @@ namespace VeterinariaSLN.presentacion
                 }
             }
 
-            string url = "https://localhost:44350/api/Mascotas?id_cliente=" + oCliente.Codigo;
+            string url = "https://localhost:44350/api/Mascotas/idCliente"; // ?id_cliente=" + oCliente.Codigo;
             HttpClient cliente = new HttpClient();
-            var result = await cliente.GetAsync(url);
+            var data = JsonConvert.SerializeObject(oCliente);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            var result = await cliente.PostAsync(url, content);
+
 
             if (result.IsSuccessStatusCode)
             {

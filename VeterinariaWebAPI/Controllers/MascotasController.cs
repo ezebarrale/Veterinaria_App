@@ -20,10 +20,10 @@ namespace VeterinariaWebAPI.Controllers
             app = new ServiceFactoryImpl().CrearService();
         }
 
-        [HttpGet]
-        public IActionResult GetMascotas(int id_cliente)
+        [HttpPost("idCliente")]
+        public IActionResult GetMascotas(Cliente oCliente)
         {
-            return Ok(app.ConsultarMascotas(id_cliente));
+            return Ok(app.ConsultarMascotas(oCliente.Codigo));
         }
 
         [HttpGet("id")]

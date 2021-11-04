@@ -53,6 +53,20 @@ CONSTRAINT pk_id_usuario PRIMARY KEY (id_usuario))
 /******************************************/
 --PROCEDIMIENTOS
 /******************************************/
+GO
+
+CREATE PROCEDURE PA_REPORTE
+AS
+BEGIN
+	SELECT m.id_mascota 'CODIGO', m.nombre 'NOMBRE', m.edad 'EDAD',  c.nombre 'DUEÑO', count(a.id_atencion) 'CANTIDAD'
+	FROM MASCOTAS m
+	JOIN ATENCIONES a on a.id_mascota = m.id_mascota
+	JOIN CLIENTES c on c.id_cliente = m.id_cliente
+	WHERE YEAR(a.fecha_hora) = YEAR(GETDATE())
+	GROUP BY m.id_mascota, m.nombre , m.edad,  c.nombre
+END
+
+GO
 
 CREATE PROCEDURE PA_EXISTE_USUARIO
 @user varchar(8),
@@ -125,6 +139,28 @@ END
 
 GO
 
+CREATE PROCEDURE PA_CONSULTAR_MASCOTA
+@id_cliente int
+AS
+BEGIN
+SELECT m.*, tm.descripcion 'nombre_tipo'
+FROM MASCOTAS m
+JOIN TIPO_MASCOTAS tm on tm.id_tipo_mascota = m.id_tipo_mascota
+WHERE m.id_cliente = @id_cliente
+AND m.fecha_baja IS NULL
+END
+
+GO
+
+CREATE PROCEDURE PA_GUARDAR_CLIENTES
+@nombre varchar(20),
+@sexo varchar(1)
+AS
+BEGIN
+	INSERT INTO CLIENTES(nombre,sexo) VALUES (@nombre, @sexo)
+END
+GO
+
 CREATE PROCEDURE PA_CONSULTAR_CLIENTE
 @nombre varchar(20)
 AS
@@ -161,7 +197,7 @@ BEGIN
 SELECT m.* ,tm.descripcion 'nombre_tipo'
 FROM MASCOTAS m
 JOIN TIPO_MASCOTAS tm on tm.id_tipo_mascota = m.id_tipo_mascota
-WHERE m.id_cliente = 1--@id_cliente
+WHERE m.id_cliente = @id_cliente
 AND m.fecha_baja IS NULL
 END
 
@@ -232,6 +268,8 @@ BEGIN
 	where id_atencion = @id
 END
 
+GO
+
 CREATE PROCEDURE PA_ACTUALIZAR_CLIENTES
 @nombre varchar(20),
 @sexo varchar(1),
@@ -254,6 +292,8 @@ BEGIN
 	where id_cliente = @id
 END
 
+GO
+
 CREATE PROCEDURE PA_CONSULTAR_CLIENTE_X_ID
 @id int
 AS
@@ -263,6 +303,16 @@ WHERE id_cliente = @id
 END
 
 GO
+
+CREATE PROCEDURE PA_GUARDAR_MASCOTAS
+@id_cliente int,
+@nombre varchar(20),
+@edad int,
+@id_tipo_mascota int
+AS
+BEGIN
+	INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES (@nombre, @edad, @id_tipo_mascota, @id_cliente);
+END
 
 CREATE PROCEDURE PA_ACTUALIZAR_MASCOTAS
 @id int,
@@ -305,6 +355,8 @@ SET @id = (SELECT MAX(id_mascota) FROM MASCOTAS )
 	SET @id_mascota =(IDENT_CURRENT('dbo.MASCOTAS') + IDENT_INCR('dbo.MASCOTAS'))	
 END
 
+GO
+
 /******************************************/
 --INSERCIONES
 /******************************************/
@@ -334,5 +386,6 @@ INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Laika',
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Pongo', 1, 1,6);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Dama', 1, 2,5);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Golfo', 5, 1,4);
+INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Titi', 2, 1,1);
 
 INSERT INTO ATENCIONES(fecha_hora, descripcion, id_mascota, importe_atencion) VALUES (GETDATE(), 'Vacuna zzzz', 1, 1200)

@@ -169,8 +169,8 @@ namespace VeterinariaSLN.presentacion
             this.cmsAcercaDe.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsInfoApp});
             this.cmsAcercaDe.Name = "cmsAcercaDe";
-            this.cmsAcercaDe.OwnerItem = this.tsAcercaDe;
             this.cmsAcercaDe.Size = new System.Drawing.Size(193, 26);
+            this.cmsAcercaDe.Click += new System.EventHandler(this.cmsAcercaDe_Click);
             // 
             // tsInfoApp
             // 

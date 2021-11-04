@@ -16,8 +16,7 @@ namespace VeterinariaBack.datos
 
         private HelperDao()
         {
-            connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=VETERINARIA;Integrated Security=True";
-            //connectionString = Properties.Resources.stringConecction;
+            connectionString = @"Data Source=DESKTOP-40GJNU6\SQLEXPRESS;Initial Catalog=VETERINARIA;Integrated Security=True";
         }
 
         public static HelperDao GetInstance()
