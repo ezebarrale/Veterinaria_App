@@ -105,8 +105,12 @@ namespace VeterinariaBack.datos
                 Atencion att = new Atencion();
                 att.IdAtencion = Convert.ToInt32(itm["id_atencion"].ToString());
                 att.Fecha = Convert.ToDateTime(itm["fecha_hora"].ToString());
-                att.Descripcion = itm["descripcion"].ToString();
-                att.Importe = Convert.ToDouble(itm["importe_atencion"].ToString());
+
+                Veterinario vet = new Veterinario();
+                vet.Codigo = Convert.ToInt32(itm["id_veterinario"].ToString());
+                vet.Nombre = itm["nombre"].ToString();
+
+                att.oVeterinario = vet;
 
                 lstAtenciones.Add(att);
             }
@@ -152,6 +156,45 @@ namespace VeterinariaBack.datos
         public bool SaveMascota(Cliente oCliente)
         {
             return HelperDao.GetInstance().Guardar_Mascota_Sql("PA_GUARDAR_MASCOTAS", oCliente);
+        }
+
+        public List<Veterinario> GetVeterinarios()
+        {
+            List<Veterinario> veterinarios = new List<Veterinario>();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Veterinarios_Sql("PA_CONSULTAR_VETERINARIOS");
+
+            foreach (DataRow row in table.Rows)
+            {
+                Veterinario oVeterinario = new Veterinario();
+                oVeterinario.Codigo = Convert.ToInt32(row["id_veterinario"].ToString());
+                oVeterinario.Nombre = row["nombre"].ToString();
+                oVeterinario.Sexo = row["sexo"].ToString();
+
+                veterinarios.Add(oVeterinario);
+            }
+
+            return veterinarios;
+        }
+
+        public List<DetalleAtencion> GetDetallesAtencion(Atencion oAtencion)
+        {
+            List<DetalleAtencion> lstDetalles = new List<DetalleAtencion>();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Detalles_Atencion_Sql("PA_CONSULTAR_DETALLE_ATENCIONES", oAtencion);
+
+            foreach (DataRow row in table.Rows)
+            {
+                DetalleAtencion oDetalle = new DetalleAtencion();
+
+                oDetalle.IdDetalle = Convert.ToInt32(row["CODIGO"].ToString());
+                oDetalle.Descripcion = row["DESCRIPCION"].ToString();
+                oDetalle.Importe = Convert.ToDouble(row["IMPORTE"].ToString());
+
+                lstDetalles.Add(oDetalle);
+            }
+
+            return lstDetalles;
         }
     }
 }

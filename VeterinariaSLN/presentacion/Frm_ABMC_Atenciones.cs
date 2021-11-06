@@ -13,17 +13,14 @@ using VeterinariaBack.dominio;
 
 namespace VeterinariaSLN.presentacion
 {
-    enum CONSULTA_HISTORIA { 
-        SI,
-        NO
-    }
     public partial class Frm_ABMC_Atenciones : Form
     {
         Cliente oCliente = new Cliente();
         Mascota oMascota = new Mascota();
         Atencion oAtencion = new Atencion();
-        List<Atencion> lstAtenciones = new List<Atencion>();
-        CONSULTA_HISTORIA consulto = CONSULTA_HISTORIA.NO;
+        
+        List<Veterinario> lstVeterinarios = new List<Veterinario>();
+        int idDetalle = 1;
         public Frm_ABMC_Atenciones(Cliente clt, Mascota msct)
         {
             InitializeComponent();
@@ -36,6 +33,21 @@ namespace VeterinariaSLN.presentacion
             txtClienteA.Text = oCliente.Nombre;
             txtMascotaA.Text = oMascota.Nombre;
             await MostarSiguienteID();
+            await CargarComboVeterinarios();
+        }
+
+        private async Task CargarComboVeterinarios()
+        {
+            string url = "https://localhost:44350/api/Veterinarios";
+            HttpClient cliente = new HttpClient();
+            var result = await cliente.GetAsync(url);
+
+            var bodyJSON = await result.Content.ReadAsStringAsync();
+            lstVeterinarios = JsonConvert.DeserializeObject<List<Veterinario>>(bodyJSON);
+
+            cmbVet.DataSource = lstVeterinarios;
+            cmbVet.DisplayMember = "Nombre";
+            cmbVet.ValueMember = "Codigo";
         }
 
         private async Task MostarSiguienteID()
@@ -52,6 +64,99 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnRegistrarA_Click(object sender, EventArgs e)
         {
+
+            DialogResult resultado = MessageBox.Show("Seguro desea Registrar esta Atencion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes) {
+                oMascota.RemoveAtenciones();
+
+                foreach (Veterinario vet in lstVeterinarios)
+                {
+                    if (vet.Codigo == Convert.ToInt32(cmbVet.SelectedValue.ToString()))
+                    {
+                        oAtencion.oVeterinario = vet;
+                    }
+                }
+
+                oMascota.SaveAtencion(oAtencion);
+
+                string url = "https://localhost:44350/api/Atenciones";
+                HttpClient cliente = new HttpClient();
+                var data = JsonConvert.SerializeObject(oMascota);
+                HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                var result = await cliente.PostAsync(url, content);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var bodyJSON = await result.Content.ReadAsStringAsync();
+                    bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
+
+                    if (exito)
+                    {
+                        MessageBox.Show("Atencion guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Atencion NO fue guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+            }
+        }
+
+        private void dgvHistorial_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dgvHistorial.CurrentCell.ColumnIndex == 3)
+            {
+                int codigo = Convert.ToInt32(dgvHistorial.CurrentRow.Cells["colCodigo"].Value.ToString());
+
+                foreach (DetalleAtencion det in oAtencion.Detalles)
+                {
+                    if (det.IdDetalle == codigo)
+                    {
+                        DialogResult result = MessageBox.Show("Seguro desea eliminar este detalle?","Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes) {
+
+                            oAtencion.RemoveDetalle(det);
+                        }
+                        
+                        break;
+                    }
+                }
+
+                ActualizarListaDetalle();
+            }
+        }
+
+        private void ActualizarListaDetalle()
+        {
+            dgvHistorial.Rows.Clear();
+
+            foreach (DetalleAtencion detalle in oAtencion.Detalles)
+            {
+                dgvHistorial.Rows.Add(new Object[] {
+                                            detalle.IdDetalle,
+                                            detalle.Descripcion,
+                                            detalle.Importe
+                                            });
+            }
+
+            if (oAtencion.Detalles.Count() == 0)
+                btnRegistrarA.Enabled = false;
+        }
+
+        private void btnSalirA_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnRegistrarDetalle_Click(object sender, EventArgs e)
+        {
+            DetalleAtencion oDetalle = new DetalleAtencion();
+
             if (String.IsNullOrEmpty(rtxtDescripcion.Text) || String.IsNullOrEmpty(txtImporte.Text))
             {
                 MessageBox.Show("Existen campos sin completar", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -76,16 +181,17 @@ namespace VeterinariaSLN.presentacion
                     {
                         cantDigitos = 9;
                     }
-                    
+
                 }
-                
+
                 if (txtImporte.Text.Length > cantDigitos)
                 {
-                    MessageBox.Show("El campo importe no debe superar los "+ cantDigitos +" digitos", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("El campo importe no debe superar los " + cantDigitos + " digitos", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                else {
-                    oAtencion.Importe = Convert.ToDouble(txtImporte.Text);
+                else
+                {
+                    oDetalle.Importe = Convert.ToDouble(txtImporte.Text);
                 }
             }
             catch (Exception)
@@ -94,113 +200,28 @@ namespace VeterinariaSLN.presentacion
                 return;
             }
 
-            oAtencion.Descripcion = rtxtDescripcion.Text;
+            oDetalle.Descripcion = rtxtDescripcion.Text;
+            oDetalle.IdDetalle = idDetalle;
 
-            oMascota.SaveAtencion(oAtencion);
+            idDetalle++;
 
-            string url = "https://localhost:44350/api/Atenciones";
-            HttpClient cliente = new HttpClient();
-            var data = JsonConvert.SerializeObject(oMascota);
-            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var result = await cliente.PostAsync(url, content);
+            oAtencion.AddDetalle(oDetalle);
 
-            if (result.IsSuccessStatusCode)
-            {
-                var bodyJSON = await result.Content.ReadAsStringAsync();
-                bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
-
-                if (exito) {
-                    MessageBox.Show("Atencion guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    rtxtDescripcion.Text = "";
-                    txtImporte.Text = "";
-
-                    if (consulto == CONSULTA_HISTORIA.SI) {
-                        await ActualizarHistorial();
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("La Atencion NO fue guardada con exito", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    foreach (Atencion att in oMascota.Atenciones)
-                    {
-                        if (oAtencion.IdAtencion == att.IdAtencion) {
-                            oMascota.Atenciones.Remove(oAtencion);
-                            break;
-                        }
-                    }
-                }
-            }
-
-        }
-
-        private async void btnConsultarHistorial_Click(object sender, EventArgs e)
-        {
-            consulto = CONSULTA_HISTORIA.SI;
-            await ActualizarHistorial();
-        }
-
-        private async Task ActualizarHistorial()
-        {
             dgvHistorial.Rows.Clear();
-
-            string url = "https://localhost:44350/api/Atenciones/all";
-            HttpClient cliente = new HttpClient();
-            var data = JsonConvert.SerializeObject(oMascota);
-            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var result = await cliente.PostAsync(url, content);
-
-            if (result.IsSuccessStatusCode)
+            foreach (DetalleAtencion detalle in oAtencion.Detalles)
             {
-                var bodyJSON = await result.Content.ReadAsStringAsync();
-                lstAtenciones = JsonConvert.DeserializeObject<List<Atencion>>(bodyJSON);
-
-                foreach (Atencion att in lstAtenciones)
-                {
-                    dgvHistorial.Rows.Add(new Object[] {
-                                            att.IdAtencion,
-                                            att.Fecha,
-                                            att.Descripcion,
-                                            att.Importe
+                dgvHistorial.Rows.Add(new Object[] {
+                                            detalle.IdDetalle,
+                                            detalle.Descripcion,
+                                            detalle.Importe
                                             });
-                }
-
-                if (lstAtenciones.Count == 0) {
-                    MessageBox.Show("No existen atenciones para esta mascota", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
+
+            rtxtDescripcion.Text = "";
+            txtImporte.Text = "";
+            btnRegistrarA.Enabled = true;
+
         }
 
-        private async void dgvHistorial_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (dgvHistorial.CurrentCell.ColumnIndex == 4)
-            {
-                int codigo = Convert.ToInt32(dgvHistorial.CurrentRow.Cells["colCodigo"].Value.ToString());
-
-                Atencion att2 = new Atencion();
-
-                foreach (Atencion att in lstAtenciones)
-                {
-                    if (att.IdAtencion == codigo)
-                    {
-                        att2 = att;
-                        break;
-                    }
-                }
-
-                Frm_Soporte frmSoporte = new Frm_Soporte(att2, null, Accion.NN);
-                frmSoporte.ShowDialog();
-
-                await ActualizarHistorial();
-            }
-        }
-
-        private void btnSalirA_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
     }
 }

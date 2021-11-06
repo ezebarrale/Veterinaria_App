@@ -25,8 +25,15 @@ namespace VeterinariaWebAPI.Controllers
 
             return Ok(app.ConsultarUltimoIdAtencion());
         }
+
         
-    
+        [HttpPost("details")]
+        public IActionResult GetDetallesAtencion(Atencion oAtencion)
+        {
+            return Ok(app.ConsultarDetallesAtencion(oAtencion));
+        }
+
+        
         [HttpPost("all")]
         public IActionResult PostAtenciones(Mascota oMascota)
         {

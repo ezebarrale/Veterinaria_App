@@ -31,8 +31,9 @@ namespace VeterinariaSLN.presentacion
     {
         private List<Cliente> lstClientes;
         private List<Mascota> lstMascotas;
-        Cliente oCliente = new Cliente();
-        Mascota oMascota = new Mascota();
+        private Cliente oCliente = new Cliente();
+        private Mascota oMascota = new Mascota();
+        
         public Frm_Main_Atenciones()
         {
             InitializeComponent();
@@ -40,6 +41,10 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnGCliente_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(lsbClientes.SelectedValue.ToString())) {
+                MessageBox.Show("Debe seleccionar un Cliente", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             foreach (Cliente clt in lstClientes)
             {
@@ -51,6 +56,7 @@ namespace VeterinariaSLN.presentacion
             }
 
             Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null, Accion.NN);
+            frmSoporte.Name = "Gestion de Clientes PET HOUSE";
             frmSoporte.ShowDialog();
 
             await CompletarClientesResultado();
@@ -59,6 +65,7 @@ namespace VeterinariaSLN.presentacion
         private async void btnGMascota_Click(object sender, EventArgs e)
         {
             Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente, Accion.NN);
+            frmSoporte.Name = "Gestion de Mascotas PET HOUSE";
             frmSoporte.ShowDialog();
 
             await CompletarClientesResultado();
@@ -70,6 +77,7 @@ namespace VeterinariaSLN.presentacion
             FrmAtenciones.ShowDialog();
 
             await CompletarClientesResultado();
+
         }
 
         private async void btnBuscarCliente_Click(object sender, EventArgs e)
@@ -81,12 +89,14 @@ namespace VeterinariaSLN.presentacion
         private async Task CompletarClientesResultado()
         {
             lsbClientes.Enabled = false;
-            grpMascota.Enabled = false;
+            //grpMascota.Enabled = false;
             btnRegistar.Enabled = false;
             lsbMascotas.DataSource = null;
             btnGCliente.Enabled = false;
             btnGMascota.Enabled = false;
             lsbClientes.DataSource = null;
+            dgvAtenciones.Rows.Clear();
+
 
             if (txtNombreCliente.Text.Length > 20)
             {
@@ -149,6 +159,7 @@ namespace VeterinariaSLN.presentacion
             btnRegistar.Enabled = false;
             lsbMascotas.Enabled = false;
             btnGCliente.Enabled = true;
+            dgvAtenciones.Rows.Clear();
 
             foreach (Cliente clt in lstClientes)
             {
@@ -180,6 +191,8 @@ namespace VeterinariaSLN.presentacion
                         Frm_Soporte frmSoporte = new Frm_Soporte(oMascota, oCliente, Accion.CREATE);
                         frmSoporte.ShowDialog();
 
+                        lsbClientes.SelectedValue = -1;
+
                         return;
                     }
                     else
@@ -200,20 +213,53 @@ namespace VeterinariaSLN.presentacion
                     lsbMascotas.ValueMember = "IdMascota";
 
                     lsbMascotas.Enabled = true;
-                    grpMascota.Enabled = true;
+                    //grpMascota.Enabled = true;
                 }
             }
         }
 
-        private void lsbMascotas_Click(object sender, EventArgs e)
+        private async void lsbMascotas_Click(object sender, EventArgs e)
         {
             btnGMascota.Enabled = true;
             btnRegistar.Enabled = true;
+            dgvAtenciones.Rows.Clear();
 
             foreach (Mascota msct in oCliente.Mascotas)
             {
                 if (msct.IdMascota == Convert.ToInt32(lsbMascotas.SelectedValue.ToString())) {
                     oMascota = msct;
+                }
+            }
+
+            await ConsultarAtenciones();
+        }
+
+        private async Task ConsultarAtenciones()
+        {
+
+            string url = "https://localhost:44350/api/Atenciones/all";
+            HttpClient cliente = new HttpClient();
+            var data = JsonConvert.SerializeObject(oMascota);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            var result = await cliente.PostAsync(url, content);
+
+
+            if (result.IsSuccessStatusCode)
+            {
+                List<Atencion> lstAtenciones;
+
+                var bodyJSON = await result.Content.ReadAsStringAsync();
+                lstAtenciones = JsonConvert.DeserializeObject<List<Atencion>>(bodyJSON);
+
+                foreach (Atencion att in lstAtenciones)
+                {
+                    dgvAtenciones.Rows.Add(new Object[] {
+                                            att.IdAtencion,
+                                            att.oVeterinario.Nombre,
+                                            att.Fecha
+                                            });
+
+                    oMascota.SaveAtencion(att);
                 }
             }
         }
@@ -223,5 +269,25 @@ namespace VeterinariaSLN.presentacion
             this.Dispose();
         }
 
+        private async void dgvAtenciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvAtenciones.CurrentCell.ColumnIndex == 3)
+            {
+                int codigo = Convert.ToInt32(dgvAtenciones.CurrentRow.Cells["cCodigo"].Value.ToString());
+
+                foreach (Atencion att in oMascota.Atenciones)
+                {
+                    if (att.IdAtencion == codigo)
+                    {
+                        Frm_Consulta_Atenciones FrmCAtenciones = new Frm_Consulta_Atenciones(att, oMascota);
+                        FrmCAtenciones.ShowDialog();
+
+                        await CompletarClientesResultado();
+
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

@@ -26,7 +26,6 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\Veter
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\ref\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.pdb
-D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csprojAssemblyReference.cache
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.GeneratedMSBuildEditorConfig.editorconfig
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfoInputs.cache
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfo.cs
@@ -34,3 +33,4 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\Veter
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\ref\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.pdb
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csprojAssemblyReference.cache

@@ -29,6 +29,8 @@ namespace VeterinariaSLN.presentacion
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl_Select = new System.Windows.Forms.Label();
             this.grpCliente = new System.Windows.Forms.GroupBox();
             this.lblSelectCliente = new System.Windows.Forms.Label();
@@ -43,15 +45,24 @@ namespace VeterinariaSLN.presentacion
             this.lblSelectMascota = new System.Windows.Forms.Label();
             this.btnRegistar = new System.Windows.Forms.Button();
             this.btnSalirMain = new System.Windows.Forms.Button();
+            this.grbAtenciones = new System.Windows.Forms.GroupBox();
+            this.dgvAtenciones = new System.Windows.Forms.DataGridView();
+            this.cCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cVeterinario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cFecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cAccion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grpCliente.SuspendLayout();
             this.grpMascota.SuspendLayout();
+            this.grbAtenciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAtenciones)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_Select
             // 
             this.lbl_Select.AutoSize = true;
             this.lbl_Select.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbl_Select.Location = new System.Drawing.Point(64, 40);
+            this.lbl_Select.ForeColor = System.Drawing.Color.White;
+            this.lbl_Select.Location = new System.Drawing.Point(72, -2);
             this.lbl_Select.Name = "lbl_Select";
             this.lbl_Select.Size = new System.Drawing.Size(686, 25);
             this.lbl_Select.TabIndex = 0;
@@ -65,7 +76,8 @@ namespace VeterinariaSLN.presentacion
             this.grpCliente.Controls.Add(this.btnBuscarCliente);
             this.grpCliente.Controls.Add(this.txtNombreCliente);
             this.grpCliente.Controls.Add(this.lblNombre);
-            this.grpCliente.Location = new System.Drawing.Point(33, 98);
+            this.grpCliente.ForeColor = System.Drawing.Color.White;
+            this.grpCliente.Location = new System.Drawing.Point(41, 35);
             this.grpCliente.Name = "grpCliente";
             this.grpCliente.Size = new System.Drawing.Size(368, 305);
             this.grpCliente.TabIndex = 1;
@@ -84,9 +96,10 @@ namespace VeterinariaSLN.presentacion
             // btnGCliente
             // 
             this.btnGCliente.Enabled = false;
+            this.btnGCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGCliente.Location = new System.Drawing.Point(107, 254);
             this.btnGCliente.Name = "btnGCliente";
-            this.btnGCliente.Size = new System.Drawing.Size(146, 23);
+            this.btnGCliente.Size = new System.Drawing.Size(146, 32);
             this.btnGCliente.TabIndex = 8;
             this.btnGCliente.Text = "Gestionar Clientes";
             this.btnGCliente.UseVisualStyleBackColor = true;
@@ -105,9 +118,10 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnBuscarCliente
             // 
+            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarCliente.Location = new System.Drawing.Point(273, 46);
             this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarCliente.Size = new System.Drawing.Size(75, 24);
             this.btnBuscarCliente.TabIndex = 6;
             this.btnBuscarCliente.Text = "Buscar";
             this.btnBuscarCliente.UseVisualStyleBackColor = true;
@@ -134,8 +148,8 @@ namespace VeterinariaSLN.presentacion
             this.grpMascota.Controls.Add(this.btnGMascota);
             this.grpMascota.Controls.Add(this.lsbMascotas);
             this.grpMascota.Controls.Add(this.lblSelectMascota);
-            this.grpMascota.Enabled = false;
-            this.grpMascota.Location = new System.Drawing.Point(424, 98);
+            this.grpMascota.ForeColor = System.Drawing.Color.White;
+            this.grpMascota.Location = new System.Drawing.Point(432, 35);
             this.grpMascota.Name = "grpMascota";
             this.grpMascota.Size = new System.Drawing.Size(368, 305);
             this.grpMascota.TabIndex = 2;
@@ -145,9 +159,10 @@ namespace VeterinariaSLN.presentacion
             // btnGMascota
             // 
             this.btnGMascota.Enabled = false;
+            this.btnGMascota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGMascota.Location = new System.Drawing.Point(113, 254);
             this.btnGMascota.Name = "btnGMascota";
-            this.btnGMascota.Size = new System.Drawing.Size(146, 23);
+            this.btnGMascota.Size = new System.Drawing.Size(146, 32);
             this.btnGMascota.TabIndex = 10;
             this.btnGMascota.Text = "Gestionar Mascotas";
             this.btnGMascota.UseVisualStyleBackColor = true;
@@ -175,7 +190,10 @@ namespace VeterinariaSLN.presentacion
             // btnRegistar
             // 
             this.btnRegistar.Enabled = false;
-            this.btnRegistar.Location = new System.Drawing.Point(631, 418);
+            this.btnRegistar.FlatAppearance.BorderSize = 0;
+            this.btnRegistar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistar.ForeColor = System.Drawing.Color.White;
+            this.btnRegistar.Location = new System.Drawing.Point(545, 575);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(161, 23);
             this.btnRegistar.TabIndex = 3;
@@ -185,7 +203,10 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnSalirMain
             // 
-            this.btnSalirMain.Location = new System.Drawing.Point(717, 459);
+            this.btnSalirMain.FlatAppearance.BorderSize = 0;
+            this.btnSalirMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalirMain.ForeColor = System.Drawing.Color.White;
+            this.btnSalirMain.Location = new System.Drawing.Point(726, 575);
             this.btnSalirMain.Name = "btnSalirMain";
             this.btnSalirMain.Size = new System.Drawing.Size(75, 23);
             this.btnSalirMain.TabIndex = 4;
@@ -193,16 +214,107 @@ namespace VeterinariaSLN.presentacion
             this.btnSalirMain.UseVisualStyleBackColor = true;
             this.btnSalirMain.Click += new System.EventHandler(this.btnSalirMain_Click);
             // 
+            // grbAtenciones
+            // 
+            this.grbAtenciones.Controls.Add(this.dgvAtenciones);
+            this.grbAtenciones.ForeColor = System.Drawing.Color.White;
+            this.grbAtenciones.Location = new System.Drawing.Point(41, 357);
+            this.grbAtenciones.Name = "grbAtenciones";
+            this.grbAtenciones.Size = new System.Drawing.Size(759, 210);
+            this.grbAtenciones.TabIndex = 6;
+            this.grbAtenciones.TabStop = false;
+            this.grbAtenciones.Text = "Atenciones";
+            // 
+            // dgvAtenciones
+            // 
+            this.dgvAtenciones.AllowUserToAddRows = false;
+            this.dgvAtenciones.AllowUserToDeleteRows = false;
+            this.dgvAtenciones.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAtenciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAtenciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvAtenciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cCodigo,
+            this.cVeterinario,
+            this.cFecha,
+            this.cAccion});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAtenciones.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAtenciones.Location = new System.Drawing.Point(52, 31);
+            this.dgvAtenciones.MultiSelect = false;
+            this.dgvAtenciones.Name = "dgvAtenciones";
+            this.dgvAtenciones.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAtenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvAtenciones.RowHeadersVisible = false;
+            this.dgvAtenciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvAtenciones.RowTemplate.Height = 25;
+            this.dgvAtenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAtenciones.Size = new System.Drawing.Size(665, 150);
+            this.dgvAtenciones.TabIndex = 0;
+            this.dgvAtenciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAtenciones_CellContentClick);
+            // 
+            // cCodigo
+            // 
+            this.cCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cCodigo.HeaderText = "Codigo";
+            this.cCodigo.Name = "cCodigo";
+            this.cCodigo.ReadOnly = true;
+            this.cCodigo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cCodigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cVeterinario
+            // 
+            this.cVeterinario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cVeterinario.HeaderText = "Medico";
+            this.cVeterinario.Name = "cVeterinario";
+            this.cVeterinario.ReadOnly = true;
+            this.cVeterinario.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cVeterinario.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cFecha
+            // 
+            this.cFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cFecha.HeaderText = "Fecha";
+            this.cFecha.Name = "cFecha";
+            this.cFecha.ReadOnly = true;
+            this.cFecha.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cFecha.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // cAccion
+            // 
+            this.cAccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cAccion.HeaderText = "Accion";
+            this.cAccion.Name = "cAccion";
+            this.cAccion.ReadOnly = true;
+            this.cAccion.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.cAccion.Text = "Ver";
+            this.cAccion.UseColumnTextForButtonValue = true;
+            // 
             // Frm_Main_Atenciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 494);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
+            this.ClientSize = new System.Drawing.Size(843, 648);
+            this.Controls.Add(this.grbAtenciones);
             this.Controls.Add(this.btnSalirMain);
             this.Controls.Add(this.btnRegistar);
             this.Controls.Add(this.grpMascota);
             this.Controls.Add(this.grpCliente);
             this.Controls.Add(this.lbl_Select);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(843, 525);
             this.Name = "Frm_Main_Atenciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -211,6 +323,8 @@ namespace VeterinariaSLN.presentacion
             this.grpCliente.PerformLayout();
             this.grpMascota.ResumeLayout(false);
             this.grpMascota.PerformLayout();
+            this.grbAtenciones.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAtenciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +346,11 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.Label lblSelectMascota;
         private System.Windows.Forms.Button btnGMascota;
         private System.Windows.Forms.Button btnSalirMain;
+        private System.Windows.Forms.GroupBox grbAtenciones;
+        private System.Windows.Forms.DataGridView dgvAtenciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cVeterinario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cFecha;
+        private System.Windows.Forms.DataGridViewButtonColumn cAccion;
     }
 }

@@ -96,5 +96,13 @@ namespace VeterinariaBack.services
         {
             return dao.SaveMascota(oCliente);
         }
+        public List<Veterinario> ConsultarVeterinarios()
+        {
+            return dao.GetVeterinarios();
+        }
+        public List<DetalleAtencion> ConsultarDetallesAtencion(Atencion oAtencion)
+        {
+            return dao.GetDetallesAtencion(oAtencion);
+        }
     }
 }

@@ -29,5 +29,7 @@ namespace VeterinariaBack.services
         public bool GuardarMascota(Cliente oCliente);
         public bool EditarMascota(Mascota oMascota);
         public bool EliminarMascota(Mascota oMascota);
+        public List<Veterinario> ConsultarVeterinarios();
+        public List<DetalleAtencion> ConsultarDetallesAtencion(Atencion oAtencion);
     }
 }

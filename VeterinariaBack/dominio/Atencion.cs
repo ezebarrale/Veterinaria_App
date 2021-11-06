@@ -10,19 +10,32 @@ namespace VeterinariaBack.dominio
     {
         public int IdAtencion { get; set; }
         public DateTime Fecha { get; set; }
-        public string Descripcion { get; set; }
-        public double Importe { get; set; }
+        public  List<DetalleAtencion> Detalles { get; set; }
+        public Veterinario oVeterinario { get; set; }
 
         public Atencion()
         {
+            oVeterinario = new Veterinario();
             Fecha = DateTime.Now;
-            Descripcion = "";
-            Importe = 0;
+            Detalles = new List<DetalleAtencion>();
         }
 
         public override string ToString()
         {
             return Fecha.ToString();
+        }
+
+        //add Detalle
+        public void AddDetalle(DetalleAtencion detalle) {
+
+            Detalles.Add(detalle);
+
+        }
+
+        //remove Detalle
+        public void RemoveDetalle(DetalleAtencion detalle)
+        {
+            Detalles.Remove(detalle);
         }
     }
 }

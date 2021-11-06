@@ -19,32 +19,50 @@ namespace VeterinariaSLN.presentacion
 
         private void Frm_Menu_Load(object sender, EventArgs e)
         {
-            
+            panelIzquiedo.BackColor = Color.FromArgb(100, 0, 0, 0);
         }
 
-        private void cmsSoporte_Click(object sender, EventArgs e)
-        {
-            Frm_ABMC_TipoMascota frmTipoMascota = new Frm_ABMC_TipoMascota();
-            frmTipoMascota.ShowDialog();
-        }
-
-        private void cmsArchivo_Click(object sender, EventArgs e)
+        private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
         }
 
-        private void cmsTransaccion_Click(object sender, EventArgs e)
+        private void btnsalir_Click_1(object sender, EventArgs e)
         {
-            Frm_Main_Atenciones frmMainAtenciones = new Frm_Main_Atenciones();
-            frmMainAtenciones.ShowDialog();
-
-
+            this.Dispose();
         }
 
-        private void cmsAcercaDe_Click(object sender, EventArgs e)
+        private void AbrirFormEnPanel(object FormHijo) {
+
+            if (this.panelContenedor.Controls.Count > 0) 
+                this.panelContenedor.Controls.RemoveAt(0);
+
+            Form fh = FormHijo as Form;
+            fh.TopLevel = false;
+            fh.Dock = DockStyle.Fill;
+            this.panelContenedor.Controls.Add(fh);
+            this.panelContenedor.Tag = fh;
+            fh.Show();
+        }
+
+        private void btnSoporte_Click(object sender, EventArgs e)
         {
-            Frm_About FrmAbout = new Frm_About();
-            FrmAbout.ShowDialog();
+            AbrirFormEnPanel(new Frm_ABMC_TipoMascota());
+        }
+
+        private void btnAtenciones_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Frm_Main_Atenciones());
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Frm_About());
+        }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            this.panelContenedor.Controls.Clear();
         }
     }
 }

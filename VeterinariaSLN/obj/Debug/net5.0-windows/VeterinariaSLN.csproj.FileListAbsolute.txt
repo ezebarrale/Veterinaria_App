@@ -83,6 +83,7 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\bin\Debug\net5.0-window
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.csprojAssemblyReference.cache
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_ABMC_Atenciones.resources
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_ABMC_TipoMascota.resources
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_About.resources
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.Frm_Login.resources
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Main_Atenciones.resources
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Menu.resources
@@ -97,3 +98,5 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-window
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\ref\VeterinariaSLN.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.pdb
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.genruntimeconfig.cache
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Consulta_Atenciones.resources
+D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.Properties.Resources.resources

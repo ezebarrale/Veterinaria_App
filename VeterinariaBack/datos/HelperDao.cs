@@ -451,37 +451,87 @@ namespace VeterinariaBack.datos
             
         }
         public bool Guardar_Atencion(string procedure, Mascota oMascota) {
+            bool flagMaestro = false;
             bool flagSalida = false;
+
             SqlConnection cnn = new SqlConnection(connectionString);
-            int exito = 0;
+            SqlTransaction t = null;
+
+            Atencion oAtencion = new Atencion();
+
             try
             {
                 cnn.Open();
-
+                t = cnn.BeginTransaction();
                 foreach (Atencion att in oMascota.Atenciones)
                 {
-                    SqlCommand cmd = new SqlCommand(procedure, cnn);
+                    oAtencion = att;
+
+                    SqlCommand cmd = new SqlCommand(procedure, cnn, t);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@descrip", att.Descripcion);
-                    cmd.Parameters.AddWithValue("@imp", att.Importe);
-                    cmd.Parameters.AddWithValue("@id_mascota", oMascota.IdMascota);
+                    cmd.Parameters.AddWithValue("@id_veterinario", oAtencion.oVeterinario.Codigo);
 
-                    exito = cmd.ExecuteNonQuery();
+                    SqlParameter param = new SqlParameter("@id_atencion", DbType.Int32);
+                    param.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(param);
 
-                    if (exito == 1)
-                        flagSalida = true;
+                    cmd.ExecuteNonQuery();
 
-                    break;
+                    oAtencion.IdAtencion = Convert.ToInt32(param.Value);
+                    
+                    flagMaestro = true;
                 }
             }
             catch (SqlException ex)
             {
                 string mensaje = ex.Message;
+                cnn.Close();
             }
-            finally {
-                if (cnn != null && cnn.State == ConnectionState.Open)
-                    cnn.Close();
+
+            //INSERTO EL DETALLE
+
+            if (flagMaestro)
+            {
+                try
+                {
+                    int idDetalle = 1;
+
+                    foreach (DetalleAtencion detalle in oAtencion.Detalles)
+                    {
+                        SqlCommand cmd = new SqlCommand("PA_GUARDAR_DETALLE_ATENCION", cnn, t);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("@id_detalle", idDetalle);
+                        cmd.Parameters.AddWithValue("@id_atencion", oAtencion.IdAtencion);
+                        cmd.Parameters.AddWithValue("@id_mascota", oMascota.IdMascota);
+                        cmd.Parameters.AddWithValue("@descrip", detalle.Descripcion);
+                        cmd.Parameters.AddWithValue("@imp", detalle.Importe);
+
+                        cmd.ExecuteNonQuery();
+
+                        idDetalle++;
+
+                    }
+
+                    t.Commit();
+                    flagSalida = true;
+
+                }
+                catch (Exception ex)
+                {
+                    t.Rollback();
+                    flagSalida = false;
+                }
+                finally
+                {
+                    if (cnn != null && cnn.State == ConnectionState.Open)
+                        cnn.Close();
+                }
+            }
+            else
+            {
+                flagSalida = false;
             }
 
             return flagSalida;
@@ -527,9 +577,8 @@ namespace VeterinariaBack.datos
                 SqlCommand cmd = new SqlCommand(procedure, cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", oAtencion.IdAtencion);
-                cmd.Parameters.AddWithValue("@descripcion", oAtencion.Descripcion);
-                cmd.Parameters.AddWithValue("@importe_atencion", oAtencion.Importe);
+                cmd.Parameters.AddWithValue("@id_atencion", oAtencion.IdAtencion);
+                cmd.Parameters.AddWithValue("@id_vaterinario", oAtencion.oVeterinario.Codigo);
 
                 result = cmd.ExecuteNonQuery();
 
@@ -563,7 +612,7 @@ namespace VeterinariaBack.datos
                 SqlCommand cmd = new SqlCommand(procedure, cnn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@id", oAtencion.IdAtencion);
+                cmd.Parameters.AddWithValue("@id_atencion", oAtencion.IdAtencion);
 
                 result = cmd.ExecuteNonQuery();
 
@@ -807,6 +856,60 @@ namespace VeterinariaBack.datos
             }
 
             return flagSalida;
+        }
+        public DataTable Consulta_Veterinarios_Sql(string procedure)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+
+        }
+        public DataTable Consulta_Detalles_Atencion_Sql(string procedure, Atencion oAtencion)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_atencion", oAtencion.IdAtencion);
+
+                table.Load(cmd.ExecuteReader());
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return table;
+
         }
     }
 }

@@ -30,6 +30,15 @@ namespace VeterinariaBack.dominio
         }
 
         //remove Atencion
+        public void RemoveAtencion(Atencion att)
+        {
+            Atenciones.Remove(att);
+        }
 
+        //remove all Atenciones
+        public void RemoveAtenciones()
+        {
+            Atenciones.Clear();
+        }
     }
 }

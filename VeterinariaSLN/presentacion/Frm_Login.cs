@@ -25,7 +25,7 @@ namespace VeterinariaSLN
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private async void btnIngresar_Click(object sender, EventArgs e)
@@ -58,6 +58,11 @@ namespace VeterinariaSLN
             bool result = await ClienteSingleton.GetInstance().PostAsync(url, data);
 
             return result;
+        }
+
+        private void llblSalir_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

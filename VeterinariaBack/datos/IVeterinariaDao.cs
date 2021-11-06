@@ -29,5 +29,7 @@ namespace VeterinariaBack.datos
         bool SaveMascota(Cliente oCliente);
         bool UpdateMascota(Mascota oMascota);
         bool DeleteMascota(Mascota oMascota);
+        List<Veterinario> GetVeterinarios();
+        List<DetalleAtencion> GetDetallesAtencion(Atencion oAtencion);
     }
 }

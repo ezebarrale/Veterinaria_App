@@ -36,7 +36,6 @@ namespace VeterinariaSLN.presentacion
             this.txtDuenio = new System.Windows.Forms.TextBox();
             this.lblDuenio = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
-            this.rtxtDescripcion = new System.Windows.Forms.RichTextBox();
             this.lblSexo = new System.Windows.Forms.Label();
             this.rdbF = new System.Windows.Forms.RadioButton();
             this.rdbM = new System.Windows.Forms.RadioButton();
@@ -50,6 +49,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.lblSoporte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdad)).BeginInit();
             this.SuspendLayout();
@@ -59,18 +59,21 @@ namespace VeterinariaSLN.presentacion
             this.lstSoporte.Enabled = false;
             this.lstSoporte.FormattingEnabled = true;
             this.lstSoporte.ItemHeight = 15;
-            this.lstSoporte.Location = new System.Drawing.Point(37, 127);
+            this.lstSoporte.Location = new System.Drawing.Point(59, 129);
             this.lstSoporte.Name = "lstSoporte";
-            this.lstSoporte.Size = new System.Drawing.Size(337, 64);
+            this.lstSoporte.Size = new System.Drawing.Size(348, 64);
             this.lstSoporte.TabIndex = 12;
             this.lstSoporte.Visible = false;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Enabled = false;
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnGuardar.Location = new System.Drawing.Point(121, 282);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(75, 30);
             this.btnGuardar.TabIndex = 11;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -82,7 +85,6 @@ namespace VeterinariaSLN.presentacion
             this.lblSoporte.Controls.Add(this.txtDuenio);
             this.lblSoporte.Controls.Add(this.lblDuenio);
             this.lblSoporte.Controls.Add(this.lblEdad);
-            this.lblSoporte.Controls.Add(this.rtxtDescripcion);
             this.lblSoporte.Controls.Add(this.lblSexo);
             this.lblSoporte.Controls.Add(this.rdbF);
             this.lblSoporte.Controls.Add(this.rdbM);
@@ -93,17 +95,16 @@ namespace VeterinariaSLN.presentacion
             this.lblSoporte.Controls.Add(this.txtNombre);
             this.lblSoporte.Controls.Add(this.lblNombre);
             this.lblSoporte.Controls.Add(this.lblTM);
-            this.lblSoporte.Location = new System.Drawing.Point(34, 29);
+            this.lblSoporte.Location = new System.Drawing.Point(34, 40);
             this.lblSoporte.Name = "lblSoporte";
-            this.lblSoporte.Size = new System.Drawing.Size(494, 230);
+            this.lblSoporte.Size = new System.Drawing.Size(462, 230);
             this.lblSoporte.TabIndex = 10;
             this.lblSoporte.TabStop = false;
-            this.lblSoporte.Text = "Soporte";
             // 
             // nudEdad
             // 
             this.nudEdad.Enabled = false;
-            this.nudEdad.Location = new System.Drawing.Point(98, 143);
+            this.nudEdad.Location = new System.Drawing.Point(120, 145);
             this.nudEdad.Minimum = new decimal(new int[] {
             1,
             0,
@@ -122,7 +123,7 @@ namespace VeterinariaSLN.presentacion
             // txtDuenio
             // 
             this.txtDuenio.Enabled = false;
-            this.txtDuenio.Location = new System.Drawing.Point(98, 186);
+            this.txtDuenio.Location = new System.Drawing.Point(120, 188);
             this.txtDuenio.Name = "txtDuenio";
             this.txtDuenio.Size = new System.Drawing.Size(182, 23);
             this.txtDuenio.TabIndex = 16;
@@ -131,36 +132,27 @@ namespace VeterinariaSLN.presentacion
             // lblDuenio
             // 
             this.lblDuenio.AutoSize = true;
-            this.lblDuenio.Location = new System.Drawing.Point(37, 189);
+            this.lblDuenio.Location = new System.Drawing.Point(59, 191);
             this.lblDuenio.Name = "lblDuenio";
-            this.lblDuenio.Size = new System.Drawing.Size(53, 15);
+            this.lblDuenio.Size = new System.Drawing.Size(56, 15);
             this.lblDuenio.TabIndex = 15;
-            this.lblDuenio.Text = "Dueño/a";
+            this.lblDuenio.Text = "Dueño/a:";
             this.lblDuenio.Visible = false;
             // 
             // lblEdad
             // 
             this.lblEdad.AutoSize = true;
-            this.lblEdad.Location = new System.Drawing.Point(36, 145);
+            this.lblEdad.Location = new System.Drawing.Point(58, 147);
             this.lblEdad.Name = "lblEdad";
-            this.lblEdad.Size = new System.Drawing.Size(33, 15);
+            this.lblEdad.Size = new System.Drawing.Size(36, 15);
             this.lblEdad.TabIndex = 13;
-            this.lblEdad.Text = "Edad";
+            this.lblEdad.Text = "Edad:";
             this.lblEdad.Visible = false;
-            // 
-            // rtxtDescripcion
-            // 
-            this.rtxtDescripcion.Enabled = false;
-            this.rtxtDescripcion.Location = new System.Drawing.Point(37, 127);
-            this.rtxtDescripcion.Name = "rtxtDescripcion";
-            this.rtxtDescripcion.Size = new System.Drawing.Size(422, 55);
-            this.rtxtDescripcion.TabIndex = 11;
-            this.rtxtDescripcion.Text = "";
             // 
             // lblSexo
             // 
             this.lblSexo.AutoSize = true;
-            this.lblSexo.Location = new System.Drawing.Point(291, 35);
+            this.lblSexo.Location = new System.Drawing.Point(334, 37);
             this.lblSexo.Name = "lblSexo";
             this.lblSexo.Size = new System.Drawing.Size(35, 15);
             this.lblSexo.TabIndex = 10;
@@ -170,7 +162,7 @@ namespace VeterinariaSLN.presentacion
             // rdbF
             // 
             this.rdbF.AutoSize = true;
-            this.rdbF.Location = new System.Drawing.Point(394, 33);
+            this.rdbF.Location = new System.Drawing.Point(376, 69);
             this.rdbF.Name = "rdbF";
             this.rdbF.Size = new System.Drawing.Size(31, 19);
             this.rdbF.TabIndex = 9;
@@ -182,7 +174,7 @@ namespace VeterinariaSLN.presentacion
             // rdbM
             // 
             this.rdbM.AutoSize = true;
-            this.rdbM.Location = new System.Drawing.Point(346, 33);
+            this.rdbM.Location = new System.Drawing.Point(334, 69);
             this.rdbM.Name = "rdbM";
             this.rdbM.Size = new System.Drawing.Size(36, 19);
             this.rdbM.TabIndex = 8;
@@ -196,16 +188,16 @@ namespace VeterinariaSLN.presentacion
             this.cmbTipoMascota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoMascota.Enabled = false;
             this.cmbTipoMascota.FormattingEnabled = true;
-            this.cmbTipoMascota.Location = new System.Drawing.Point(139, 103);
+            this.cmbTipoMascota.Location = new System.Drawing.Point(161, 105);
             this.cmbTipoMascota.Name = "cmbTipoMascota";
-            this.cmbTipoMascota.Size = new System.Drawing.Size(291, 23);
+            this.cmbTipoMascota.Size = new System.Drawing.Size(246, 23);
             this.cmbTipoMascota.TabIndex = 6;
             this.cmbTipoMascota.Visible = false;
             // 
             // txtCodigo
             // 
             this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(98, 32);
+            this.txtCodigo.Location = new System.Drawing.Point(120, 34);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(182, 23);
             this.txtCodigo.TabIndex = 5;
@@ -213,7 +205,7 @@ namespace VeterinariaSLN.presentacion
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(36, 35);
+            this.lblCodigo.Location = new System.Drawing.Point(58, 37);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(49, 15);
             this.lblCodigo.TabIndex = 4;
@@ -222,7 +214,7 @@ namespace VeterinariaSLN.presentacion
             // txtNombre
             // 
             this.txtNombre.Enabled = false;
-            this.txtNombre.Location = new System.Drawing.Point(98, 66);
+            this.txtNombre.Location = new System.Drawing.Point(120, 68);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(182, 23);
             this.txtNombre.TabIndex = 3;
@@ -230,7 +222,7 @@ namespace VeterinariaSLN.presentacion
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(36, 69);
+            this.lblNombre.Location = new System.Drawing.Point(58, 71);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(54, 15);
             this.lblNombre.TabIndex = 2;
@@ -239,7 +231,7 @@ namespace VeterinariaSLN.presentacion
             // lblTM
             // 
             this.lblTM.AutoSize = true;
-            this.lblTM.Location = new System.Drawing.Point(36, 106);
+            this.lblTM.Location = new System.Drawing.Point(58, 108);
             this.lblTM.Name = "lblTM";
             this.lblTM.Size = new System.Drawing.Size(97, 15);
             this.lblTM.TabIndex = 0;
@@ -247,9 +239,12 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnEditar
             // 
+            this.btnEditar.FlatAppearance.BorderSize = 0;
+            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEditar.Location = new System.Drawing.Point(208, 282);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.Size = new System.Drawing.Size(75, 30);
             this.btnEditar.TabIndex = 18;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -257,9 +252,12 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnEliminar
             // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnEliminar.Location = new System.Drawing.Point(291, 282);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 30);
             this.btnEliminar.TabIndex = 19;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -267,9 +265,12 @@ namespace VeterinariaSLN.presentacion
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(453, 282);
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCancelar.Location = new System.Drawing.Point(421, 282);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 30);
             this.btnCancelar.TabIndex = 20;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -278,26 +279,42 @@ namespace VeterinariaSLN.presentacion
             // btnNuevo
             // 
             this.btnNuevo.Enabled = false;
+            this.btnNuevo.FlatAppearance.BorderSize = 0;
+            this.btnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevo.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnNuevo.Location = new System.Drawing.Point(34, 282);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.Size = new System.Drawing.Size(75, 30);
             this.btnNuevo.TabIndex = 21;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Visible = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Location = new System.Drawing.Point(34, 17);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(48, 15);
+            this.lblTitulo.TabIndex = 22;
+            this.lblTitulo.Text = "Soporte";
+            // 
             // Frm_Soporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 324);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
+            this.ClientSize = new System.Drawing.Size(534, 333);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblSoporte);
+            this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Soporte";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Soporte";
@@ -306,6 +323,7 @@ namespace VeterinariaSLN.presentacion
             this.lblSoporte.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudEdad)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -322,7 +340,6 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblTM;
-        private System.Windows.Forms.RichTextBox rtxtDescripcion;
         private System.Windows.Forms.Label lblSexo;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
@@ -332,5 +349,6 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.TextBox txtDuenio;
         private System.Windows.Forms.NumericUpDown nudEdad;
         private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Label lblTitulo;
     }
 }
