@@ -204,12 +204,12 @@ namespace VeterinariaSLN.presentacion
                 }
                 else
                 {
-                    /*
+                    
                     foreach (Mascota oMascota in lstMascotas)
                     {
                         oCliente.AgregarMascota(oMascota);
                     }
-                    */
+                    
                     lsbMascotas.DataSource = lstMascotas;
                     lsbMascotas.DisplayMember = "Nombre";
                     lsbMascotas.ValueMember = "IdMascota";
