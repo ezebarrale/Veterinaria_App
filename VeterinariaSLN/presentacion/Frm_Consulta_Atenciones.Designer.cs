@@ -58,6 +58,7 @@ namespace VeterinariaSLN.presentacion
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
+            this.lblCodigo.ForeColor = System.Drawing.Color.White;
             this.lblCodigo.Location = new System.Drawing.Point(36, 48);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(55, 18);
@@ -76,6 +77,7 @@ namespace VeterinariaSLN.presentacion
             // lblVet
             // 
             this.lblVet.AutoSize = true;
+            this.lblVet.ForeColor = System.Drawing.Color.White;
             this.lblVet.Location = new System.Drawing.Point(36, 116);
             this.lblVet.Name = "lblVet";
             this.lblVet.Size = new System.Drawing.Size(58, 18);
@@ -95,6 +97,7 @@ namespace VeterinariaSLN.presentacion
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
+            this.lblFecha.ForeColor = System.Drawing.Color.White;
             this.lblFecha.Location = new System.Drawing.Point(311, 116);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(47, 18);
@@ -140,6 +143,7 @@ namespace VeterinariaSLN.presentacion
             // lblMascota
             // 
             this.lblMascota.AutoSize = true;
+            this.lblMascota.ForeColor = System.Drawing.Color.White;
             this.lblMascota.Location = new System.Drawing.Point(314, 48);
             this.lblMascota.Name = "lblMascota";
             this.lblMascota.Size = new System.Drawing.Size(61, 18);
@@ -149,6 +153,7 @@ namespace VeterinariaSLN.presentacion
             // lblDetallesAtencion
             // 
             this.lblDetallesAtencion.AutoSize = true;
+            this.lblDetallesAtencion.ForeColor = System.Drawing.Color.White;
             this.lblDetallesAtencion.Location = new System.Drawing.Point(32, 244);
             this.lblDetallesAtencion.Name = "lblDetallesAtencion";
             this.lblDetallesAtencion.Size = new System.Drawing.Size(126, 18);
@@ -166,7 +171,7 @@ namespace VeterinariaSLN.presentacion
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHistorial.ColumnHeadersHeight = 26;
@@ -178,7 +183,7 @@ namespace VeterinariaSLN.presentacion
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -236,6 +241,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.btnEditar.FlatAppearance.BorderSize = 0;
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditar.ForeColor = System.Drawing.Color.White;
             this.btnEditar.Location = new System.Drawing.Point(379, 527);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditar.Name = "btnEditar";
@@ -249,6 +255,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Location = new System.Drawing.Point(469, 527);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEliminar.Name = "btnEliminar";
@@ -262,6 +269,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.btnSalir.FlatAppearance.BorderSize = 0;
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.ForeColor = System.Drawing.Color.White;
             this.btnSalir.Location = new System.Drawing.Point(563, 527);
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalir.Name = "btnSalir";
@@ -276,6 +284,7 @@ namespace VeterinariaSLN.presentacion
             this.btnGuardar.Enabled = false;
             this.btnGuardar.FlatAppearance.BorderSize = 0;
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.Location = new System.Drawing.Point(284, 527);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardar.Name = "btnGuardar";
@@ -288,6 +297,7 @@ namespace VeterinariaSLN.presentacion
             // lblAtencion
             // 
             this.lblAtencion.AutoSize = true;
+            this.lblAtencion.ForeColor = System.Drawing.Color.White;
             this.lblAtencion.Location = new System.Drawing.Point(32, 15);
             this.lblAtencion.Name = "lblAtencion";
             this.lblAtencion.Size = new System.Drawing.Size(59, 18);
@@ -309,7 +319,7 @@ namespace VeterinariaSLN.presentacion
             this.Controls.Add(this.lblDetallesAtencion);
             this.Controls.Add(this.grpAtencion);
             this.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ForeColor = System.Drawing.Color.White;
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Consulta_Atenciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

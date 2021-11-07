@@ -192,6 +192,7 @@ namespace VeterinariaSLN.presentacion
                         frmSoporte.ShowDialog();
 
                         lsbClientes.SelectedValue = -1;
+                        btnGCliente.Enabled = false;
 
                         return;
                     }
@@ -203,11 +204,12 @@ namespace VeterinariaSLN.presentacion
                 }
                 else
                 {
+                    /*
                     foreach (Mascota oMascota in lstMascotas)
                     {
                         oCliente.AgregarMascota(oMascota);
                     }
-
+                    */
                     lsbMascotas.DataSource = lstMascotas;
                     lsbMascotas.DisplayMember = "Nombre";
                     lsbMascotas.ValueMember = "IdMascota";
