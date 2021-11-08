@@ -246,13 +246,14 @@ namespace VeterinariaBack.datos
             //retorna si fue exitosa o no la operacion
             return flagSalida;
         }
-        public DataTable Consulta_Clientes_Sql(string procedure, string nombre)
+        public DataTable Consulta_Clientes_Sql(string procedure, Cliente oCliente)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
             DataTable table = new DataTable();
 
-            Cliente oCliente = new Cliente();
-            oCliente.Nombre = nombre;
+            Cliente clt = new Cliente();
+            clt.Nombre = oCliente.Nombre;
+            clt.Apellido = oCliente.Apellido;
 
             try
             {
@@ -262,6 +263,7 @@ namespace VeterinariaBack.datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", oCliente.Apellido);
 
                 table.Load(cmd.ExecuteReader());
 
@@ -297,10 +299,15 @@ namespace VeterinariaBack.datos
 
                 table.Load(cmd.ExecuteReader());
 
-                foreach (DataRow item in table.Rows)
+                foreach (DataRow itm in table.Rows)
                 {
-                    oCliente.Nombre = item["nombre"].ToString();
-                    oCliente.Sexo = item["sexo"].ToString();
+                    oCliente.Codigo = Convert.ToInt32(itm["id_cliente"].ToString());
+                    oCliente.Nombre = itm["nombre"].ToString();
+                    oCliente.Apellido = itm["apellido"].ToString();
+                    oCliente.FakeNombre = itm["nombre"].ToString() + " " + itm["apellido"].ToString();
+                    oCliente.Contacto = itm["contacto"].ToString();
+                    oCliente.Dni = Convert.ToInt32(itm["dni"].ToString());
+                    oCliente.Sexo = itm["sexo"].ToString();
                     break;
                 }
 
@@ -648,7 +655,10 @@ namespace VeterinariaBack.datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", oCliente.Apellido);
                 cmd.Parameters.AddWithValue("@sexo", oCliente.Sexo);
+                cmd.Parameters.AddWithValue("@contacto", oCliente.Contacto);
+                cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
 
                 result = cmd.ExecuteNonQuery();
 
@@ -685,7 +695,10 @@ namespace VeterinariaBack.datos
 
                 cmd.Parameters.AddWithValue("@id", oCliente.Codigo);
                 cmd.Parameters.AddWithValue("@nombre", oCliente.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", oCliente.Apellido);
                 cmd.Parameters.AddWithValue("@sexo", oCliente.Sexo);
+                cmd.Parameters.AddWithValue("@contacto", oCliente.Contacto);
+                cmd.Parameters.AddWithValue("@dni", oCliente.Dni);
 
                 result = cmd.ExecuteNonQuery();
 
@@ -759,6 +772,7 @@ namespace VeterinariaBack.datos
                 foreach (Mascota msct in oCliente.Mascotas)
                 {
                     cmd.Parameters.AddWithValue("@nombre", msct.Nombre);
+                    cmd.Parameters.AddWithValue("@sexo", msct.Sexo);
                     cmd.Parameters.AddWithValue("@edad", msct.Edad);
                     cmd.Parameters.AddWithValue("@id_tipo_mascota", msct.Tipo.IdTipoMascota);
                     break;
@@ -799,6 +813,7 @@ namespace VeterinariaBack.datos
 
                 cmd.Parameters.AddWithValue("@id", oMascota.IdMascota);
                 cmd.Parameters.AddWithValue("@nombre", oMascota.Nombre);
+                cmd.Parameters.AddWithValue("@sexo", oMascota.Sexo);
                 cmd.Parameters.AddWithValue("@edad", oMascota.Edad);
                 cmd.Parameters.AddWithValue("@id_tipo_mascota", oMascota.Tipo.IdTipoMascota);
 

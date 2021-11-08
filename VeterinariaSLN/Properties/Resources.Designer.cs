@@ -83,6 +83,16 @@ namespace VeterinariaSLN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_account_box_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_account_box_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_construction_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_construction_white_24dp", resourceCulture);
@@ -126,6 +136,26 @@ namespace VeterinariaSLN.Properties {
         internal static System.Drawing.Bitmap outline_medical_services_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_medical_services_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_person_add_alt_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_person_add_alt_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_pets_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_pets_white_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

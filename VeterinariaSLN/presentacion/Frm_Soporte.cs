@@ -48,39 +48,17 @@ namespace VeterinariaSLN.presentacion
         private async void Frm_Soporte_Load(object sender, EventArgs e)
         {
 
-            if (tipo == TipoObj.CLIENTE) {
-                OptimizarForm(tipo);
-
-                lblTitulo.Text = "Cliente";
-                if (modo != Accion.CREATE)
-                {
-                    txtCodigo.Text = oCliente.Codigo.ToString();
-                    txtNombre.Text = oCliente.Nombre.ToString();
-                    if (oCliente.Sexo == "M")
-                        rdbM.Checked = true;
-                    else
-                        rdbF.Checked = true;
-
-                    lstSoporte.DataSource = oCliente.Mascotas;
-                    lstSoporte.DisplayMember = "Nombre";
-                    lstSoporte.ValueMember = "IdMascota";
-
-                    lstSoporte.SelectedIndex = -1;
-                }
-                else {
-                    await ObtenerSiguienteId("Clientes/id");
-                    rdbM.Checked = true;
-                }
-                
-            }
-
             if (tipo == TipoObj.MASCOTA)
             {
                 OptimizarForm(tipo);
 
-                lblTitulo.Text = "Mascota";
+                lblTitulo.Text = "Gestion de Mascotas";
                 if (modo != Accion.CREATE)
                 {
+                    if (oMascota.Sexo == "M")
+                        rdbM.Checked = true;
+                    else
+                        rdbF.Checked = true;
                     txtCodigo.Text = oMascota.IdMascota.ToString();
                     txtNombre.Text = oMascota.Nombre;
                     nudEdad.Text = oMascota.Edad.ToString();
@@ -90,12 +68,13 @@ namespace VeterinariaSLN.presentacion
                 }
                 else
                 {
+                    rdbM.Checked = true;
                     await ObtenerSiguienteId("Mascotas/id");
                     await ObtenerTipoDeMascotas();
+                    
                 }
 
                 txtDuenio.Text = oCliente.Nombre;
-                
 
             }
         }
@@ -135,32 +114,6 @@ namespace VeterinariaSLN.presentacion
         private void OptimizarForm(TipoObj obj)
         {
 
-            if (obj == TipoObj.CLIENTE)
-            {
-                if (modo == Accion.CREATE)
-                {
-                    btnEditar.Enabled = false;
-                    btnEliminar.Enabled = false;
-                    btnGuardar.Enabled = true;
-                    lblTM.Visible = true;
-                    lstSoporte.Visible = true;
-                    rdbM.Enabled = true;
-                    rdbM.Visible = true;
-                    rdbF.Visible = true;
-                    rdbF.Enabled = true;
-                    txtNombre.Enabled = true;
-                }
-                else {
-                    lstSoporte.Visible = true;
-                    rdbM.Enabled = false;
-                    rdbM.Visible = true;
-                    rdbF.Visible = true;
-                    rdbF.Enabled = false;
-                }
-                lblTM.Text = "Listado de mascotas: ";
-                lblSexo.Visible = true;
-            }
-
             if (obj == TipoObj.MASCOTA)
             {
                 if (modo == Accion.CREATE)
@@ -176,12 +129,12 @@ namespace VeterinariaSLN.presentacion
                     btnNuevo.Enabled = true;
                     btnNuevo.Visible = true;
                 }
-                lblSexo.Visible = false;
-                rdbM.Visible = false;
-                rdbF.Visible = false;
+
+                lblSexo.Visible = true;
+                rdbM.Visible = true;
+                rdbF.Visible = true;
                 cmbTipoMascota.Visible = true;
                 lblTM.Text = "Tipo de Mascota: ";
-                lstSoporte.Visible = false;
                 lblEdad.Visible = true;
                 nudEdad.Visible = true;
                 lblDuenio.Visible = true;
@@ -306,7 +259,7 @@ namespace VeterinariaSLN.presentacion
                     return;
                 }
 
-                DialogResult msg = MessageBox.Show("Seguro desea guardar los cambios realizados?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult msg = MessageBox.Show("Seguro desea guardar los datos ingresados?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg.Equals(DialogResult.OK))
                 {
 
@@ -317,6 +270,11 @@ namespace VeterinariaSLN.presentacion
 
                     oMascota.Nombre = txtNombre.Text;
                     oMascota.Edad = Convert.ToInt32(nudEdad.Value);
+
+                    if (rdbM.Checked)
+                        oMascota.Sexo = "M";
+                    else
+                        oMascota.Sexo = "H";
 
                     TipoMascota tm = new TipoMascota();
                     tm.IdTipoMascota = Convert.ToInt32(cmbTipoMascota.SelectedValue.ToString());

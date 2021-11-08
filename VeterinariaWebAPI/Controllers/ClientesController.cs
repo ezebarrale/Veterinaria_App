@@ -34,10 +34,10 @@ namespace VeterinariaWebAPI.Controllers
 
         }
 
-        [HttpGet("nombre/{nombre}")]
-        public IActionResult GetClientes(string nombre) {
+        [HttpPost]
+        public IActionResult GetClientes(Cliente oCliente) {
 
-            return Ok(app.ConsultarClientes(nombre));
+            return Ok(app.ConsultarClientes(oCliente));
 
         }
 

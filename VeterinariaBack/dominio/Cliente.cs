@@ -9,6 +9,10 @@ namespace VeterinariaBack.dominio
     public class Cliente
     {
         public string Nombre { get; set; }
+        public string FakeNombre { get; set; }
+        public string Apellido { get; set; }
+        public int Dni { get; set; }
+        public string Contacto { get; set; }
         public string Sexo { get; set; }
         public int Codigo { get; set; }
         public List<Mascota> Mascotas { get; set; }
@@ -20,7 +24,7 @@ namespace VeterinariaBack.dominio
 
         public override string ToString()
         {
-            return base.ToString();
+            return Nombre + " " +Apellido;
         }
 
         //add Mascota

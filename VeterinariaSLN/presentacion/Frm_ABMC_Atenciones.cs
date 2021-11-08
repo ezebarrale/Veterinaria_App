@@ -197,7 +197,15 @@ namespace VeterinariaSLN.presentacion
                 }
                 else
                 {
-                    oDetalle.Importe = Convert.ToDouble(txtImporte.Text);
+                    try
+                    {
+                        oDetalle.Importe = Convert.ToDouble(txtImporte.Text);
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show("Este campo solo admite numeros", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    
                 }
             }
             catch (Exception)

@@ -36,6 +36,7 @@ namespace VeterinariaSLN.presentacion
             this.lblBogdan = new System.Windows.Forms.Label();
             this.lblBordenabe = new System.Windows.Forms.Label();
             this.lblBorghi = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -66,9 +67,9 @@ namespace VeterinariaSLN.presentacion
             this.lblIntegrantes.Font = new System.Drawing.Font("Trebuchet MS", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblIntegrantes.Location = new System.Drawing.Point(136, 82);
             this.lblIntegrantes.Name = "lblIntegrantes";
-            this.lblIntegrantes.Size = new System.Drawing.Size(202, 40);
+            this.lblIntegrantes.Size = new System.Drawing.Size(137, 40);
             this.lblIntegrantes.TabIndex = 2;
-            this.lblIntegrantes.Text = "Intregrantes:";
+            this.lblIntegrantes.Text = "Autores:";
             // 
             // lblBarrale
             // 
@@ -110,12 +111,22 @@ namespace VeterinariaSLN.presentacion
             this.lblBorghi.TabIndex = 6;
             this.lblBorghi.Text = "Borghi, Ignacio";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Location = new System.Drawing.Point(136, 534);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(90, 18);
+            this.lblVersion.TabIndex = 7;
+            this.lblVersion.Text = "Version: 1.0.0";
+            // 
             // Frm_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
             this.ClientSize = new System.Drawing.Size(1029, 676);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblBorghi);
             this.Controls.Add(this.lblBordenabe);
             this.Controls.Add(this.lblBogdan);
@@ -145,5 +156,6 @@ namespace VeterinariaSLN.presentacion
         private System.Windows.Forms.Label lblBogdan;
         private System.Windows.Forms.Label lblBordenabe;
         private System.Windows.Forms.Label lblBorghi;
+        private System.Windows.Forms.Label lblVersion;
     }
 }

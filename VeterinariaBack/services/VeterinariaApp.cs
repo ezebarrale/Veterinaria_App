@@ -36,9 +36,9 @@ namespace VeterinariaBack.services
         {
             return dao.UpdateTipoMascota(oTm);
         }
-        public List<Cliente> ConsultarClientes(string nombre)
+        public List<Cliente> ConsultarClientes(Cliente oCliente)
         {
-            return dao.GetClientes(nombre);
+            return dao.GetClientes(oCliente);
         }
         public List<Mascota> ConsultarMascotas(int id_cliente)
         {

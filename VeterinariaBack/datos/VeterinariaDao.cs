@@ -43,21 +43,25 @@ namespace VeterinariaBack.datos
         {
             return HelperDao.GetInstance().Editar_Tipo_Mascota_Sql("PA_EDITAR_TIPO_MASCOTA", oTm);
         }
-        public List<Cliente> GetClientes(string nombre)
+        public List<Cliente> GetClientes(Cliente oCliente)
         {
             List<Cliente> lst = new List<Cliente>();
 
-            DataTable table = HelperDao.GetInstance().Consulta_Clientes_Sql("PA_CONSULTAR_CLIENTE", nombre);
+            DataTable table = HelperDao.GetInstance().Consulta_Clientes_Sql("PA_CONSULTAR_CLIENTE", oCliente);
 
 
             foreach (DataRow itm in table.Rows)
             {
-                Cliente oCliente = new Cliente();
-                oCliente.Codigo = Convert.ToInt32(itm["id_cliente"].ToString());
-                oCliente.Nombre = itm["nombre"].ToString();
-                oCliente.Sexo = itm["sexo"].ToString();
+                Cliente clt = new Cliente();
+                clt.Codigo = Convert.ToInt32(itm["id_cliente"].ToString());
+                clt.Nombre = itm["nombre"].ToString();
+                clt.Apellido = itm["apellido"].ToString();
+                clt.FakeNombre = itm["nombre"].ToString() + " " + itm["apellido"].ToString(); 
+                clt.Contacto = itm["contacto"].ToString();
+                clt.Dni = Convert.ToInt32(itm["dni"].ToString());
+                clt.Sexo = itm["sexo"].ToString();
 
-                lst.Add(oCliente);
+                lst.Add(clt);
             }
 
             return lst;

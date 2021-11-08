@@ -9,6 +9,9 @@ namespace VeterinariaBack.dominio
     public class Veterinario
     {
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public int Dni { get; set; }
+        public string Contacto { get; set; }
         public string Sexo { get; set; }
         public int Codigo { get; set; }
 

@@ -55,9 +55,9 @@ namespace VeterinariaSLN.presentacion
                 }
             }
 
-            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null, Accion.NN);
-            frmSoporte.Name = "Gestion de Clientes PET HOUSE";
-            frmSoporte.ShowDialog();
+            Frm_Clientes frmClientes = new Frm_Clientes(oCliente, null, Accion.NN);
+            frmClientes.Name = "Gestion de Clientes PET HOUSE";
+            frmClientes.ShowDialog();
 
             await CompletarClientesResultado(false, true);
         }
@@ -106,12 +106,39 @@ namespace VeterinariaSLN.presentacion
 
             if (!String.IsNullOrEmpty(txtNombreCliente.Text))
             {
-                Cliente clt = new Cliente();
-                clt.Nombre = txtNombreCliente.Text;
+                string cadenaNombre = "";
+                string cadenaApellido = "";
 
-                string url = "https://localhost:44350/api/Clientes/nombre/" + clt.Nombre;
+                for (int i = 0; i < txtNombreCliente.Text.Length; i++)
+                {
+
+                    if (i > 0 && txtNombreCliente.Text[i].ToString() == " ")
+                    {
+                        int ii = i + 1;
+
+                        for (int j = 0; j < txtNombreCliente.Text.Length; j++)
+                        {
+                            if (j == ii) {
+                                cadenaApellido += txtNombreCliente.Text[j];
+                            }
+                        }
+                        break;
+                    }
+                    else {
+                        cadenaNombre += txtNombreCliente.Text[i];
+                    }
+
+                }
+
+                Cliente clt = new Cliente();
+                clt.Nombre = cadenaNombre;
+                clt.Apellido = cadenaApellido;
+
+                string url = "https://localhost:44350/api/Clientes";
                 HttpClient cliente = new HttpClient();
-                var result = await cliente.GetAsync(url);
+                var data = JsonConvert.SerializeObject(clt);
+                HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                var result = await cliente.PostAsync(url, content);
 
                 if (result.IsSuccessStatusCode)
                 {
@@ -124,8 +151,8 @@ namespace VeterinariaSLN.presentacion
 
                         if (resultado == DialogResult.Yes)
                         {
-                            Frm_Soporte frmSoporte = new Frm_Soporte(oCliente, null, Accion.CREATE);
-                            frmSoporte.ShowDialog();
+                            Frm_Clientes frmCliente = new Frm_Clientes(oCliente, null, Accion.CREATE);
+                            frmCliente.ShowDialog();
 
                             return;
                         }
@@ -137,7 +164,7 @@ namespace VeterinariaSLN.presentacion
                     else
                     {
                         lsbClientes.DataSource = lstClientes;
-                        lsbClientes.DisplayMember = "Nombre";
+                        lsbClientes.DisplayMember = "FakeNombre";
                         lsbClientes.ValueMember = "Codigo";
 
                         lsbClientes.Enabled = true;

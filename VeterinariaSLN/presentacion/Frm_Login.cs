@@ -43,7 +43,7 @@ namespace VeterinariaSLN
             bool result = await ConsultarUsuarioAsync(usr);
 
             if (result) {
-                frmMenu = new Frm_Menu();
+                frmMenu = new Frm_Menu(usr);
                 frmMenu.Show();
                 this.Hide();
             }

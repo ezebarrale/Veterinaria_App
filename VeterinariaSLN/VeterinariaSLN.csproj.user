@@ -7,6 +7,9 @@
     <Compile Update="presentacion\Frm_ABMC_Atenciones.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="presentacion\Frm_Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="presentacion\Frm_Consulta_Atenciones.cs">
       <SubType>Form</SubType>
     </Compile>

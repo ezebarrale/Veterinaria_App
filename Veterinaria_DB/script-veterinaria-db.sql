@@ -17,6 +17,9 @@ CONSTRAINT [pk_tipo_mascota] PRIMARY KEY (id_tipo_mascota))
 CREATE TABLE VETERINARIOS(
 id_veterinario INT IDENTITY,
 nombre VARCHAR(20),
+apellido VARCHAR(20),
+dni int,
+contacto VARCHAR(20),
 sexo VARCHAR(1),
 fecha_baja DATETIME
 CONSTRAINT pk_id_veterinario PRIMARY KEY (id_veterinario))
@@ -24,6 +27,9 @@ CONSTRAINT pk_id_veterinario PRIMARY KEY (id_veterinario))
 CREATE TABLE CLIENTES(
 id_cliente INT IDENTITY,
 nombre VARCHAR(20),
+apellido VARCHAR(20),
+contacto VARCHAR(20),
+dni int,
 sexo VARCHAR(1),
 fecha_baja DATETIME
 CONSTRAINT pk_id_cliente PRIMARY KEY (id_cliente))
@@ -32,6 +38,7 @@ CREATE TABLE MASCOTAS(
 id_mascota INT IDENTITY,
 nombre VARCHAR(20),
 edad INT,
+sexo VARCHAR(1),
 id_tipo_mascota INT,
 fecha_baja DATETIME,
 id_cliente INT
@@ -162,20 +169,28 @@ GO
 
 CREATE PROCEDURE PA_GUARDAR_CLIENTES
 @nombre varchar(20),
-@sexo varchar(1)
+@apellido varchar(20),
+@sexo varchar(1),
+@contacto varchar(20),
+@dni int
 AS
 BEGIN
-	INSERT INTO CLIENTES(nombre,sexo) VALUES (@nombre, @sexo)
+	INSERT INTO CLIENTES(nombre, apellido, sexo, contacto, dni) VALUES (@nombre, @apellido, @sexo, @contacto, @dni)
 END
 
 GO
 
 CREATE PROCEDURE PA_CONSULTAR_CLIENTE
-@nombre varchar(20)
+@nombre varchar(20),
+@apellido varchar(20)
 AS
 BEGIN
 SELECT * FROM CLIENTES
-WHERE upper(nombre) LIKE upper('%'+@nombre+'%')
+WHERE ((upper(nombre) LIKE upper('%'+@nombre+'%')
+AND upper(apellido) LIKE upper('%'+@apellido+'%'))
+OR
+(upper(nombre) LIKE upper('%'+@apellido+'%')
+AND upper(apellido) LIKE upper('%'+@nombre+'%')))
 AND fecha_baja IS NULL
 END
 
@@ -216,12 +231,15 @@ GO
 
 CREATE PROCEDURE PA_ACTUALIZAR_CLIENTES
 @nombre varchar(20),
+@apellido varchar(20),
 @sexo varchar(1),
+@contacto varchar(20),
+@dni int,
 @id int
 AS
 BEGIN
 	UPDATE CLIENTES
-	SET nombre = @nombre, sexo = @sexo
+	SET nombre = @nombre, apellido = @apellido, sexo = @sexo, contacto = @contacto, dni = @dni 
 	where id_cliente = @id
 END
 
@@ -251,11 +269,12 @@ GO
 CREATE PROCEDURE PA_GUARDAR_MASCOTAS
 @id_cliente int,
 @nombre varchar(20),
+@sexo varchar(1),
 @edad int,
 @id_tipo_mascota int
 AS
 BEGIN
-	INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES (@nombre, @edad, @id_tipo_mascota, @id_cliente);
+	INSERT INTO MASCOTAS(nombre, sexo, edad, id_tipo_mascota, id_cliente) VALUES (@nombre, @sexo, @edad, @id_tipo_mascota, @id_cliente);
 END
 
 GO
@@ -263,12 +282,13 @@ GO
 CREATE PROCEDURE PA_ACTUALIZAR_MASCOTAS
 @id int,
 @nombre varchar(20),
+@sexo varchar(1),
 @edad int,
 @id_tipo_mascota int
 AS
 BEGIN
 	UPDATE MASCOTAS
-	SET nombre = @nombre, edad = @edad, id_tipo_mascota = @id_tipo_mascota
+	SET nombre = @nombre, sexo = @sexo, edad = @edad, id_tipo_mascota = @id_tipo_mascota
 	where id_mascota = @id
 END
 
@@ -462,18 +482,26 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
 INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
 
+/* MODIFICAR !!
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Juan', 'M')
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Ana', 'F')	
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Martina', 'F')
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Monica', 'F')
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Gabriel', 'M')
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Daniela', 'F')
+*/
+INSERT INTO CLIENTES(nombre, apellido, sexo, contacto, dni) VALUES ('Juan', 'Perez', 'M', '456782145', 40150784);
 
+/* MODIFICAR !!
 INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Ines', 'F')
 INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Ricardo', 'M')	
 INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Silvina', 'F')
 INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Fernando', 'M')
+*/
 
+INSERT INTO VETERINARIOS(nombre, apellido, sexo, contacto, dni) VALUES ('Ines', 'Gonzales', 'F', 'Calle Cordona 1522', 32745896);
+
+/* MODIFICAR !!
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Charlie', 5, 1,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Toby', 3, 1,2);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Nini', 2, 2,2);
@@ -490,7 +518,9 @@ INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Tofi', 
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Panda', 3, 4,1);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Linda', 3, 3,1);
 INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Rubia', 3, 1,1);
+*/
 
+/*
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(1, '2021-11-05 14:14:03.600')
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(2, '2021-10-22 14:28:13.837')
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(3, '2021-01-05 14:29:42.513')
@@ -608,4 +638,4 @@ VALUES( 1, 27, 9, 'Contra Rabia', 1250)
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
 VALUES( 1, 28, 12, 'Contra Rabia', 1250)
 
-
+*/

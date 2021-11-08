@@ -7,19 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VeterinariaBack.dominio;
 
 namespace VeterinariaSLN.presentacion
 {
     public partial class Frm_Menu : Form
     {
-        public Frm_Menu()
+        Usuario oUsuario;
+        public Frm_Menu(Usuario usr)
         {
             InitializeComponent();
+            oUsuario = usr;
         }
 
         private void Frm_Menu_Load(object sender, EventArgs e)
         {
             panelIzquiedo.BackColor = Color.FromArgb(100, 0, 0, 0);
+            lblUsuario.Text = "Usuario: " + oUsuario.User;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
