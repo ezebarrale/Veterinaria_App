@@ -460,11 +460,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
+      "projectUniqueName": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
       "projectName": "VeterinariaBack",
-      "projectPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
+      "projectPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
       "packagesPath": "C:\\Users\\EZE B\\.nuget\\packages\\",
-      "outputPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\obj\\",
+      "outputPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

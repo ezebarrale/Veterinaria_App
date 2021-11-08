@@ -109,3 +109,40 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\Vet
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\ref\VeterinariaWebAPI.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.pdb
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.genruntimeconfig.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\appsettings.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.exe
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.deps.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.runtimeconfig.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.runtimeconfig.dev.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\ref\VeterinariaWebAPI.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaWebAPI.pdb
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\System.Data.SqlClient.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaBack.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\bin\Debug\net5.0\VeterinariaBack.pdb
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.csprojAssemblyReference.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.AssemblyInfoInputs.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.AssemblyInfo.cs
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\staticwebassets\VeterinariaWebAPI.StaticWebAssets.Manifest.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\staticwebassets\VeterinariaWebAPI.StaticWebAssets.xml
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\scopedcss\bundle\VeterinariaWebAPI.styles.css
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.RazorTargetAssemblyInfo.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.csproj.CopyComplete
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\ref\VeterinariaWebAPI.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.pdb
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaWebAPI\obj\Debug\net5.0\VeterinariaWebAPI.genruntimeconfig.cache

@@ -34,3 +34,15 @@ D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\Veter
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\ref\VeterinariaBack.dll
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.pdb
 D:\Facu\Cuatrim_2\PII\TPI\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csprojAssemblyReference.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.deps.json
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\ref\VeterinariaBack.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\bin\Debug\net5.0\VeterinariaBack.pdb
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csprojAssemblyReference.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfoInputs.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.AssemblyInfo.cs
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.csproj.CoreCompileInputs.cache
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\ref\VeterinariaBack.dll
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaBack\obj\Debug\net5.0\VeterinariaBack.pdb

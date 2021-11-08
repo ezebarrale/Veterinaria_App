@@ -59,7 +59,7 @@ namespace VeterinariaSLN.presentacion
             frmSoporte.Name = "Gestion de Clientes PET HOUSE";
             frmSoporte.ShowDialog();
 
-            await CompletarClientesResultado();
+            await CompletarClientesResultado(false, true);
         }
 
         private async void btnGMascota_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace VeterinariaSLN.presentacion
             frmSoporte.Name = "Gestion de Mascotas PET HOUSE";
             frmSoporte.ShowDialog();
 
-            await CompletarClientesResultado();
+            await CompletarClientesResultado(false, false);
         }
 
         private async void btnRegistar_Click(object sender, EventArgs e)
@@ -76,17 +76,17 @@ namespace VeterinariaSLN.presentacion
             Frm_ABMC_Atenciones FrmAtenciones = new Frm_ABMC_Atenciones(oCliente, oMascota);
             FrmAtenciones.ShowDialog();
 
-            await CompletarClientesResultado();
+            await CompletarClientesResultado(false, true);
 
         }
 
         private async void btnBuscarCliente_Click(object sender, EventArgs e)
         {
 
-            await CompletarClientesResultado();
+            await CompletarClientesResultado(true, false);
         }
 
-        private async Task CompletarClientesResultado()
+        private async Task CompletarClientesResultado(bool buscar, bool nuevo)
         {
             lsbClientes.Enabled = false;
             //grpMascota.Enabled = false;
@@ -118,7 +118,7 @@ namespace VeterinariaSLN.presentacion
                     var bodyJSON = await result.Content.ReadAsStringAsync();
                     lstClientes = JsonConvert.DeserializeObject<List<Cliente>>(bodyJSON);
                     
-                    if (lstClientes.Count == 0)
+                    if (lstClientes.Count == 0 && buscar == true)
                     {
                         DialogResult resultado = MessageBox.Show("No existen clientes relacionados con ese nombre. Desea agregar uno nuevo?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -204,12 +204,14 @@ namespace VeterinariaSLN.presentacion
                 }
                 else
                 {
-                    
+                    oCliente.EliminarMascotas();
+
                     foreach (Mascota oMascota in lstMascotas)
                     {
                         oCliente.AgregarMascota(oMascota);
                     }
                     
+
                     lsbMascotas.DataSource = lstMascotas;
                     lsbMascotas.DisplayMember = "Nombre";
                     lsbMascotas.ValueMember = "IdMascota";
@@ -284,7 +286,7 @@ namespace VeterinariaSLN.presentacion
                         Frm_Consulta_Atenciones FrmCAtenciones = new Frm_Consulta_Atenciones(att, oMascota);
                         FrmCAtenciones.ShowDialog();
 
-                        await CompletarClientesResultado();
+                        await CompletarClientesResultado(false, false);
 
                         break;
                     }

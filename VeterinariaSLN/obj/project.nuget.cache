@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YiSg2VxZzzbfRJdOIft1xq4txkyQytlsniGIGjob4pvY+lG0AhsDpwNMXGM7Zvz6tdQUcciKK+SZ9KZozSkfQQ==",
+  "dgSpecHash": "RNWLMmXc7mJ2un2oDx8WjcCToWZZkkou8lbIuw/Mj5RgtZGTyKsJSw7qVa1b80uAw3FJOLTJHtYK4yj29ByZcg==",
   "success": true,
-  "projectFilePath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaSLN\\VeterinariaSLN.csproj",
+  "projectFilePath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaSLN\\VeterinariaSLN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EZE B\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\EZE B\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

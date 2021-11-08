@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj": {}
+    "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj": {
+    "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
+        "projectUniqueName": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
         "projectName": "VeterinariaBack",
-        "projectPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
+        "projectPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj",
         "packagesPath": "C:\\Users\\EZE B\\.nuget\\packages\\",
-        "outputPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\obj\\",
+        "outputPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -68,14 +68,14 @@
         }
       }
     },
-    "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj": {
+    "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj",
         "projectName": "VeterinariaWebAPI",
-        "projectPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj",
+        "projectPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaWebAPI\\VeterinariaWebAPI.csproj",
         "packagesPath": "C:\\Users\\EZE B\\.nuget\\packages\\",
-        "outputPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaWebAPI\\obj\\",
+        "outputPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -96,8 +96,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj": {
-                "projectPath": "D:\\Facu\\Cuatrim_2\\PII\\TPI\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj"
+              "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj": {
+                "projectPath": "C:\\Users\\EZE B\\Desktop\\Veterinaria_App\\VeterinariaBack\\VeterinariaBack.csproj"
               }
             }
           }

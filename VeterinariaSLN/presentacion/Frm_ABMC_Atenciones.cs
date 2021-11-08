@@ -182,6 +182,12 @@ namespace VeterinariaSLN.presentacion
                         cantDigitos = 9;
                     }
 
+                    if (txtImporte.Text[i].ToString() == ".")
+                    {
+                        MessageBox.Show("El campo importe no debe contener el caracter \" . \" (punto)", "Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
                 }
 
                 if (txtImporte.Text.Length > cantDigitos)
