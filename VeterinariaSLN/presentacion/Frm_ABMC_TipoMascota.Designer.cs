@@ -85,7 +85,7 @@ namespace VeterinariaSLN.presentacion
             this.btnGuardarTM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGuardarTM.Name = "btnGuardarTM";
             this.btnGuardarTM.Size = new System.Drawing.Size(75, 38);
-            this.btnGuardarTM.TabIndex = 2;
+            this.btnGuardarTM.TabIndex = 3;
             this.btnGuardarTM.Text = "Guardar";
             this.btnGuardarTM.UseVisualStyleBackColor = true;
             this.btnGuardarTM.Click += new System.EventHandler(this.btnGuardarTM_Click);
@@ -99,7 +99,7 @@ namespace VeterinariaSLN.presentacion
             this.lstTM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lstTM.Name = "lstTM";
             this.lstTM.Size = new System.Drawing.Size(239, 166);
-            this.lstTM.TabIndex = 3;
+            this.lstTM.TabIndex = 6;
             this.lstTM.Click += new System.EventHandler(this.lstTM_Click);
             // 
             // btnEditarTM
@@ -112,7 +112,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEditarTM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditarTM.Name = "btnEditarTM";
             this.btnEditarTM.Size = new System.Drawing.Size(75, 38);
-            this.btnEditarTM.TabIndex = 5;
+            this.btnEditarTM.TabIndex = 4;
             this.btnEditarTM.Text = "Editar";
             this.btnEditarTM.UseVisualStyleBackColor = true;
             this.btnEditarTM.Click += new System.EventHandler(this.btnEditarTM_Click);
@@ -127,7 +127,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEliminarTM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEliminarTM.Name = "btnEliminarTM";
             this.btnEliminarTM.Size = new System.Drawing.Size(75, 38);
-            this.btnEliminarTM.TabIndex = 6;
+            this.btnEliminarTM.TabIndex = 5;
             this.btnEliminarTM.Text = "Eliminar";
             this.btnEliminarTM.UseVisualStyleBackColor = true;
             this.btnEliminarTM.Click += new System.EventHandler(this.btnEliminarTM_Click);
@@ -165,7 +165,7 @@ namespace VeterinariaSLN.presentacion
             this.btnNuevoTM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNuevoTM.Name = "btnNuevoTM";
             this.btnNuevoTM.Size = new System.Drawing.Size(75, 38);
-            this.btnNuevoTM.TabIndex = 9;
+            this.btnNuevoTM.TabIndex = 2;
             this.btnNuevoTM.Text = "Nuevo";
             this.btnNuevoTM.UseVisualStyleBackColor = true;
             this.btnNuevoTM.Click += new System.EventHandler(this.btnNuevo_Click);

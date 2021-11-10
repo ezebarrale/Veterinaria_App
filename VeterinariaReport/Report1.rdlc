@@ -607,7 +607,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Cantidad por tipo de mascotas en mes seleccionado </Caption>
+                <Caption>Cantidad de atenciones por tipo de mascotas en mes seleccionado </Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>12pt</FontSize>

@@ -38,6 +38,7 @@ namespace VeterinariaReport
             this.nudMes = new System.Windows.Forms.NumericUpDown();
             this.btnEnviarR = new System.Windows.Forms.Button();
             this.lblInstruccion = new System.Windows.Forms.Label();
+            this.lblMesSelec = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PA_REPORTE_MESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VETDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMes)).BeginInit();
@@ -73,7 +74,8 @@ namespace VeterinariaReport
             // 
             // nudMes
             // 
-            this.nudMes.Location = new System.Drawing.Point(138, 248);
+            this.nudMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMes.Location = new System.Drawing.Point(138, 236);
             this.nudMes.Maximum = new decimal(new int[] {
             12,
             0,
@@ -85,7 +87,7 @@ namespace VeterinariaReport
             0,
             0});
             this.nudMes.Name = "nudMes";
-            this.nudMes.Size = new System.Drawing.Size(120, 20);
+            this.nudMes.Size = new System.Drawing.Size(120, 22);
             this.nudMes.TabIndex = 1;
             this.nudMes.Value = new decimal(new int[] {
             1,
@@ -95,7 +97,7 @@ namespace VeterinariaReport
             // 
             // btnEnviarR
             // 
-            this.btnEnviarR.Location = new System.Drawing.Point(264, 245);
+            this.btnEnviarR.Location = new System.Drawing.Point(275, 235);
             this.btnEnviarR.Name = "btnEnviarR";
             this.btnEnviarR.Size = new System.Drawing.Size(75, 23);
             this.btnEnviarR.TabIndex = 2;
@@ -107,17 +109,30 @@ namespace VeterinariaReport
             // 
             this.lblInstruccion.AutoSize = true;
             this.lblInstruccion.BackColor = System.Drawing.Color.White;
-            this.lblInstruccion.Location = new System.Drawing.Point(138, 209);
+            this.lblInstruccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInstruccion.Location = new System.Drawing.Point(135, 207);
             this.lblInstruccion.Name = "lblInstruccion";
-            this.lblInstruccion.Size = new System.Drawing.Size(170, 13);
+            this.lblInstruccion.Size = new System.Drawing.Size(215, 16);
             this.lblInstruccion.TabIndex = 3;
             this.lblInstruccion.Text = "Seleccione un mes para visualizar:";
+            // 
+            // lblMesSelec
+            // 
+            this.lblMesSelec.AutoSize = true;
+            this.lblMesSelec.BackColor = System.Drawing.Color.White;
+            this.lblMesSelec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMesSelec.Location = new System.Drawing.Point(138, 273);
+            this.lblMesSelec.Name = "lblMesSelec";
+            this.lblMesSelec.Size = new System.Drawing.Size(125, 16);
+            this.lblMesSelec.TabIndex = 4;
+            this.lblMesSelec.Text = "Mes seleccionado: ";
             // 
             // Frm_Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 605);
+            this.Controls.Add(this.lblMesSelec);
             this.Controls.Add(this.lblInstruccion);
             this.Controls.Add(this.btnEnviarR);
             this.Controls.Add(this.nudMes);
@@ -142,5 +157,6 @@ namespace VeterinariaReport
         private System.Windows.Forms.NumericUpDown nudMes;
         private System.Windows.Forms.Button btnEnviarR;
         private System.Windows.Forms.Label lblInstruccion;
+        private System.Windows.Forms.Label lblMesSelec;
     }
 }

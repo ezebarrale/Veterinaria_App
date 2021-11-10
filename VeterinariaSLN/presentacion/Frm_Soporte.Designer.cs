@@ -103,7 +103,7 @@ namespace VeterinariaSLN.presentacion
             0});
             this.nudEdad.Name = "nudEdad";
             this.nudEdad.Size = new System.Drawing.Size(182, 23);
-            this.nudEdad.TabIndex = 17;
+            this.nudEdad.TabIndex = 3;
             this.nudEdad.Value = new decimal(new int[] {
             1,
             0,
@@ -117,7 +117,7 @@ namespace VeterinariaSLN.presentacion
             this.txtDuenio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDuenio.Name = "txtDuenio";
             this.txtDuenio.Size = new System.Drawing.Size(182, 23);
-            this.txtDuenio.TabIndex = 16;
+            this.txtDuenio.TabIndex = 5;
             // 
             // lblDuenio
             // 
@@ -188,7 +188,7 @@ namespace VeterinariaSLN.presentacion
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(182, 23);
-            this.txtCodigo.TabIndex = 5;
+            this.txtCodigo.TabIndex = 2;
             // 
             // lblCodigo
             // 
@@ -206,7 +206,7 @@ namespace VeterinariaSLN.presentacion
             this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(182, 23);
-            this.txtNombre.TabIndex = 3;
+            this.txtNombre.TabIndex = 4;
             // 
             // lblNombre
             // 
@@ -235,7 +235,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 36);
-            this.btnEditar.TabIndex = 18;
+            this.btnEditar.TabIndex = 12;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
@@ -249,7 +249,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 36);
-            this.btnEliminar.TabIndex = 19;
+            this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
@@ -263,7 +263,7 @@ namespace VeterinariaSLN.presentacion
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 36);
-            this.btnCancelar.TabIndex = 20;
+            this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
@@ -278,7 +278,7 @@ namespace VeterinariaSLN.presentacion
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 36);
-            this.btnNuevo.TabIndex = 21;
+            this.btnNuevo.TabIndex = 10;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
             this.btnNuevo.Visible = false;

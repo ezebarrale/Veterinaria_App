@@ -103,7 +103,7 @@ namespace VeterinariaSLN.presentacion
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.ShowCellToolTips = false;
             this.dgvUsuarios.Size = new System.Drawing.Size(574, 159);
-            this.dgvUsuarios.TabIndex = 0;
+            this.dgvUsuarios.TabIndex = 17;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
             // colCodigo
@@ -156,7 +156,7 @@ namespace VeterinariaSLN.presentacion
             this.btnConsultar.Location = new System.Drawing.Point(211, 28);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 32);
-            this.btnConsultar.TabIndex = 1;
+            this.btnConsultar.TabIndex = 15;
             this.btnConsultar.Text = "Consultar";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -166,7 +166,7 @@ namespace VeterinariaSLN.presentacion
             this.txtConsultar.Location = new System.Drawing.Point(25, 32);
             this.txtConsultar.Name = "txtConsultar";
             this.txtConsultar.Size = new System.Drawing.Size(167, 23);
-            this.txtConsultar.TabIndex = 2;
+            this.txtConsultar.TabIndex = 14;
             // 
             // label1
             // 
@@ -236,7 +236,7 @@ namespace VeterinariaSLN.presentacion
             this.btnGuardar.Location = new System.Drawing.Point(524, 118);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 28);
-            this.btnGuardar.TabIndex = 9;
+            this.btnGuardar.TabIndex = 13;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -339,7 +339,7 @@ namespace VeterinariaSLN.presentacion
             this.ckbTodos.Location = new System.Drawing.Point(511, 34);
             this.ckbTodos.Name = "ckbTodos";
             this.ckbTodos.Size = new System.Drawing.Size(60, 22);
-            this.ckbTodos.TabIndex = 3;
+            this.ckbTodos.TabIndex = 16;
             this.ckbTodos.Text = "Todos";
             this.ckbTodos.UseVisualStyleBackColor = true;
             // 
@@ -351,7 +351,7 @@ namespace VeterinariaSLN.presentacion
             this.btnSalir.Location = new System.Drawing.Point(641, 588);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 9;
+            this.btnSalir.TabIndex = 18;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);

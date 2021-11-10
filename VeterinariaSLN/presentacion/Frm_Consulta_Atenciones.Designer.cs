@@ -138,7 +138,7 @@ namespace VeterinariaSLN.presentacion
             this.txtMascota.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMascota.Name = "txtMascota";
             this.txtMascota.Size = new System.Drawing.Size(170, 23);
-            this.txtMascota.TabIndex = 7;
+            this.txtMascota.TabIndex = 2;
             // 
             // lblMascota
             // 
@@ -246,7 +246,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 28);
-            this.btnEditar.TabIndex = 10;
+            this.btnEditar.TabIndex = 14;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
@@ -260,7 +260,7 @@ namespace VeterinariaSLN.presentacion
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 28);
-            this.btnEliminar.TabIndex = 11;
+            this.btnEliminar.TabIndex = 15;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -274,7 +274,7 @@ namespace VeterinariaSLN.presentacion
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 28);
-            this.btnSalir.TabIndex = 12;
+            this.btnSalir.TabIndex = 16;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);

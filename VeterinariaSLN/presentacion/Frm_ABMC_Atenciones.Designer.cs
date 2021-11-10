@@ -112,7 +112,7 @@ namespace VeterinariaSLN.presentacion
             this.dgvHistorial.RowTemplate.Height = 25;
             this.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistorial.Size = new System.Drawing.Size(645, 183);
-            this.dgvHistorial.TabIndex = 2;
+            this.dgvHistorial.TabIndex = 12;
             this.dgvHistorial.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorial_CellContentClick);
             // 
             // colCodigo
@@ -276,7 +276,7 @@ namespace VeterinariaSLN.presentacion
             this.btnRegistrarA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegistrarA.Name = "btnRegistrarA";
             this.btnRegistrarA.Size = new System.Drawing.Size(138, 35);
-            this.btnRegistrarA.TabIndex = 9;
+            this.btnRegistrarA.TabIndex = 14;
             this.btnRegistrarA.Text = "Registrar Atencion";
             this.btnRegistrarA.UseVisualStyleBackColor = true;
             this.btnRegistrarA.Click += new System.EventHandler(this.btnRegistrarA_Click);
@@ -290,7 +290,7 @@ namespace VeterinariaSLN.presentacion
             this.btnSalirA.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalirA.Name = "btnSalirA";
             this.btnSalirA.Size = new System.Drawing.Size(75, 34);
-            this.btnSalirA.TabIndex = 10;
+            this.btnSalirA.TabIndex = 15;
             this.btnSalirA.Text = "Salir";
             this.btnSalirA.UseVisualStyleBackColor = true;
             this.btnSalirA.Click += new System.EventHandler(this.btnSalirA_Click);
