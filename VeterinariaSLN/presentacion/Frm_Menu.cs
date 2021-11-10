@@ -13,7 +13,7 @@ namespace VeterinariaSLN.presentacion
 {
     public partial class Frm_Menu : Form
     {
-        Usuario oUsuario;
+        private Usuario oUsuario;
         public Frm_Menu(Usuario usr)
         {
             InitializeComponent();
@@ -67,6 +67,14 @@ namespace VeterinariaSLN.presentacion
         private void btnInicio_Click(object sender, EventArgs e)
         {
             this.panelContenedor.Controls.Clear();
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            if (oUsuario.Level == 1)
+                AbrirFormEnPanel(new Frm_Main_Usuarios());
+            else
+                MessageBox.Show("Usted no posee los permisos para ingresar a esta seccion","Atencion!!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace VeterinariaBack.services
         {
             dao = new VeterinariaDao();
         }
-        public bool ConsultarUsuario(Usuario oUsuario)
+        public Usuario ConsultarUsuario(Usuario oUsuario)
         {
             return dao.Login(oUsuario);
         }
@@ -103,6 +103,31 @@ namespace VeterinariaBack.services
         public List<DetalleAtencion> ConsultarDetallesAtencion(Atencion oAtencion)
         {
             return dao.GetDetallesAtencion(oAtencion);
+        }
+
+        public Cliente ConsultarClientesXDni(Cliente oCliente)
+        {
+            return dao.GetClienteByDni(oCliente);
+        }
+
+        public bool GuardarUsuario(Usuario oUsuario)
+        {
+            return dao.InsertUsuario(oUsuario);
+        }
+
+        public List<Usuario> ConsultarUsuarios(Usuario oUsuario)
+        {
+            return dao.GetUsuarios(oUsuario);
+        }
+
+        public bool EliminarUsuario(Usuario oUsuario)
+        {
+            return dao.DeleteUsuario(oUsuario);
+        }
+
+        public bool EditarUsuario(Usuario oUsuario)
+        {
+            return dao.UpdateUsuario(oUsuario);
         }
     }
 }

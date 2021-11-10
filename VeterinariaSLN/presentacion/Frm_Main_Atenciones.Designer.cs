@@ -29,8 +29,8 @@ namespace VeterinariaSLN.presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbl_Select = new System.Windows.Forms.Label();
             this.grpCliente = new System.Windows.Forms.GroupBox();
             this.lblSelectCliente = new System.Windows.Forms.Label();
@@ -60,13 +60,13 @@ namespace VeterinariaSLN.presentacion
             // lbl_Select
             // 
             this.lbl_Select.AutoSize = true;
-            this.lbl_Select.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_Select.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbl_Select.ForeColor = System.Drawing.Color.White;
             this.lbl_Select.Location = new System.Drawing.Point(72, -2);
             this.lbl_Select.Name = "lbl_Select";
-            this.lbl_Select.Size = new System.Drawing.Size(686, 25);
+            this.lbl_Select.Size = new System.Drawing.Size(676, 30);
             this.lbl_Select.TabIndex = 0;
-            this.lbl_Select.Text = "Para registrar una atencion primero debe seleccionar un cliente con su mascota:";
+            this.lbl_Select.Text = "Para registrar una atencion debe seleccionar un cliente con su mascota:";
             // 
             // grpCliente
             // 
@@ -163,7 +163,7 @@ namespace VeterinariaSLN.presentacion
             this.btnGMascota.Location = new System.Drawing.Point(113, 254);
             this.btnGMascota.Name = "btnGMascota";
             this.btnGMascota.Size = new System.Drawing.Size(146, 32);
-            this.btnGMascota.TabIndex = 10;
+            this.btnGMascota.TabIndex = 11;
             this.btnGMascota.Text = "Gestionar Mascotas";
             this.btnGMascota.UseVisualStyleBackColor = true;
             this.btnGMascota.Click += new System.EventHandler(this.btnGMascota_Click);
@@ -196,7 +196,7 @@ namespace VeterinariaSLN.presentacion
             this.btnRegistar.Location = new System.Drawing.Point(545, 575);
             this.btnRegistar.Name = "btnRegistar";
             this.btnRegistar.Size = new System.Drawing.Size(161, 23);
-            this.btnRegistar.TabIndex = 3;
+            this.btnRegistar.TabIndex = 13;
             this.btnRegistar.Text = "Registrar nueva atencion";
             this.btnRegistar.UseVisualStyleBackColor = true;
             this.btnRegistar.Click += new System.EventHandler(this.btnRegistar_Click);
@@ -209,7 +209,7 @@ namespace VeterinariaSLN.presentacion
             this.btnSalirMain.Location = new System.Drawing.Point(726, 575);
             this.btnSalirMain.Name = "btnSalirMain";
             this.btnSalirMain.Size = new System.Drawing.Size(75, 23);
-            this.btnSalirMain.TabIndex = 4;
+            this.btnSalirMain.TabIndex = 14;
             this.btnSalirMain.Text = "Salir";
             this.btnSalirMain.UseVisualStyleBackColor = true;
             this.btnSalirMain.Click += new System.EventHandler(this.btnSalirMain_Click);
@@ -237,32 +237,32 @@ namespace VeterinariaSLN.presentacion
             this.cVeterinario,
             this.cFecha,
             this.cAccion});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAtenciones.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAtenciones.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAtenciones.Location = new System.Drawing.Point(52, 31);
             this.dgvAtenciones.MultiSelect = false;
             this.dgvAtenciones.Name = "dgvAtenciones";
             this.dgvAtenciones.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAtenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAtenciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAtenciones.RowHeadersVisible = false;
             this.dgvAtenciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvAtenciones.RowTemplate.Height = 25;
             this.dgvAtenciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAtenciones.Size = new System.Drawing.Size(665, 150);
-            this.dgvAtenciones.TabIndex = 0;
+            this.dgvAtenciones.TabIndex = 12;
             this.dgvAtenciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAtenciones_CellContentClick);
             // 
             // cCodigo

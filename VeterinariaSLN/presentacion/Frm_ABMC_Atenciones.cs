@@ -15,12 +15,12 @@ namespace VeterinariaSLN.presentacion
 {
     public partial class Frm_ABMC_Atenciones : Form
     {
-        Cliente oCliente = new Cliente();
-        Mascota oMascota = new Mascota();
-        Atencion oAtencion = new Atencion();
-        
-        List<Veterinario> lstVeterinarios = new List<Veterinario>();
-        int idDetalle = 1;
+        private Cliente oCliente = new Cliente();
+        private Mascota oMascota = new Mascota();
+        private Atencion oAtencion = new Atencion();
+
+        private List<Veterinario> lstVeterinarios = new List<Veterinario>();
+        private int idDetalle = 1;
         public Frm_ABMC_Atenciones(Cliente clt, Mascota msct)
         {
             InitializeComponent();

@@ -137,3 +137,4 @@ C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\r
 C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.pdb
 C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.genruntimeconfig.cache
 C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Clientes.resources
+C:\Users\EZE B\Desktop\Veterinaria_App\VeterinariaSLN\obj\Debug\net5.0-windows\VeterinariaSLN.presentacion.Frm_Main_Usuarios.resources

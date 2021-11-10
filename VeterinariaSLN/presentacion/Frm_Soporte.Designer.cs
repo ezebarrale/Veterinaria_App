@@ -287,9 +287,10 @@ namespace VeterinariaSLN.presentacion
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTitulo.Location = new System.Drawing.Point(59, 31);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(53, 18);
+            this.lblTitulo.Size = new System.Drawing.Size(76, 24);
             this.lblTitulo.TabIndex = 22;
             this.lblTitulo.Text = "Soporte";
             // 

@@ -22,6 +22,9 @@
     <Compile Update="presentacion\Frm_Login.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="presentacion\Frm_Main_Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="presentacion\Frm_Menu.cs">
       <SubType>Form</SubType>
     </Compile>

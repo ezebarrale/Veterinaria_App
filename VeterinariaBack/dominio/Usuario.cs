@@ -8,8 +8,11 @@ namespace VeterinariaBack.dominio
 {
     public class Usuario
     {
+        public int Codigo { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
+        public int Level { get; set; }
+        public int Todos { get; set; }
 
         public Usuario(string user, string password)
         {

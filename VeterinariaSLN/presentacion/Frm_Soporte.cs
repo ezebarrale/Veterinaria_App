@@ -20,11 +20,11 @@ namespace VeterinariaSLN.presentacion
     }
     public partial class Frm_Soporte : Form
     {
-        Cliente oCliente = new Cliente();
-        Mascota oMascota = new Mascota();
-        List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
-        TipoObj tipo = new TipoObj();
-        Accion modo = new Accion();
+        private Cliente oCliente = new Cliente();
+        private Mascota oMascota = new Mascota();
+        private List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
+        private TipoObj tipo = new TipoObj();
+        private Accion modo = new Accion();
         public Frm_Soporte(Object obj, Object obj2, Accion mdo)
         {
             InitializeComponent();

@@ -10,9 +10,21 @@ namespace VeterinariaBack.datos
 {
     class VeterinariaDao : IVeterinariaDao
     {
-        public bool Login(Usuario oUsuario)
+        public Usuario Login(Usuario oUsuario)
         {
-            return HelperDao.GetInstance().Consulta_Login_Sql("PA_EXISTE_USUARIO", oUsuario);
+            Usuario usr = new Usuario();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Login_Sql("PA_EXISTE_USUARIO", oUsuario);
+
+            foreach (DataRow row in table.Rows)
+            {
+                usr.User = row["usuario"].ToString();
+                usr.Password = row["passwrd"].ToString();
+                usr.Level = Convert.ToInt32(row["nivel"].ToString());
+                break;
+            }
+
+            return usr;
         }
         public List<TipoMascota> GetTipoMascota()
         {
@@ -199,6 +211,43 @@ namespace VeterinariaBack.datos
             }
 
             return lstDetalles;
+        }
+
+        public Cliente GetClienteByDni(Cliente oCliente) => HelperDao.GetInstance().Consulta_Clientes_X_DNI_Sql("PA_CONSULTAR_CLIENTE_X_DNI", oCliente);
+
+        public bool InsertUsuario(Usuario oUsuario)
+        {
+            return HelperDao.GetInstance().Guardar_Usuario_Sql("PA_GUARDAR_USUARIO", oUsuario);
+        }
+
+        public List<Usuario> GetUsuarios(Usuario oUsuario)
+        {
+            List<Usuario> lstUsuarios = new List<Usuario>();
+
+            DataTable table = HelperDao.GetInstance().Consulta_Usuarios_Sql("PA_CONSULTAR_USUARIO", oUsuario);
+
+            foreach (DataRow row in table.Rows)
+            {
+                Usuario usr = new Usuario();
+                usr.Codigo = Convert.ToInt32(row["id_usuario"].ToString());
+                usr.User = row["usuario"].ToString();
+                usr.Password = row["passwrd"].ToString();
+                usr.Level = Convert.ToInt32(row["nivel"].ToString());
+
+                lstUsuarios.Add(usr);
+            }
+
+            return lstUsuarios;
+        }
+
+        public bool DeleteUsuario(Usuario oUsuario)
+        {
+            return HelperDao.GetInstance().Eliminar_Usuario_Sql("PA_ELIMINAR_USUARIO", oUsuario);
+        }
+
+        public bool UpdateUsuario(Usuario oUsuario)
+        {
+            return HelperDao.GetInstance().Editar_Usuario_Sql("PA_EDITAR_USUARIO", oUsuario);
         }
     }
 }

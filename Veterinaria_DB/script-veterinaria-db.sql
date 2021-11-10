@@ -74,7 +74,10 @@ CREATE TABLE USUARIOS(
 id_usuario int IDENTITY(1,1) NOT NULL,
 usuario varchar(10) NOT NULL,
 passwrd varchar(10) NOT NULL,
+nivel int,
+fecha_baja DATETIME
 CONSTRAINT pk_id_usuario PRIMARY KEY (id_usuario))
+
 
 /******************************************/
 --PROCEDIMIENTOS
@@ -85,16 +88,13 @@ GO
 
 CREATE PROCEDURE PA_EXISTE_USUARIO
 @user varchar(8),
-@pass varchar(8),
-@existe int OUT
+@pass varchar(8)
 AS
 BEGIN
-SET @existe = (SELECT 1 FROM USUARIOS
-				WHERE usuario = @user
-				and passwrd = @pass)
 
-IF(@existe IS NULL)
-	SET @existe = ISNULL(@existe, 0)
+	SELECT * FROM USUARIOS u
+	WHERE u.usuario = @user
+	and u.passwrd = @pass
 END
 
 GO
@@ -262,6 +262,16 @@ AS
 BEGIN
 SELECT * FROM CLIENTES
 WHERE id_cliente = @id
+END
+
+GO
+
+CREATE PROCEDURE PA_CONSULTAR_CLIENTE_X_DNI
+@dni int
+AS
+BEGIN
+SELECT * FROM CLIENTES
+WHERE dni = @dni
 END
 
 GO
@@ -470,17 +480,95 @@ BEGIN
 
 END
 
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_GUARDAR_USUARIO --OK
+@usuario varchar(10),
+@password varchar(10),
+@level int
+AS
+BEGIN
+		
+	INSERT INTO USUARIOS(usuario, passwrd, nivel) VALUES (@usuario, @password, @level)
+
+END
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_ELIMINAR_USUARIO --OK
+@id_usuario int
+AS
+BEGIN
+		
+	UPDATE USUARIOS
+	SET fecha_baja = getdate()
+	WHERE id_usuario = @id_usuario
+
+END
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_CONSULTAR_USUARIO --OK
+@usuario varchar(10),
+@todos int --1 es todos, 0 es ninguno
+AS
+BEGIN
+
+	if(@todos = 1)
+	begin
+		SELECT * FROM USUARIOS
+		WHERE fecha_baja IS NULL
+
+		RETURN
+	end
+
+	SELECT *
+	FROM USUARIOS
+	WHERE upper(usuario) LIKE upper('%'+@usuario+'%')
+	AND fecha_baja IS NULL
+
+END
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_EDITAR_USUARIO --OK
+@id_usuario int,
+@usuario varchar(10),
+@password varchar(10),
+@level int
+AS
+BEGIN
+		
+	UPDATE USUARIOS
+	SET usuario = @usuario, passwrd = @password, nivel = @level
+	WHERE id_usuario = @id_usuario
+
+END
+
 /******************************************/
 --INSERCIONES
 /******************************************/
 GO
+
 
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('perro')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('gato')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('araña')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
-INSERT INTO USUARIOS (usuario, passwrd) VALUES ('Admin', 'admin')
+INSERT INTO USUARIOS (usuario, passwrd, nivel) VALUES ('Admin', 'admin', 1)
 
 /* MODIFICAR !!
 INSERT INTO CLIENTES(nombre,sexo) VALUES ('Juan', 'M')

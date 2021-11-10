@@ -17,7 +17,9 @@ namespace VeterinariaSLN
 {
     public partial class Frm_Login : Form
     {
-        Frm_Menu frmMenu;
+        private Frm_Menu frmMenu;
+        private Usuario usr = new Usuario();
+
         public Frm_Login()
         {
             InitializeComponent();
@@ -36,7 +38,6 @@ namespace VeterinariaSLN
 
         private async Task ValidarUsuario()
         {
-            Usuario usr = new Usuario();
             usr.User = txtUsuario.Text;
             usr.Password = txtPass.Text;
 
@@ -51,13 +52,25 @@ namespace VeterinariaSLN
                 MessageBox.Show("EL usuario o contraseña ingresado no es correcto", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private async Task<bool> ConsultarUsuarioAsync(Usuario usr)
+        private async Task<bool> ConsultarUsuarioAsync(Usuario oUsuario)
         {
-            string url = "https://localhost:44350/api/Access";
-            var data = JsonConvert.SerializeObject(usr);
-            bool result = await ClienteSingleton.GetInstance().PostAsync(url, data);
+            bool resultado = false;
 
-            return result;
+            string url = "https://localhost:44350/api/Access";
+            HttpClient cliente = new HttpClient();
+            var data = JsonConvert.SerializeObject(oUsuario);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            var result = await cliente.PostAsync(url, content);
+
+            if (result.IsSuccessStatusCode)
+            {
+                var bodyJSON = await result.Content.ReadAsStringAsync();
+                usr = JsonConvert.DeserializeObject<Usuario>(bodyJSON);
+
+                resultado = true;
+            }
+
+            return resultado;
         }
 
         private void llblSalir_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

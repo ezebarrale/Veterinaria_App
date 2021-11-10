@@ -15,11 +15,11 @@ namespace VeterinariaSLN.presentacion
 {
     public partial class Frm_Clientes : Form
     {
-        Cliente oCliente = new Cliente();
-        Mascota oMascota = new Mascota();
-        List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
-        TipoObj tipo = new TipoObj();
-        Accion modo = new Accion();
+        private Cliente oCliente = new Cliente();
+        private Mascota oMascota = new Mascota();
+        private List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
+        private TipoObj tipo = new TipoObj();
+        private Accion modo = new Accion();
         public Frm_Clientes(Object obj, Object obj2, Accion mdo)
         {
             InitializeComponent();
@@ -142,8 +142,11 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnGuardar_Click_1(object sender, EventArgs e)
         {
+
             if (tipo == TipoObj.CLIENTE)
             {
+                Cliente oClienteN = new Cliente();
+
                 if (String.IsNullOrEmpty(txtNombre.Text))
                 {
                     MessageBox.Show("El campo nombre esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -188,7 +191,29 @@ namespace VeterinariaSLN.presentacion
 
                 try
                 {
-                    oCliente.Dni = Convert.ToInt32(txtDni.Text);
+                    oClienteN.Dni = Convert.ToInt32(txtDni.Text);
+
+                    if (oCliente.Dni != oClienteN.Dni) {
+                        //Se valida que el cliente ya exista pero contro nombre --devolver ese nombre y mostrarlo
+                        string url1 = "https://localhost:44350/api/Clientes/getByDni";
+                        HttpClient cliente1 = new HttpClient();
+                        var data1 = JsonConvert.SerializeObject(oClienteN);
+                        HttpContent content1 = new StringContent(data1, System.Text.Encoding.UTF8, "application/json");
+                        var result1 = await cliente1.PostAsync(url1, content1);
+
+                        if (result1.IsSuccessStatusCode)
+                        {
+                            var bodyJSON = await result1.Content.ReadAsStringAsync();
+                            Cliente clt1 = JsonConvert.DeserializeObject<Cliente>(bodyJSON);
+
+                            if (clt1.Dni == oClienteN.Dni)
+                            {
+                                MessageBox.Show("El Dni que ingresó ya pertenece a otro cliente: " + clt1.FakeNombre, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
+                    }
+                    
                 }
                 catch (Exception ex) {
 
@@ -200,14 +225,17 @@ namespace VeterinariaSLN.presentacion
                 DialogResult msg = MessageBox.Show("Seguro desea guardar los datos ingresados?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (msg.Equals(DialogResult.OK))
                 {
-                    oCliente.Nombre = txtNombre.Text;
-                    oCliente.Apellido = txtApellido.Text;
-                    oCliente.Contacto = txtContacto.Text;
+                    oClienteN.Nombre = txtNombre.Text;
+                    oClienteN.Apellido = txtApellido.Text;
+                    oClienteN.Contacto = txtContacto.Text;
+                    oClienteN.Codigo = oCliente.Codigo;
+                    oClienteN.Mascotas = oCliente.Mascotas;
+                    oClienteN.FakeNombre = oClienteN.FakeNombre;
 
                     if (rdbM.Checked)
-                        oCliente.Sexo = "M";
+                        oClienteN.Sexo = "M";
                     else
-                        oCliente.Sexo = "F";
+                        oClienteN.Sexo = "F";
 
                     string operacion = "update";
                     string msjExito = "Se guardó el cliente con exito";
@@ -225,7 +253,7 @@ namespace VeterinariaSLN.presentacion
 
                     string url = "https://localhost:44350/api/Clientes/" + operacion;
                     HttpClient cliente = new HttpClient();
-                    var data = JsonConvert.SerializeObject(oCliente);
+                    var data = JsonConvert.SerializeObject(oClienteN);
                     HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
                     var result = await cliente.PostAsync(url, content);
 
@@ -251,9 +279,6 @@ namespace VeterinariaSLN.presentacion
                         MessageBox.Show(msjNoExito, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
-
-
-
 
                 }
 

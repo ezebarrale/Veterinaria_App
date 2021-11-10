@@ -18,7 +18,7 @@ namespace VeterinariaSLN.presentacion
 
     public partial class Frm_ABMC_TipoMascota : Form
     {
-        List<TipoMascota> lstTipoMascotas;
+        private List<TipoMascota> lstTipoMascotas;
         private Accion modo;
         public Frm_ABMC_TipoMascota()
         {

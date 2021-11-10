@@ -9,12 +9,13 @@ namespace VeterinariaBack.services
 {
     public interface IVeterinariaApp
     {
-        public bool ConsultarUsuario(Usuario oUsuario);
+        public Usuario ConsultarUsuario(Usuario oUsuario);
         public List<TipoMascota> ConsultarTipoMascotas();
         public TipoMascota GuardarTipoMascota(string description);
         public bool EliminarTipoMascota(TipoMascota oTm);
         public bool EditarTipoMascota(TipoMascota oTm);
         public List<Cliente> ConsultarClientes(Cliente oCliente);
+        public Cliente ConsultarClientesXDni(Cliente oCliente);
         public int ConsultarSiguienteIdCliente();
         public int ConsultarSiguienteIdMascota();
         public List<Mascota> ConsultarMascotas(int id_cliente);
@@ -31,5 +32,9 @@ namespace VeterinariaBack.services
         public bool EliminarMascota(Mascota oMascota);
         public List<Veterinario> ConsultarVeterinarios();
         public List<DetalleAtencion> ConsultarDetallesAtencion(Atencion oAtencion);
+        public bool GuardarUsuario(Usuario oUsuario);
+        public List<Usuario> ConsultarUsuarios(Usuario oUsuario);
+        public bool EliminarUsuario(Usuario oUsuario);
+        public bool EditarUsuario(Usuario oUsuario);
     }
 }

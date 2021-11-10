@@ -123,7 +123,7 @@ namespace VeterinariaSLN.presentacion
             this.grpAtencion.Controls.Add(this.lblFecha);
             this.grpAtencion.Controls.Add(this.lblVet);
             this.grpAtencion.Controls.Add(this.cmbVet);
-            this.grpAtencion.Location = new System.Drawing.Point(32, 37);
+            this.grpAtencion.Location = new System.Drawing.Point(32, 40);
             this.grpAtencion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpAtencion.Name = "grpAtencion";
             this.grpAtencion.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -297,10 +297,11 @@ namespace VeterinariaSLN.presentacion
             // lblAtencion
             // 
             this.lblAtencion.AutoSize = true;
+            this.lblAtencion.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblAtencion.ForeColor = System.Drawing.Color.White;
             this.lblAtencion.Location = new System.Drawing.Point(32, 15);
             this.lblAtencion.Name = "lblAtencion";
-            this.lblAtencion.Size = new System.Drawing.Size(59, 18);
+            this.lblAtencion.Size = new System.Drawing.Size(83, 24);
             this.lblAtencion.TabIndex = 14;
             this.lblAtencion.Text = "Atencion";
             // 

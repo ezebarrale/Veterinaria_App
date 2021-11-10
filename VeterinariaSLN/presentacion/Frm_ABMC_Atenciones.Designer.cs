@@ -29,8 +29,8 @@ namespace VeterinariaSLN.presentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpConsulta = new System.Windows.Forms.GroupBox();
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +63,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.grpConsulta.Controls.Add(this.dgvHistorial);
             this.grpConsulta.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.grpConsulta.Location = new System.Drawing.Point(71, 394);
+            this.grpConsulta.Location = new System.Drawing.Point(71, 399);
             this.grpConsulta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpConsulta.Name = "grpConsulta";
             this.grpConsulta.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -77,14 +77,14 @@ namespace VeterinariaSLN.presentacion
             this.dgvHistorial.AllowUserToDeleteRows = false;
             this.dgvHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHistorial.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHistorial.ColumnHeadersHeight = 26;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -92,14 +92,14 @@ namespace VeterinariaSLN.presentacion
             this.colDescripcion,
             this.colImporte,
             this.colAcciones});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHistorial.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(84)))), ((int)(((byte)(99)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(128)))), ((int)(((byte)(129)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHistorial.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvHistorial.EnableHeadersVisualStyles = false;
             this.dgvHistorial.Location = new System.Drawing.Point(42, 35);
             this.dgvHistorial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -165,7 +165,7 @@ namespace VeterinariaSLN.presentacion
             this.grpAltaAtencion.Controls.Add(this.lblMascotaA);
             this.grpAltaAtencion.Controls.Add(this.lblClienteA);
             this.grpAltaAtencion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.grpAltaAtencion.Location = new System.Drawing.Point(71, 37);
+            this.grpAltaAtencion.Location = new System.Drawing.Point(71, 42);
             this.grpAltaAtencion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpAltaAtencion.Name = "grpAltaAtencion";
             this.grpAltaAtencion.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -316,18 +316,20 @@ namespace VeterinariaSLN.presentacion
             // lblListD
             // 
             this.lblListD.AutoSize = true;
+            this.lblListD.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblListD.Location = new System.Drawing.Point(71, 381);
             this.lblListD.Name = "lblListD";
-            this.lblListD.Size = new System.Drawing.Size(123, 18);
+            this.lblListD.Size = new System.Drawing.Size(150, 22);
             this.lblListD.TabIndex = 14;
             this.lblListD.Text = "Listado de detalles:";
             // 
             // lblListA
             // 
             this.lblListA.AutoSize = true;
+            this.lblListA.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblListA.Location = new System.Drawing.Point(71, 22);
             this.lblListA.Name = "lblListA";
-            this.lblListA.Size = new System.Drawing.Size(133, 18);
+            this.lblListA.Size = new System.Drawing.Size(197, 24);
             this.lblListA.TabIndex = 15;
             this.lblListA.Text = "Alta detalle atencion:";
             // 

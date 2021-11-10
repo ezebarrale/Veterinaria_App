@@ -78,6 +78,7 @@ namespace VeterinariaSLN.presentacion
             this.btnUsuarios.TabIndex = 6;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnInfo
             // 
@@ -163,7 +164,7 @@ namespace VeterinariaSLN.presentacion
             this.btnsalir.ForeColor = System.Drawing.Color.White;
             this.btnsalir.Image = global::VeterinariaSLN.Properties.Resources.outline_logout_white_24dp;
             this.btnsalir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsalir.Location = new System.Drawing.Point(12, 709);
+            this.btnsalir.Location = new System.Drawing.Point(12, 739);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(187, 39);
             this.btnsalir.TabIndex = 1;
@@ -175,7 +176,7 @@ namespace VeterinariaSLN.presentacion
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 16);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(211, 168);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

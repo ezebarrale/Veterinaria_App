@@ -173,9 +173,10 @@ namespace VeterinariaSLN.presentacion
             // lblAlta
             // 
             this.lblAlta.AutoSize = true;
+            this.lblAlta.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblAlta.Location = new System.Drawing.Point(73, 90);
             this.lblAlta.Name = "lblAlta";
-            this.lblAlta.Size = new System.Drawing.Size(154, 18);
+            this.lblAlta.Size = new System.Drawing.Size(224, 24);
             this.lblAlta.TabIndex = 10;
             this.lblAlta.Text = "Alta de Tipo de Mascotas";
             // 

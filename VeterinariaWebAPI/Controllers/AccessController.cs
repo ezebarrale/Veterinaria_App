@@ -21,13 +21,52 @@ namespace VeterinariaWebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostUser(Usuario usr)
+        public IActionResult GetUser(Usuario usr)
         {
-            bool exito = app.ConsultarUsuario(usr);
+            Usuario oUsuario = app.ConsultarUsuario(usr);
+            if (oUsuario != null)
+                return Ok(oUsuario);
+            else
+                return NotFound("No existe el usuario ingresado");
+
+        }
+
+        [HttpPost("save")]
+        public IActionResult PostUsersave(Usuario usr)
+        {
+            if (app.GuardarUsuario(usr))
+                return Ok();
+            else
+                return BadRequest();
+
+        }
+
+        [HttpPost("users")]
+        public IActionResult GetUsers(Usuario usr)
+        {
+            return Ok(app.ConsultarUsuarios(usr));
+
+        }
+
+        [HttpPost("delete")]
+        public IActionResult PostRemoveUser(Usuario usr)
+        {
+            bool exito = app.EliminarUsuario(usr);
             if (exito)
                 return Ok(exito);
             else
-                return NotFound("No existe el usuario ingresado");
+                return BadRequest(exito);
+
+        }
+
+        [HttpPost("update")]
+        public IActionResult PostUpdateUser(Usuario usr)
+        {
+            bool exito = app.EditarUsuario(usr);
+            if (exito)
+                return Ok(exito);
+            else
+                return BadRequest(exito);
 
         }
     }

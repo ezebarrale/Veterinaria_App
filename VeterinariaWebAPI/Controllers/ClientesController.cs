@@ -64,5 +64,13 @@ namespace VeterinariaWebAPI.Controllers
             return Ok(app.EliminarCliente(oCliente));
 
         }
+
+        [HttpPost("getByDni")]
+        public IActionResult PostGetClienteDni(Cliente oCliente)
+        {
+
+            return Ok(app.ConsultarClientesXDni(oCliente));
+
+        }
     }
 }
