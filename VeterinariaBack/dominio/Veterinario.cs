@@ -10,6 +10,7 @@ namespace VeterinariaBack.dominio
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public string FakeNombre { get; set; }
         public int Dni { get; set; }
         public string Contacto { get; set; }
         public string Sexo { get; set; }

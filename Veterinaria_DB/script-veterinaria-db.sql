@@ -19,7 +19,7 @@ id_veterinario INT IDENTITY,
 nombre VARCHAR(20),
 apellido VARCHAR(20),
 dni int,
-contacto VARCHAR(20),
+contacto VARCHAR(40),
 sexo VARCHAR(1),
 fecha_baja DATETIME
 CONSTRAINT pk_id_veterinario PRIMARY KEY (id_veterinario))
@@ -28,7 +28,7 @@ CREATE TABLE CLIENTES(
 id_cliente INT IDENTITY,
 nombre VARCHAR(20),
 apellido VARCHAR(20),
-contacto VARCHAR(20),
+contacto VARCHAR(40),
 dni int,
 sexo VARCHAR(1),
 fecha_baja DATETIME
@@ -469,6 +469,23 @@ END
 
 ---------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_GUARDAR_VETERINARIO
+@nombre varchar(20),
+@apellido varchar(20),
+@sexo varchar(1),
+@contacto varchar(20),
+@dni int
+AS
+BEGIN
+	INSERT INTO VETERINARIOS(nombre, apellido, sexo, contacto, dni) VALUES (@nombre, @apellido, @sexo, @contacto, @dni)
+END
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
 GO
 
 CREATE PROCEDURE PA_CONSULTAR_VETERINARIOS --OK
@@ -478,6 +495,79 @@ BEGIN
 	SELECT * FROM VETERINARIOS
 	WHERE fecha_baja IS NULL
 
+END
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+GO
+
+CREATE PROCEDURE PA_SIGUIENTE_ID_VETERINARIO --OK
+@id_veterinario int OUT
+AS
+BEGIN
+
+declare @id int
+SET @id = (SELECT MAX(id_veterinario) FROM VETERINARIOS )
+
+	IF(@id IS NULL)
+	BEGIN
+		SET @id_veterinario = IDENT_CURRENT('dbo.VETERINARIOS')
+		RETURN
+	END
+	
+	SET @id_veterinario=(IDENT_CURRENT('dbo.VETERINARIOS') + IDENT_INCR('dbo.VETERINARIOS'))	
+
+END
+
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_ACTUALIZAR_VETERINARIO --OK
+@id_veterinario int,
+@nombre varchar(20),
+@apellido varchar(20),
+@contacto varchar(20),
+@sexo varchar(1),
+@dni int
+
+AS
+BEGIN
+	UPDATE VETERINARIOS
+	SET nombre = @nombre, apellido = @apellido, contacto = @contacto, sexo = @sexo, dni = @dni
+	where id_veterinario = @id_veterinario
+END
+
+EXEC PA_ACTUALIZAR_VETERINARIO 3, '','','','',123
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_ELIMINAR_VETERINARIO --OK
+@id_veterinario int
+AS
+BEGIN
+	UPDATE VETERINARIOS
+	SET fecha_baja = GETDATE()
+	where id_veterinario = @id_veterinario
+END
+
+
+---------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------
+
+GO
+
+CREATE PROCEDURE PA_CONSULTAR_VETERINARIO_X_DNI
+@dni int
+AS
+BEGIN
+SELECT * FROM VETERINARIOS
+WHERE dni = @dni
 END
 
 ---------------------------------------------------------------------------------------------------------------------------
@@ -560,7 +650,14 @@ END
 /******************************************/
 --INSERCIONES
 /******************************************/
+
 GO
+
+--------------INSERT USUARIOS------------------------------------
+
+INSERT INTO USUARIOS (usuario, passwrd, nivel) VALUES ('Admin', 'admin', 1)
+
+---------------------INSERT TIPO DE MASCOTAS---------------------------------
 
 
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('perro')
@@ -568,47 +665,67 @@ INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('gato')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('araña')
 INSERT INTO TIPO_MASCOTAS (descripcion) VALUES ('iguana')
 
-INSERT INTO USUARIOS (usuario, passwrd, nivel) VALUES ('Admin', 'admin', 1)
 
-/* MODIFICAR !!
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Juan', 'M')
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Ana', 'F')	
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Martina', 'F')
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Monica', 'F')
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Gabriel', 'M')
-INSERT INTO CLIENTES(nombre,sexo) VALUES ('Daniela', 'F')
-*/
-INSERT INTO CLIENTES(nombre, apellido, sexo, contacto, dni) VALUES ('Juan', 'Perez', 'M', '456782145', 40150784);
+---------------------INSERT VETERINARIOS---------------------------------
+INSERT INTO VETERINARIOS(nombre, apellido, dni, contacto, sexo) 
+			VALUES ('Nieves', 'Aguada', 28822496, 'Avda. Coronas 1100', 'F')
+INSERT INTO VETERINARIOS(nombre, apellido, dni, contacto, sexo) 
+			VALUES ('Ricardo', 'Maroleto', 34644234, 'Calle publica s/n', 'M')	
+INSERT INTO VETERINARIOS(nombre, apellido, dni, contacto, sexo) 
+			VALUES ('Silvina', 'Bustamante', 38456784, 'Calle Pizarro 210', 'F')
+INSERT INTO VETERINARIOS(nombre, apellido, dni, contacto, sexo) 
+			VALUES ('Fernando', 'Flores Fernandez', 32044776, 'Avda. Valparaiso 576', 'M')
 
-/* MODIFICAR !!
-INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Ines', 'F')
-INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Ricardo', 'M')	
-INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Silvina', 'F')
-INSERT INTO VETERINARIOS(nombre,sexo) VALUES ('Fernando', 'M')
-*/
+----------------------INSERT CLIENTES------------------------------------------------
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo) 
+			VALUES ('Juan', 'Barrionuevo', 4606124, 32403405, 'M')
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo)
+			VALUES ('Ana', 'Frondizi', 4824039, 33450567, 'F')	
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo)
+			VALUES ('Martina', 'Giraldi', 4765045, 30345432, 'F')
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo)
+			VALUES ('Monica', 'Avellaneda', 4554978, 29887665,'F')
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo)
+			VALUES ('Gabriel', 'Moleri', 4323332, 29433545, 'M')
+INSERT INTO CLIENTES(nombre, apellido, contacto, dni, sexo)
+			VALUES ('Daniela', 'Sanguinetti', 4645656, 37456788, 'F')
 
-INSERT INTO VETERINARIOS(nombre, apellido, sexo, contacto, dni) VALUES ('Ines', 'Gonzales', 'F', 'Calle Cordona 1522', 32745896);
+--------------INSERT MASCOTAS--------------------------------------------------
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Charlie', 5, 'M', 1,2);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente)
+		VALUES ('Toby', 3, 'M', 1,2);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Nini', 2, 'H', 2,2);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Sofi', 3, 'H',3,3);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Negro', 4,'M', 4,1);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Roque', 4,'M', 1,4);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Brisa', 4,'H', 2,4);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Laika', 2,'H', 2,6);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Pongo', 1,'M', 1,6);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Dama', 1,'H', 3,5);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Golfo', 5,'M', 4,4);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Titi', 3,'M', 1,1);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Tofi', 3,'M', 2,1);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Panda', 3,'M', 4,1);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Linda', 3,'H', 3,1);
+INSERT INTO MASCOTAS(nombre, edad, sexo, id_tipo_mascota, id_cliente) 
+		VALUES ('Rubia', 3,'H', 1,1);
 
-/* MODIFICAR !!
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Charlie', 5, 1,2);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Toby', 3, 1,2);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Nini', 2, 2,2);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Sofi', 3, 3,3);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Negro', 4, 4,1);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Roque', 4, 1,4);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Brisa', 4, 2,4);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Laika', 2, 2,6);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Pongo', 1, 1,6);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Dama', 1, 3,5);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Golfo', 5, 4,4);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Titi', 3, 1,1);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Tofi', 3, 2,1);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Panda', 3, 4,1);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Linda', 3, 3,1);
-INSERT INTO MASCOTAS(nombre, edad, id_tipo_mascota, id_cliente) VALUES ('Rubia', 3, 1,1);
-*/
 
-/*
+----------------INSERT ATENCIONES------------
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(1, '2021-11-05 14:14:03.600')
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(2, '2021-10-22 14:28:13.837')
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(3, '2021-01-05 14:29:42.513')
@@ -638,92 +755,90 @@ INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(4, '2021-11-05 14:14:0
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(4, '2021-11-05 21:46:04.657')
 INSERT INTO ATENCIONES(id_veterinario, fecha_hora) VALUES(4, '2021-09-15 21:46:04.657')
 
+--------------INSERT DETALLE ATENCIONES------------------------------------
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 1, 1, 'Primovacunación ', 1220)
+						VALUES( 1, 1, 1, 'Primovacunación', 1220)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 2, 1, 1, 'Pentavalente  ', 1220)
+						VALUES( 2, 1, 1, 'Vacunación Pentavalente', 1220)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 2, 2, 'Primovacunación', 850)
+						VALUES( 1, 2, 2, 'Vacunación Hexavalente', 1350)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 2, 2, 2, 'Primovacunación', 850)
+						VALUES( 2, 2, 2, 'Desparasitación, pipeta', 750)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 3, 3, 'Hexavalente ', 1250)
+						VALUES( 1, 3, 3, 'Hidratacion intravenosa por Panleucopeina', 1550)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 4, 4, 'Hexavalente ', 1850)
+						VALUES( 1, 4, 4, 'Amputación extremedidad por infeccion bacteriana', 650)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 5, 5, 'Contra Rabia', 1850)
+						VALUES( 1, 5, 5, 'Gota, cambio de dieta', 1150)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 6, 6, 'Pentavalente ', 1250)
+						VALUES( 1, 6, 6, 'Vacunación Peritonitis', 1250)
+						
+INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
+						VALUES( 1, 7, 7, 'Desparasitación intestinal por gastroenteritis', 1250)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 7, 7, 'Polivalente', 1250)
+						VALUES( 1, 8, 8, 'Vacunación Pentavalente', 1250)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 8, 8, 'Octovalente ', 1450)
+						VALUES( 1, 9, 9, 'Extraccion de Epulis, sedación', 4950)
+						
+INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
+						VALUES( 1, 10, 10, 'Gentamicina, infeccion fungica', 550)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 9, 9, 'Contra Rabia', 1250)
+						VALUES( 1, 12, 12, 'Vacunación Octovalente ', 1450)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 10, 10, 'Pentavalente ', 1250)
+						VALUES( 1, 13, 15, 'Revision por fatiga invernal', 550)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 11, 11, 'Octovalente ', 1350)
+						VALUES( 1, 14, 13, 'Corte uñas, sedación', 1850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 12, 12, 'Octovalente ', 1250)
+						VALUES( 1, 15, 14, 'Enfermedad ósea metabólica, cambio de lampara', 3250)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 13, 15, 'Contra Rabia', 350)
+						VALUES( 1, 16, 3, 'Conjuntivitis, Gotas antibioticas', 1350)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 14, 13, 'Octovalente ', 1250)
+						VALUES( 1, 17, 8, 'Vacunación Rabia', 850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 15, 14, 'Pentavalente  ', 1250)
+						VALUES( 1, 19, 12, 'Vacunación Pentavalente ', 850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 16, 3, 'Polivalente', 1350)
+						VALUES( 1, 20, 13, 'Otitis, gotas gentamicina', 1250)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 17, 8, 'Contra Rabia', 1350)
+						VALUES( 1, 21, 6, 'Extraccion vidrios pata trasera, antibioticos', 2250)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 19, 12, 'Pentavalente ', 1250)
+						VALUES( 1, 22, 5, 'Gota, cambio de dieta', 750)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 20, 13, 'Polivalente', 1250)
+						VALUES( 1, 23, 7, 'Vacunación Rabia', 850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 21, 6, 'Contra Rabia', 1250)
+						VALUES( 1, 24, 9, 'Vacunación Rabia', 850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 22, 5, 'Contra Rabia', 1250)
+						VALUES( 1, 25, 10, 'Gentamicina, infeccion fungica', 550)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 23, 7, 'Contra Rabia', 1250)
+						VALUES( 1, 26, 4, 'Gentamicina, infeccion fungica', 550)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 24, 9, 'Contra Rabia', 1250)
+						VALUES( 1, 27, 9, 'Vacunación Rabia', 850)
 
 INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 25, 10, 'Contra Rabia', 1250)
+						VALUES( 1, 28, 12, 'Desparasitación intestinal + collar isabelino', 2050)
 
-INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 26, 4, 'Contra Rabia', 1250)
 
-INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 27, 9, 'Contra Rabia', 1250)
-
-INSERT INTO DETALLE_ATENCIONES( id_detalle, id_atencion, id_mascota ,descripcion, importe_atencion) 
-VALUES( 1, 28, 12, 'Contra Rabia', 1250)
-
-*/

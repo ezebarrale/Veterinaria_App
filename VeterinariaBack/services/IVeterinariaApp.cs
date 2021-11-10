@@ -36,5 +36,10 @@ namespace VeterinariaBack.services
         public List<Usuario> ConsultarUsuarios(Usuario oUsuario);
         public bool EliminarUsuario(Usuario oUsuario);
         public bool EditarUsuario(Usuario oUsuario);
+        public int ConsultarSiguienteIdVeterinario();
+        public bool EditarVeterinario(Veterinario oVeterinario);
+        public bool EliminarVeterinario(Veterinario oVeterinario);
+        public Veterinario ConsultarVeterinariosXDni(Veterinario oVeterinario);
+        public bool GuardarVeterinario(Veterinario oVeterinario);
     }
 }

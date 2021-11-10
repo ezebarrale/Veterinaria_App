@@ -995,7 +995,6 @@ namespace VeterinariaBack.datos
 
             return flagSalida;
         }
-
         public DataTable Consulta_Usuarios_Sql(string procedure, Usuario oUsuario)
         {
             SqlConnection cnn = new SqlConnection(connectionString);
@@ -1026,7 +1025,6 @@ namespace VeterinariaBack.datos
             return table;
 
         }
-
         public bool Eliminar_Usuario_Sql(string procedure, Usuario oUsuario)
         {
             bool flagSalida = false;
@@ -1062,7 +1060,6 @@ namespace VeterinariaBack.datos
 
             return flagSalida;
         }
-
         public bool Editar_Usuario_Sql(string procedure, Usuario oUsuario)
         {
             bool flagSalida = false;
@@ -1080,6 +1077,197 @@ namespace VeterinariaBack.datos
                 cmd.Parameters.AddWithValue("@usuario", oUsuario.User);
                 cmd.Parameters.AddWithValue("@password", oUsuario.Password);
                 cmd.Parameters.AddWithValue("@level", oUsuario.Level);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public int Consulta_Siguiente_Id_Veterinario_Sql(string procedure)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            int id = 0;
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter param = new SqlParameter("@id_veterinario", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+
+                cmd.Parameters.Add(param);
+
+                cmd.ExecuteNonQuery();
+
+                id = Convert.ToInt32(param.Value);
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return id;
+        }
+        public bool Editar_Veterinario_Sql(string procedure, Veterinario oVeterinario)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_veterinario", oVeterinario.Codigo);
+                cmd.Parameters.AddWithValue("@nombre", oVeterinario.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", oVeterinario.Apellido);
+                cmd.Parameters.AddWithValue("@contacto", oVeterinario.Contacto);
+                cmd.Parameters.AddWithValue("@dni", oVeterinario.Dni);
+                cmd.Parameters.AddWithValue("@sexo", oVeterinario.Sexo);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public bool Eliminar_Veterinario_Sql(string procedure, Veterinario oVeterinario)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id_veterinario", oVeterinario.Codigo);
+
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 1)
+                {
+                    flagSalida = true;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string msj = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return flagSalida;
+        }
+        public Veterinario Consulta_Veterinarios_X_DNI_Sql(string procedure, Veterinario oVeterinario)
+        {
+            SqlConnection cnn = new SqlConnection(connectionString);
+            DataTable table = new DataTable();
+
+            Veterinario vet = new Veterinario();
+
+            try
+            {
+                cnn.Open();
+
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@dni", oVeterinario.Dni);
+
+                table.Load(cmd.ExecuteReader());
+
+                foreach (DataRow itm in table.Rows)
+                {
+                    vet.Codigo = Convert.ToInt32(itm["id_cliente"].ToString());
+                    vet.Nombre = itm["nombre"].ToString();
+                    vet.Apellido = itm["apellido"].ToString();
+                    vet.FakeNombre = itm["nombre"].ToString() + " " + itm["apellido"].ToString();
+                    vet.Contacto = itm["contacto"].ToString();
+                    vet.Dni = Convert.ToInt32(itm["dni"].ToString());
+                    vet.Sexo = itm["sexo"].ToString();
+                    break;
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                string mensaje = ex.Message;
+            }
+            finally
+            {
+                if (cnn != null && cnn.State == ConnectionState.Open)
+                    cnn.Close();
+            }
+
+            return vet;
+        }
+        public bool Guardar_Veterinario_Sql(string procedure, Veterinario oVeterinario)
+        {
+            bool flagSalida = false;
+            int result = 0;
+            SqlConnection cnn = new SqlConnection(connectionString);
+
+            cnn.Open();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand(procedure, cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@nombre", oVeterinario.Nombre);
+                cmd.Parameters.AddWithValue("@apellido", oVeterinario.Apellido);
+                cmd.Parameters.AddWithValue("@sexo", oVeterinario.Sexo);
+                cmd.Parameters.AddWithValue("@contacto", oVeterinario.Contacto);
+                cmd.Parameters.AddWithValue("@dni", oVeterinario.Dni);
 
                 result = cmd.ExecuteNonQuery();
 

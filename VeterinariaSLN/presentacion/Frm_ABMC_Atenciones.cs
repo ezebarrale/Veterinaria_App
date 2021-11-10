@@ -46,7 +46,7 @@ namespace VeterinariaSLN.presentacion
             lstVeterinarios = JsonConvert.DeserializeObject<List<Veterinario>>(bodyJSON);
 
             cmbVet.DataSource = lstVeterinarios;
-            cmbVet.DisplayMember = "Nombre";
+            cmbVet.DisplayMember = "FakeNombre";
             cmbVet.ValueMember = "Codigo";
         }
 

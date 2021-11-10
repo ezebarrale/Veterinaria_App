@@ -31,5 +31,8 @@
     <Compile Update="presentacion\Frm_Soporte.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="presentacion\Frm_Veterinarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

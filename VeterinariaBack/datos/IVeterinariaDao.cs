@@ -36,6 +36,10 @@ namespace VeterinariaBack.datos
         List<Usuario> GetUsuarios(Usuario oUsuario);
         bool DeleteUsuario(Usuario oUsuario);
         bool UpdateUsuario(Usuario oUsuario);
-
+        int GetNextIdVeterinario();
+        bool UpdateVeterinario(Veterinario oVeterinario);
+        bool DeleteVeterinario(Veterinario oVeterinario);
+        public Veterinario GetVeterinarioByDni(Veterinario oVeterinario);
+        bool SaveVeterinario(Veterinario oVeterinario);
     }
 }

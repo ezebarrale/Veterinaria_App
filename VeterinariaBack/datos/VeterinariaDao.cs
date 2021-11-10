@@ -185,7 +185,11 @@ namespace VeterinariaBack.datos
                 Veterinario oVeterinario = new Veterinario();
                 oVeterinario.Codigo = Convert.ToInt32(row["id_veterinario"].ToString());
                 oVeterinario.Nombre = row["nombre"].ToString();
+                oVeterinario.Apellido = row["apellido"].ToString();
+                oVeterinario.FakeNombre = row["nombre"].ToString() + " " + row["apellido"].ToString();
                 oVeterinario.Sexo = row["sexo"].ToString();
+                oVeterinario.Contacto = row["contacto"].ToString();
+                oVeterinario.Dni = Convert.ToInt32(row["dni"].ToString());
 
                 veterinarios.Add(oVeterinario);
             }
@@ -248,6 +252,31 @@ namespace VeterinariaBack.datos
         public bool UpdateUsuario(Usuario oUsuario)
         {
             return HelperDao.GetInstance().Editar_Usuario_Sql("PA_EDITAR_USUARIO", oUsuario);
+        }
+
+        public int GetNextIdVeterinario()
+        {
+            return HelperDao.GetInstance().Consulta_Siguiente_Id_Veterinario_Sql("PA_SIGUIENTE_ID_VETERINARIO");
+        }
+
+        public bool UpdateVeterinario(Veterinario oVeterinario)
+        {
+            return HelperDao.GetInstance().Editar_Veterinario_Sql("PA_ACTUALIZAR_VETERINARIO", oVeterinario);
+        }
+
+        public bool DeleteVeterinario(Veterinario oVeterinario)
+        {
+            return HelperDao.GetInstance().Eliminar_Veterinario_Sql("PA_ELIMINAR_VETERINARIO", oVeterinario);
+        }
+
+        public Veterinario GetVeterinarioByDni(Veterinario oVeterinario)
+        {
+            return HelperDao.GetInstance().Consulta_Veterinarios_X_DNI_Sql ("PA_CONSULTAR_VETERINARIO_X_DNI", oVeterinario);
+        }
+
+        public bool SaveVeterinario(Veterinario oVeterinario)
+        {
+            return HelperDao.GetInstance().Guardar_Veterinario_Sql("PA_GUARDAR_VETERINARIO", oVeterinario);
         }
     }
 }

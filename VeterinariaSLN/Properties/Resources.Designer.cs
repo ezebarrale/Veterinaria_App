@@ -93,6 +93,16 @@ namespace VeterinariaSLN.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_badge_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_badge_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_clear_white_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_clear_white_24dp", resourceCulture);
@@ -236,6 +246,16 @@ namespace VeterinariaSLN.Properties {
         internal static System.Drawing.Bitmap pngegg2 {
             get {
                 object obj = ResourceManager.GetObject("pngegg2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngwing {
+            get {
+                object obj = ResourceManager.GetObject("pngwing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

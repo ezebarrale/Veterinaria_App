@@ -129,5 +129,30 @@ namespace VeterinariaBack.services
         {
             return dao.UpdateUsuario(oUsuario);
         }
+
+        public int ConsultarSiguienteIdVeterinario()
+        {
+            return dao.GetNextIdVeterinario();
+        }
+
+        public bool EditarVeterinario(Veterinario oVeterinario)
+        {
+            return dao.UpdateVeterinario(oVeterinario);
+        }
+
+        public bool EliminarVeterinario(Veterinario oVeterinario)
+        {
+            return dao.DeleteVeterinario(oVeterinario);
+        }
+
+        public Veterinario ConsultarVeterinariosXDni(Veterinario oVeterinario)
+        {
+            return dao.GetVeterinarioByDni(oVeterinario);
+        }
+
+        public bool GuardarVeterinario(Veterinario oVeterinario)
+        {
+            return dao.SaveVeterinario(oVeterinario);
+        }
     }
 }

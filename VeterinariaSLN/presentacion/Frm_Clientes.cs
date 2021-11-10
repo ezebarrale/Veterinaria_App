@@ -18,6 +18,7 @@ namespace VeterinariaSLN.presentacion
         private Cliente oCliente = new Cliente();
         private Mascota oMascota = new Mascota();
         private List<TipoMascota> lstTipoMascotas = new List<TipoMascota>();
+        private Veterinario oVeterinario = new Veterinario();
         private TipoObj tipo = new TipoObj();
         private Accion modo = new Accion();
         public Frm_Clientes(Object obj, Object obj2, Accion mdo)
@@ -28,6 +29,13 @@ namespace VeterinariaSLN.presentacion
             {
                 oCliente = (Cliente)obj;
                 tipo = TipoObj.CLIENTE;
+                modo = mdo;
+            }
+
+            if (obj is Veterinario)
+            {
+                oVeterinario = (Veterinario)obj;
+                tipo = TipoObj.VETERINARIO;
                 modo = mdo;
             }
 
@@ -66,6 +74,32 @@ namespace VeterinariaSLN.presentacion
 
             }
 
+            if (tipo == TipoObj.VETERINARIO)
+            {
+                OptimizarForm(tipo);
+
+                lblTitulo.Text = "Medico Veterinario";
+                if (modo != Accion.CREATE)
+                {
+                    txtCodigo.Text = oVeterinario.Codigo.ToString();
+                    txtNombre.Text = oVeterinario.Nombre;
+                    txtApellido.Text = oVeterinario.Apellido;
+                    if (oVeterinario.Sexo == "M")
+                        rdbM.Checked = true;
+                    else
+                        rdbF.Checked = true;
+                    txtDni.Text = oVeterinario.Dni.ToString();
+                    txtContacto.Text = oVeterinario.Contacto;
+
+                }
+                else
+                {
+                    await ObtenerSiguienteId("Veterinarios/id");
+                    rdbM.Checked = true;
+                }
+
+            }
+
         }
 
         private async Task ObtenerSiguienteId(string str)
@@ -83,8 +117,6 @@ namespace VeterinariaSLN.presentacion
             }
         }
 
-
-        
 
         private void OptimizarForm(TipoObj obj)
         {
@@ -118,7 +150,25 @@ namespace VeterinariaSLN.presentacion
                 lblTM.Text = "Listado de mascotas: ";
             }
 
-            
+            if (obj == TipoObj.VETERINARIO)
+            {
+
+                btnGuardar.Enabled = true;
+                rdbM.Enabled = true;
+                rdbM.Visible = true;
+                rdbF.Visible = true;
+                rdbF.Enabled = true;
+                txtNombre.Enabled = true;
+                txtApellido.Enabled = true;
+                txtContacto.Enabled = true;
+                txtDni.Enabled = true;
+
+                lblTM.Visible = false;
+                lstSoporte.Visible = false;
+                pcbVet.Visible = true;
+                btnEditar.Visible = false;
+                btnEliminar.Visible = false;
+            }
 
         }
 
@@ -142,52 +192,51 @@ namespace VeterinariaSLN.presentacion
 
         private async void btnGuardar_Click_1(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(txtNombre.Text))
+            {
+                MessageBox.Show("El campo nombre esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtNombre.Text.Length > 20)
+            {
+                MessageBox.Show("El campo nombre no debe superar los 20 caracteres", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtApellido.Text))
+            {
+                MessageBox.Show("El campo apellido esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtApellido.Text.Length > 20)
+            {
+                MessageBox.Show("Exediste la cantidad de caracteres para el campo apellido", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (String.IsNullOrEmpty(txtContacto.Text))
+            {
+                MessageBox.Show("El campo contacto esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtContacto.Text.Length > 40)
+            {
+                MessageBox.Show("Exediste la cantidad de caracteres para el campo contacto", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (txtNombre.Text.Length > 20)
+            {
+                MessageBox.Show("Exediste la cantidad de caracteres para el campo nombre", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             if (tipo == TipoObj.CLIENTE)
             {
                 Cliente oClienteN = new Cliente();
-
-                if (String.IsNullOrEmpty(txtNombre.Text))
-                {
-                    MessageBox.Show("El campo nombre esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (txtNombre.Text.Length > 20)
-                {
-                    MessageBox.Show("El campo nombre no debe superar los 20 caracteres", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (String.IsNullOrEmpty(txtApellido.Text))
-                {
-                    MessageBox.Show("El campo apellido esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (txtApellido.Text.Length > 20)
-                {
-                    MessageBox.Show("Exediste la cantidad de caracteres para el campo apellido", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (String.IsNullOrEmpty(txtContacto.Text))
-                {
-                    MessageBox.Show("El campo contacto esta sin completar ...", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (txtContacto.Text.Length > 20)
-                {
-                    MessageBox.Show("Exediste la cantidad de caracteres para el campo contacto", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (txtNombre.Text.Length > 20)
-                {
-                    MessageBox.Show("Exediste la cantidad de caracteres para el campo nombre", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
 
                 try
                 {
@@ -284,6 +333,105 @@ namespace VeterinariaSLN.presentacion
 
             }
 
+            if (tipo == TipoObj.VETERINARIO)
+            {
+                Veterinario oVeterinarioN = new Veterinario();
+
+                try
+                {
+                    oVeterinarioN.Dni = Convert.ToInt32(txtDni.Text);
+
+                    if (oVeterinario.Dni != oVeterinarioN.Dni)
+                    {
+                        //Se valida que el cliente ya exista pero contro nombre --devolver ese nombre y mostrarlo
+                        string url1 = "https://localhost:44350/api/Clientes/getByDni";
+                        HttpClient cliente1 = new HttpClient();
+                        var data1 = JsonConvert.SerializeObject(oVeterinarioN);
+                        HttpContent content1 = new StringContent(data1, System.Text.Encoding.UTF8, "application/json");
+                        var result1 = await cliente1.PostAsync(url1, content1);
+
+                        if (result1.IsSuccessStatusCode)
+                        {
+                            var bodyJSON = await result1.Content.ReadAsStringAsync();
+                            Veterinario vet1 = JsonConvert.DeserializeObject<Veterinario>(bodyJSON);
+
+                            if (vet1.Dni == oVeterinarioN.Dni)
+                            {
+                                MessageBox.Show("El Dni que ingresó ya pertenece a otro veterinario: " + vet1.FakeNombre, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                return;
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("El campo documento debe ser numerico", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+
+                }
+
+                DialogResult msg = MessageBox.Show("Seguro desea guardar los datos ingresados?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (msg.Equals(DialogResult.OK))
+                {
+                    oVeterinarioN.Nombre = txtNombre.Text;
+                    oVeterinarioN.Apellido = txtApellido.Text;
+                    oVeterinarioN.Contacto = txtContacto.Text;
+                    oVeterinarioN.Codigo = oVeterinario.Codigo;
+
+                    if (rdbM.Checked)
+                        oVeterinarioN.Sexo = "M";
+                    else
+                        oVeterinarioN.Sexo = "F";
+
+                    string operacion = "update";
+                    string msjExito = "Se actualizó el veterinario con exito";
+                    string msjNoExito = "No fue posible actualizar el veterinario ingresado";
+
+                    //Diferenciamos si es un nuevo cliente o la actualizacion de uno existente
+                    if (modo == Accion.CREATE)
+                    {
+
+                        operacion = "save";
+                        msjExito = "Se guardó el veterinario con exito";
+                        msjNoExito = "No fue posible guardar el veterinario ingresado";
+
+                    }
+
+                    string url = "https://localhost:44350/api/Veterinarios/" + operacion;
+                    HttpClient cliente = new HttpClient();
+                    var data = JsonConvert.SerializeObject(oVeterinarioN);
+                    HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+                    var result = await cliente.PostAsync(url, content);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var bodyJSON = await result.Content.ReadAsStringAsync();
+                        bool exito = JsonConvert.DeserializeObject<bool>(bodyJSON);
+
+                        if (exito)
+                        {
+                            MessageBox.Show(msjExito, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Dispose();
+                        }
+                        else
+                        {
+                            MessageBox.Show(msjNoExito, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(msjNoExito, "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                }
+
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -341,7 +489,15 @@ namespace VeterinariaSLN.presentacion
             HabilitarCampos();
             LimpiarCampos();
 
-            await ObtenerSiguienteId("Clientes/id");
+            if (tipo == TipoObj.CLIENTE) {
+                await ObtenerSiguienteId("Clientes/id");
+            }
+
+            if (tipo == TipoObj.VETERINARIO)
+            {
+                await ObtenerSiguienteId("Veterinarios/id");
+            }
+
         }
 
         private void HabilitarCampos()

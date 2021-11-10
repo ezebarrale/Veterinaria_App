@@ -16,7 +16,8 @@ namespace VeterinariaSLN.presentacion
     enum TipoObj { 
         ATENCION,
         MASCOTA,
-        CLIENTE
+        CLIENTE,
+        VETERINARIO
     }
     public partial class Frm_Soporte : Form
     {
